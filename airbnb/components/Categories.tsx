@@ -3,15 +3,24 @@ import Image from "next/image";
 
 export const Categories = () => {
     return (
-        <div className="w-full mx-auto px-12">
-            <div className="">
+        <div className="w-full mx-auto px-12 py-3 flex space-x-6">
+            <div className="border flex flex-col items-center cursor-pointer py-3 space-y-2 border-b-2 border-white opacity-80 hover:opacity-100 hover:border-b-black">
                 <Image
-                    width={40}
-                    height={40}
-                    src="https://a0.muscache.com/pictures/3fb523a0-b622-4368-8142-b5e03df7549b.jpg" 
-                    alt="somr"
+                    width={20}
+                    height={20}
+                    src="/caterogies/A frames.jpg" 
+                    alt="A frames.jpg"
                 />
-                Some
+                <p className="text-xs">A frames</p>
+            </div>    
+            <div className="border flex flex-col items-center cursor-pointer py-3 space-y-2 border-b-2 border-white opacity-80 hover:opacity-100 hover:border-b-black">
+                <Image
+                    width={20}
+                    height={20}
+                    src="/caterogies/A frames.jpg" 
+                    alt="A frames.jpg"
+                />
+                <p className="text-xs">A frames</p>
             </div>
         </div>
     );
