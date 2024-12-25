@@ -1,5 +1,7 @@
 import { Button } from "./button";
 import { FaSearch } from "react-icons/fa";
+import './input-label.css'
+
 interface InputwithLabelProps {
     className?: string,
     label?: string,
@@ -27,7 +29,7 @@ export const InputwithLabel= ({
                 <p className="text-lightText text-xs px-4">{placeholder}</p>
             </div>
 
-            {   isButton?<div className="inline-flex-items-center-btn">
+            {   isButton?<div className="search_btn">
                     <FaSearch/>
                 </div>:""
             }

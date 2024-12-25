@@ -24,7 +24,8 @@ export const SearchFilters = (params: {tab: string}) => {
 
     return (
         <div className="flex flow-row items-center justify-between border rounded-full shadow-lg p-0">
-            <div className="hidden lg:block">
+            <div>
+                {tab != "short" ?
                 <div className="flex flex-rows items-center justify-between">
                     <InputwithLabel 
                         label="Where" 
@@ -107,6 +108,56 @@ export const SearchFilters = (params: {tab: string}) => {
                         isButton
                     />
                 </div>
+                : <div className="flex flex-rows items-center justify-between">
+                    <InputwithLabel 
+                        label="Anywhere"
+                        width="110px"
+                        onMouseLeave={onMouseLeave}
+                        onMouseEnter={
+                            () => { setHoverState({
+                                "search": true,
+                                "checkIn": false,
+                                "checkOut": false,
+                                "addGuest": false,
+                            })
+                            console.log(hoverState);
+                            }
+                        }
+                    />
+                    <Separator orientation="vertical" className="h-8" 
+                        style={{visibility:(hoverState.search||hoverState.checkIn)?"hidden":"visible"}}/>
+                    <InputwithLabel 
+                        label="Any week"
+                        width="110px"
+                        onMouseLeave={onMouseLeave}
+                        onMouseEnter={
+                            () => { setHoverState({
+                                "search": true,
+                                "checkIn": false,
+                                "checkOut": false,
+                                "addGuest": false,
+                            })
+                            console.log(hoverState);
+                            }
+                        }
+                    />
+                    <Separator orientation="vertical" className="h-8" 
+                        style={{visibility:(hoverState.search||hoverState.checkIn)?"hidden":"visible"}}/>
+                    <InputwithLabel 
+                        placeholder="Add guests" 
+                        onMouseLeave={onMouseLeave}
+                        width="170px"
+                        onMouseEnter={
+                            () => { setHoverState({
+                                "search": false,
+                                "checkIn": false,
+                                "checkOut": false,
+                                "addGuest": true,
+                            })}
+                        }
+                        isButton
+                    />
+                </div>}
             </div>
         </div>
     );
