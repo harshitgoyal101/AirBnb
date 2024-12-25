@@ -3,66 +3,7 @@ import Image from "next/image";
 
 export default function Home() {
 	return (
-		<main className="">
-		<Categories/>
-		<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-		<Categories/>
-		<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-		<Categories/>
-		<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-		<Categories/>
-		<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-		<Categories/>
-		<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-		<Categories/>
-		<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
-			<Categories/>
+		<main className="flex">
 			<Categories/>
 		</main>
 	);

@@ -21,17 +21,24 @@ export const Navbar = () => {
         const handleTab = () => {
             console.log(logo);
             setLogo("/airbnb.svg");
+
             if(window.innerWidth < 900) {
                 setLogo("/airbnb-short.svg");
             }
+
             if(window.innerWidth < 850) {
                 setTabValue("none");
+                setLogo("/airbnb.svg");
             } else if (window.innerWidth < 1000) {
                 setTabValue("short");
             } else if (window.scrollY === 0) {
                 setTabValue("stays");
             } else {
                 setTabValue("short");
+            }
+            
+            if(window.innerWidth < 500) {
+                setLogo("/airbnb-short.svg");
             }
         };
 
@@ -45,7 +52,7 @@ export const Navbar = () => {
       }, []);
 
     return (
-        <nav className="w-full fixed top-0 left-0 py-4 border-b bg-white">
+        <nav className="w-full top-0 left-0 py-4 border-b bg-white z-10">
             <div className="place-items-center">
                 <div className="w-full mx-auto px-12">
                     <div className="flex justify-between h-[60px]">
@@ -53,10 +60,10 @@ export const Navbar = () => {
                             <Image 
                                 src={logo} 
                                 alt="Logo" 
-                                width={100}
+                                width={logo==="/airbnb.svg"?100:30}
                                 height={38}
                                 style={{ alignSelf: 'flex-start' }}
-                                className='pt-3 max-h-[40px] bg-left'
+                                className='pt-3 max-h-[40px]'
                             />
                         </Link>
                         
