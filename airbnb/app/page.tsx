@@ -1,10 +1,11 @@
 import { Categories } from "@/components/Categories";
-import Image from "next/image";
+import { Properties } from "@/components/Properties";
 
 export default function Home() {
 	return (
-		<main className="flex">
-			<Categories/>
+		<main className="flex flex-col w-full">
+			<Categories />
+			<Properties />
 		</main>
 	);
 }
