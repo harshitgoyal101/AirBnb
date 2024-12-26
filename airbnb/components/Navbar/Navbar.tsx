@@ -22,80 +22,117 @@ export const Navbar = () => {
             console.log(logo);
             setLogo("/airbnb.svg");
 
-            if(window.innerWidth < 900) {
-                setLogo("/airbnb-short.svg");
-            }
-
-            if(window.innerWidth < 850) {
+            if (window.innerWidth < 950) {
                 setTabValue("none");
-                setLogo("/airbnb.svg");
             } else if (window.innerWidth < 1000) {
                 setTabValue("short");
+                setLogo("/airbnb-short.svg");
             } else if (window.scrollY === 0) {
                 setTabValue("stays");
             } else {
                 setTabValue("short");
             }
-            
-            if(window.innerWidth < 500) {
+            if (window.innerWidth < 550) {
                 setLogo("/airbnb-short.svg");
             }
         };
 
-        window.addEventListener('scroll', handleTab);
-        window.addEventListener('resize', handleTab);
-    
+        window.addEventListener("scroll", handleTab);
+        window.addEventListener("resize", handleTab);
+
         return () => {
-            window.removeEventListener('scroll', handleTab);
-            window.removeEventListener('resize', handleTab);
+            window.removeEventListener("scroll", handleTab);
+            window.removeEventListener("resize", handleTab);
         };
-      }, []);
+    }, []);
 
     return (
         <nav className="w-full top-0 left-0 py-4 border-b bg-white z-10">
             <div className="place-items-center">
-                <div className="w-full mx-auto px-12">
+                <div className="w-full mx-auto px-24">
                     <div className="flex justify-between h-[60px]">
                         <Link href="/">
-                            <Image 
-                                src={logo} 
-                                alt="Logo" 
-                                width={logo==="/airbnb.svg"?100:30}
+                            <Image
+                                src={logo}
+                                alt="Logo"
+                                width={logo === "/airbnb.svg" ? 100 : 30}
                                 height={38}
-                                style={{ alignSelf: 'flex-start' }}
-                                className='pt-3 max-h-[40px]'
+                                style={{ alignSelf: "flex-start" }}
+                                className="pt-3 max-h-[40px]"
                             />
                         </Link>
-                        
-                        <div className={`items-center justify-between px-6 ${tabValue==='short'?'flex':'hidden'}`}>
-                            <SearchFilters tab={tabValue}/>
+
+                        <div
+                            className={`items-center justify-between px-6 ${
+                                tabValue === "short" ? "flex" : "hidden"
+                            }`}
+                        >
+                            <SearchFilters tab={tabValue} />
                         </div>
 
-                        <div className={`${(tabValue==='stays'||tabValue==='experience')?'block':'hidden'} pt-2`}>
-                            <Button variant={tabValue === "stays" ? "active" : "default"} onClick={() => {
-                                setTabValue("stays");
-                            }}>
+                        <div
+                            className={`${
+                                tabValue === "stays" || tabValue === "experience"
+                                    ? "block"
+                                    : "hidden"
+                            } pt-2`}
+                        >
+                            <Button
+                                variant={
+                                    tabValue === "stays" ? "active" : "default"
+                                }
+                                onClick={() => {
+                                    setTabValue("stays");
+                                }}
+                            >
                                 Stays
                             </Button>
-                            <Button variant={tabValue === "experience" ? "active" : "default"} onClick={() => {
-                                setTabValue("experience");
-                            }}>
-                                Experinces
+                            <Button
+                                variant={
+                                    tabValue === "experience"
+                                        ? "active"
+                                        : "default"
+                                }
+                                onClick={() => {
+                                    setTabValue("experience");
+                                }}
+                            >
+                                Experiences
                             </Button>
                         </div>
 
                         <div className="flex items-center">
-                            <Button className='text-darkText'>Airbnb your home</Button>
-                            <Button className='text-darkText'><TbWorld/></Button>
-                            <Button variant="outline" className='text-darkText'><IoMenu/><CgProfile/></Button>
+                            <Button className="text-darkText">
+                                Airbnb your home
+                            </Button>
+                            <Button className="text-darkText">
+                                <TbWorld />
+                            </Button>
+                            <Button
+                                variant="outline"
+                                className="text-darkText"
+                            >
+                                <IoMenu />
+                                <CgProfile />
+                            </Button>
                         </div>
                     </div>
                 </div>
-                <div className={`items-center justify-between p-6 ${(tabValue==='stays'||tabValue==='experience')?'flex':'hidden'}`}>
-                    <SearchFilters tab={tabValue}/>
+                <div
+                    className={`items-center justify-between p-6 ${
+                        tabValue === "stays" || tabValue === "experience"
+                            ? "flex"
+                            : "hidden"
+                    }`}
+                >
+                    <SearchFilters tab={tabValue} />
                 </div>
 
-                <div className={`items-center justify-between px-6 ${tabValue==='none'?'flex':'hidden'}`}>
+                <div
+                    className={`items-center justify-between px-6 ${
+                        tabValue === "none" ? "flex" : "hidden"
+                    }`}
+                >
                     <SearchFilters tab="short"/>
                 </div>
             </div>
