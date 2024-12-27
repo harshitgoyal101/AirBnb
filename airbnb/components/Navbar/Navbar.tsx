@@ -10,7 +10,7 @@ import { SearchFilters } from "./SearchFilters";
 import { TbWorld } from "react-icons/tb";
 import { IoMenu } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-
+import path from 'path';
 
 export const Navbar = () => {
 
@@ -19,7 +19,6 @@ export const Navbar = () => {
 
     React.useEffect(() => {
         const handleTab = () => {
-            console.log(logo);
             setLogo("/airbnb.svg");
 
             if (window.innerWidth < 950) {

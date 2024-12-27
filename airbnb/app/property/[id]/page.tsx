@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { FaRegHeart } from "react-icons/fa";
 import { RiShare2Fill } from "react-icons/ri";
 import { PropertiesImages } from "@/components/Properties/PropertyImages";
+import { BookCard } from "@/components/Properties/BookCard";
 import Image from "next/image";
 
 export default function PropertyDetailPage() {
@@ -48,19 +49,7 @@ export default function PropertyDetailPage() {
                 <Separator />
             </div>
             <div className="w-full p-5">
-                <div className="text-darkText font-semibold text-lg">
-                    Entire villa in Anjar, India
-                    <p className="text-sm text-lightText">15 guests5 bedrooms4 beds7 bathrooms</p>
-                    <div className="text-sm">★ 4 Reviews</div>
-                </div><div className="text-darkText font-semibold text-lg">
-                    Entire villa in Anjar, India
-                    <p className="text-sm text-lightText">15 guests5 bedrooms4 beds7 bathrooms</p>
-                    <div className="text-sm">★ 4 Reviews</div>
-                </div><div className="text-darkText font-semibold text-lg">
-                    Entire villa in Anjar, India
-                    <p className="text-sm text-lightText">15 guests5 bedrooms4 beds7 bathrooms</p>
-                    <div className="text-sm">★ 4 Reviews</div>
-                </div>
+                <BookCard />
             </div>
         </div>
     </>
