@@ -12,7 +12,7 @@ interface InputwithLabelProps {
     onMouseLeave?: () => void
 }
 
-export const InputwithLabel= ({
+export const InputwithLabel = ({
     className,
     label = "",
     width = "125px",

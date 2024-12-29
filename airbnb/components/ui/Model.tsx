@@ -2,6 +2,7 @@
 import { Button } from "./button";
 import { IoMdClose } from "react-icons/io";
 import React, { useCallback, useEffect } from "react";
+import { BookCard } from "./BookCard";
 
 interface ModelProps {
     label: string,
@@ -27,10 +28,14 @@ export const Model: React.FC<ModelProps> = ({
         setTimeout(() => {close();}, 300);
     }, [close]);
 
+    if (!isOpen) {
+        return null;
+    }
+
     return (
         <div className="flex items-center justify-center fixed inset-0 z-50 bg-black/60">
-            <div className="relative w-[90%] md:w-[80%] lg:w-[700px] my-6 h-auto text-darkText">
-                <div className={`rounded-xl shadow-darkText bg-white translate duration-600 h-full ${showModel ? 'translate-y-0 opacity-100': 'transalate-y-full opacity-0'} px-0`}>
+            <div className="relative w-[90%] md:w-[80%] lg:w-[600px] my-6 h-auto text-darkText">
+                <BookCard className={`bg-white translate duration-500 h-full ${showModel ? 'translate-y-0 opacity-100': 'translate-y-full opacity-10'} px-0`}>
                     <header className="flex items-center px-6 py-4 rounded-t justify-center relative border-b">
                         <Button onClick={handleClose} size="icon" className="p-3 absolute left-3 text-darkText">
                             <IoMdClose/>
@@ -40,7 +45,7 @@ export const Model: React.FC<ModelProps> = ({
                     <section className="p-6">
                         {children}
                     </section>
-                </div>
+                </BookCard>
             </div>
         </div>
     )
