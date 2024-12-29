@@ -6,11 +6,8 @@ import Link from "next/link";
 
 import { Button } from "../ui/button";
 import { SearchFilters } from "./SearchFilters";
-
+import { UserNav } from "./UserNav";
 import { TbWorld } from "react-icons/tb";
-import { IoMenu } from "react-icons/io5";
-import { CgProfile } from "react-icons/cg";
-import path from 'path';
 
 export const Navbar = () => {
 
@@ -60,42 +57,16 @@ export const Navbar = () => {
                                 className="pt-3 max-h-[40px]"
                             />
                         </Link>
-
-                        <div
-                            className={`items-center justify-between px-6 ${
-                                tabValue === "short" ? "flex" : "hidden"
-                            }`}
-                        >
+                        
+                        <div className={`items-center justify-between px-6 ${tabValue === "short" ? "flex" : "hidden"}`}>
                             <SearchFilters tab={tabValue} />
                         </div>
 
-                        <div
-                            className={`${
-                                tabValue === "stays" || tabValue === "experience"
-                                    ? "block"
-                                    : "hidden"
-                            } pt-2`}
-                        >
-                            <Button
-                                variant={
-                                    tabValue === "stays" ? "active" : "default"
-                                }
-                                onClick={() => {
-                                    setTabValue("stays");
-                                }}
-                            >
+                        <div className={`${(tabValue === "stays" || tabValue === "experience") ? "block":"hidden"} pt-2`}>
+                            <Button variant={tabValue === "stays" ? "active" : "default"} onClick={() => {setTabValue("stays");}}>
                                 Stays
                             </Button>
-                            <Button
-                                variant={
-                                    tabValue === "experience"
-                                        ? "active"
-                                        : "default"
-                                }
-                                onClick={() => {
-                                    setTabValue("experience");
-                                }}
-                            >
+                            <Button variant={tabValue==="experience"?"active":"default"} onClick={() => {setTabValue("experience");}}>
                                 Experiences
                             </Button>
                         </div>
@@ -107,31 +78,15 @@ export const Navbar = () => {
                             <Button className="text-darkText">
                                 <TbWorld />
                             </Button>
-                            <Button
-                                variant="outline"
-                                className="text-darkText"
-                            >
-                                <IoMenu />
-                                <CgProfile />
-                            </Button>
+                            <UserNav/>
                         </div>
                     </div>
                 </div>
-                <div
-                    className={`items-center justify-between p-6 ${
-                        tabValue === "stays" || tabValue === "experience"
-                            ? "flex"
-                            : "hidden"
-                    }`}
-                >
+                <div className={`items-center justify-between p-6 ${tabValue === "stays" || tabValue === "experience"?"flex":"hidden"}`}>
                     <SearchFilters tab={tabValue} />
                 </div>
 
-                <div
-                    className={`items-center justify-between px-6 ${
-                        tabValue === "none" ? "flex" : "hidden"
-                    }`}
-                >
+                <div className={`items-center justify-between px-6 ${tabValue === "none"?"flex":"hidden"}`}>
                     <SearchFilters tab="short"/>
                 </div>
             </div>
