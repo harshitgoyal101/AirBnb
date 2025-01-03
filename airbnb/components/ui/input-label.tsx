@@ -22,7 +22,7 @@ export const InputwithLabel = ({
     onMouseLeave=()=>{}
 }: InputwithLabelProps) => {
     return (
-        <Button className="flex justify-between m-0 p-3 h-14" style={{width: width}} 
+        <Button className={`flex justify-between m-0 p-3 h-14 ${className}`} style={{width: width}} 
           onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             <div className="text-left">
                 <p className="text-darkText text-xs px-4">{label}</p>
