@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { FaRegHeart } from "react-icons/fa";
 import { RiShare2Fill } from "react-icons/ri";
 import { PropertiesImages } from "@/components/Properties/PropertyImages";
-import { BookCard } from "@/components/ui/BookCard";
+import { Card } from "@/components/ui/Card";
 import Image from "next/image";
 
 export default function PropertyDetailPage() {
@@ -49,9 +49,9 @@ export default function PropertyDetailPage() {
                 <Separator />
             </div>
             <div className="w-full p-5">
-                <BookCard>
+                <Card>
                     Hashit
-                </BookCard>
+                </Card>
             </div>
         </div>
     </>

@@ -1,4 +1,4 @@
-export const BookCard = ({
+export const Card = ({
     children,
     className
 }: {
