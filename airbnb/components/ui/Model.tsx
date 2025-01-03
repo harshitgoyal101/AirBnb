@@ -34,7 +34,7 @@ export const Model: React.FC<ModelProps> = ({
 
     return (
         <div className="flex items-center justify-center fixed inset-0 z-50 bg-black/60">
-            <div className="relative w-[90%] md:w-[80%] lg:w-[600px] my-6 h-auto text-darkText">
+            <div className="relative w-[90%] md:w-[80%] lg:w-[500px] my-6 h-auto text-darkText">
                 <BookCard className={`bg-white translate duration-500 h-full ${showModel ? 'translate-y-0 opacity-100': 'translate-y-full opacity-10'} px-0`}>
                     <header className="flex items-center px-6 py-4 rounded-t justify-center relative border-b">
                         <Button onClick={handleClose} size="icon" className="p-3 absolute left-3 text-darkText">
