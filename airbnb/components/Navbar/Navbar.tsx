@@ -23,10 +23,8 @@ export const Navbar = () => {
             } else if (window.innerWidth < 1000) {
                 setTabValue("short");
                 setLogo("/airbnb-short.svg");
-            } else if (window.scrollY === 0) {
-                setTabValue("stays");
             } else {
-                setTabValue("short");
+                setTabValue("stays");
             }
             if (window.innerWidth < 550) {
                 setLogo("/airbnb-short.svg");

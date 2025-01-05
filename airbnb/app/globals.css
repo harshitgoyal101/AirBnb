@@ -68,3 +68,10 @@
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Inter', 'Nunito', 'Poppins', 'Roboto', 'Helvetica Neue', sans-serif;
 }
+
+.logoSize {
+  max-width: 50px;
+  min-width: 50px;
+  max-height: 50px;
+  min-height: 50px;
+}

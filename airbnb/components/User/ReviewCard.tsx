@@ -12,7 +12,7 @@ export const ReviewCard = () => {
       <Image
           width={50}
           height={50}
-          className="m-5 rounded-full object-cover max-w-[50px] max-h-[50px]"
+          className="m-5 rounded-full object-cover logoSize"
           src="/temp.avif"
           alt="Small Image 1"
       />
