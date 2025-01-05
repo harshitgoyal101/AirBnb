@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function InboxPage() {
 
-    const inboxEmpty = true;
+    const inboxEmpty = false;
 
     return (
         <div className="grid">
