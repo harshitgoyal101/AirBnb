@@ -145,9 +145,9 @@ export default function UserDetailPage() {
                                 </div>
                             </div>
                             
-                            <CarouselContent className="w-full min-w-[500px]">
+                            <CarouselContent className="w-full">
                                 {Array.from({ length: 5 }).map((_, index) => (
-                                <CarouselItem key={index} className="xl:basis-1/2">
+                                <CarouselItem key={index} className="basic-1/1 md:basis-1/2 lg:basis-1/3">
                                     <div className="cursor-pointer m-3 rounded-xl">
                                         <div>
                                             <div className="relative">
