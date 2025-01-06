@@ -14,6 +14,7 @@ import { LuCoffee } from "react-icons/lu";
 import { PiPawPrint } from "react-icons/pi";
 import { Separator } from "@radix-ui/react-separator";
 import Link from "next/link";
+import { ReviewCard } from "@/components/User/ReviewCard";
 
 export default function UserDetailPage() {
     return (
@@ -93,7 +94,7 @@ export default function UserDetailPage() {
                 <div className="px-12">
                     <Separator className=" h-px bg-gray-300 "/>
                     <div>
-                        crousel
+                        <ReviewCard/>
                     </div>
                 </div>
             </div>
