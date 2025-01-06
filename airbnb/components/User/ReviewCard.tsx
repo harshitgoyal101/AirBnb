@@ -2,7 +2,7 @@ import Image from "next/image"
 
 export const ReviewCard = () => {
   return (
-    <div className="w-[350px] h-[225px]  border rounded-xl m-3  p-5 flex flex-col justify-between">
+    <div className="w-[350px] h-[225px]  border rounded-xl mr-3 my-3  p-5 flex flex-col justify-between">
       <div className="text-mediumText font-sm mb-2">
         "…Our caretaker Kaushal bhai and Abhay made us feel at home. 
         Abhay even took us on a hike to Sangla Kanda lake. 
