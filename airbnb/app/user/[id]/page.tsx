@@ -13,8 +13,17 @@ import { PiGlobeStand } from "react-icons/pi";
 import { LuCoffee } from "react-icons/lu";
 import { PiPawPrint } from "react-icons/pi";
 import { Separator } from "@radix-ui/react-separator";
-import Link from "next/link";
 import { ReviewCard } from "@/components/User/ReviewCard";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
+
+import Link from "next/link";
 
 export default function UserDetailPage() {
     return (
@@ -38,7 +47,7 @@ export default function UserDetailPage() {
                     <Link href="/" className="underline font-semibold">Report this profile</Link>
                 </div>
             </div>
-            <div className="overflow-y-scroll">
+            <div className="overflow-y-hidden">
                 <div className="min-w-[480px] max-w-[500px] lg:max-w-[1000px] w-full p-10 xl:grid grid-cols-2">
                     <div className="col-span-2 text-3xl text-darkText font-bold p-2">About Harshit</div>
                     <div className="flex p-2">
@@ -91,10 +100,36 @@ export default function UserDetailPage() {
                         interactions with fellow travellers.
                     </div>
                 </div>
-                <div className="px-12">
+                <div className="px-12 min-w-[500px] max-w-[500px] xl:min-w-[800px] xl:max-w-[825px]">
                     <Separator className=" h-px bg-gray-300 "/>
                     <div>
-                        <ReviewCard/>
+                    
+                        <Carousel
+                            opts={{
+                                align: "start",
+                            }}
+                            className="xl: w-full"
+                            >
+                            <div className="flex justify-between my-6 mr-6">
+                                <div className="text-2xl font-semibold">What guests are saying about Harshit</div>
+                                <div className="flex justify-between">
+                                    <div className="mr-6"><CarouselPrevious /></div>
+                                    <div className="ml-6"><CarouselNext /></div>
+                                </div>
+                            </div>
+                            
+                            
+                            <CarouselContent className="w-full min-w-[500px]">
+                                {Array.from({ length: 5 }).map((_, index) => (
+                                <CarouselItem key={index} className="xl:basis-1/2">
+                                    <ReviewCard/>
+                                </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                            
+                           
+                        </Carousel>
+                        
                     </div>
                 </div>
             </div>
