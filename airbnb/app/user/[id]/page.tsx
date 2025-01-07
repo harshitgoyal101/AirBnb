@@ -13,12 +13,23 @@ import { PiGlobeStand } from "react-icons/pi";
 import { LuCoffee } from "react-icons/lu";
 import { PiPawPrint } from "react-icons/pi";
 import { Separator } from "@radix-ui/react-separator";
+import { ReviewCard } from "@/components/User/ReviewCard";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel"
+
+
 import Link from "next/link";
+import Image from "next/image";
 
 export default function UserDetailPage() {
     return (
         <div className="w-full flex flex-col justify-center items-center lg:items-start lg:flex-row px-20">
-            <div className="flex flex-col justify-center p-12 min-w-[480px] max-w-[500px] lg:sticky lg:top-0 lg:h-screen">
+            <div className="flex flex-col mt-8 justify-center p-12 min-w-[480px] max-w-[500px] lg:sticky lg:top-0 lg:h-screen">
                 <UserCard/> 
                 <div className="w-full border border-gray-300 rounded-xl p-6 my-12 ">
                     <div className="text-2xl text-darkText mb-4">Tarpan's confirmed information</div>
@@ -37,7 +48,7 @@ export default function UserDetailPage() {
                     <Link href="/" className="underline font-semibold">Report this profile</Link>
                 </div>
             </div>
-            <div className="overflow-y-scroll">
+            <div className="overflow-y-hidden">
                 <div className="min-w-[480px] max-w-[500px] lg:max-w-[1000px] w-full p-10 xl:grid grid-cols-2">
                     <div className="col-span-2 text-3xl text-darkText font-bold p-2">About Harshit</div>
                     <div className="flex p-2">
@@ -90,11 +101,89 @@ export default function UserDetailPage() {
                         interactions with fellow travellers.
                     </div>
                 </div>
-                <div className="px-12">
+                <div className="px-12 min-w-[500px] max-w-[500px] xl:min-w-[800px] xl:max-w-[825px]">
                     <Separator className=" h-px bg-gray-300 "/>
                     <div>
-                        crousel
+                        <Carousel
+                            opts={{
+                                align: "start",
+                            }}
+                            className="xl: w-full"
+                            >
+                            <div className="flex justify-between my-6 mr-6">
+                                <div className="text-2xl font-semibold text-mediumText mt-3">What guests are saying about Harshit</div>
+                                <div className="flex justify-between">
+                                    <div className="mr-6"><CarouselPrevious /></div>
+                                    <div className="ml-6"><CarouselNext /></div>
+                                </div>
+                            </div>
+                            
+                            <CarouselContent className="w-full min-w-[500px]">
+                                {Array.from({ length: 5 }).map((_, index) => (
+                                <CarouselItem key={index} className="xl:basis-1/2">
+                                    <ReviewCard/>
+                                </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                            
+                        </Carousel>
                     </div>
+                    <div className="text-xl text-darkText underline my-4">Show more reviews</div>
+                    <Separator className=" h-px bg-gray-300 my-2"/>
+
+                    <Carousel
+                            opts={{
+                                align: "start",
+                            }}
+                            className="xl: w-full"
+                            >
+                            <div className="flex justify-between my-6 mr-6">
+                                <div className="text-2xl font-semibold text-mediumText mt-3">Harshit's listings</div>
+                                <div className="flex justify-between">
+                                    <div className="mr-6"><CarouselPrevious /></div>
+                                    <div className="ml-6"><CarouselNext /></div>
+                                </div>
+                            </div>
+                            
+                            <CarouselContent className="w-full">
+                                {Array.from({ length: 5 }).map((_, index) => (
+                                <CarouselItem key={index} className="basic-1/1 md:basis-1/2 lg:basis-1/3">
+                                    <div className="cursor-pointer m-3 rounded-xl">
+                                        <div>
+                                            <div className="relative">
+                                                <div className="relative overflow-hidden aspect-square rounded-xl">
+                                                    <Image
+                                                        fill
+                                                        sizes="(max-width: 256px) 256px, (max-width: 256px): 256px, 256px"
+                                                        className="hover:scale-R110 object-cover transition h-[256px] w-[256px]"
+                                                        src="/temp.avif" 
+                                                        alt="/temp.avif"
+                                                    />
+                                                </div>
+                                               
+                                            </div>
+                                            <div className="mt-4 flex flex-col space-x-0 text-lightText">
+                                                <div className="text-md flex justify-between font-semibold m-0 p-0 text-darkText">
+                                                    <div>Harshit Goyal</div>
+                                                    <div>★ 4.3</div>
+                                                </div>
+                                                <div className="text-sm m-0 p-0">
+                                                    2,123 away
+                                                </div>
+                                                <div className="text-sm m-0 p-0">
+                                                    123.213
+                                                </div>
+                                                <div className="text-sm mt-2 p-0 text-darkText">
+                                                <strong>$ 500</strong> per night
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </CarouselItem>
+                                ))}
+                            </CarouselContent>
+                            
+                        </Carousel>
                 </div>
             </div>
 
