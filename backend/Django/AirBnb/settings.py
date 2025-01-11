@@ -1,4 +1,5 @@
 
+from datetime import timedelta
 import os
 from pathlib import Path
 
@@ -30,7 +31,18 @@ ALLOWED_HOSTS = DJANGO_ALLOWED_HOSTS
 
 AUTH_USER_MODEL = 'User.User'
 
-# Application definition
+SITE_ID = 1
+WEBSITE_URL = 'http://localhost:8000'
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKEN": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": True,
+    "SIGNING_KEY": 'complex_key',
+    "ALGORIGTHM": "HS512",
+}
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -39,7 +51,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'User'
+    'User',
+    'Property'
 ]
 
 MIDDLEWARE = [
