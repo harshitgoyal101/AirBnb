@@ -21,6 +21,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 
 import Link from "next/link";
@@ -117,15 +118,18 @@ export default function UserDetailPage() {
                                     <div className="ml-6"><CarouselNext /></div>
                                 </div>
                             </div>
-                            
+                                <ScrollArea>
                             <CarouselContent className="w-full min-w-[500px]">
                                 {Array.from({ length: 5 }).map((_, index) => (
-                                <CarouselItem key={index} className="xl:basis-1/2">
-                                    <ReviewCard/>
-                                </CarouselItem>
+                                <div className="flex ">
+                                    <CarouselItem key={index} className="xl:basis-1/2">
+                                        <ReviewCard/>
+                                    </CarouselItem>
+                                </div>
                                 ))}
                             </CarouselContent>
-                            
+                            <ScrollBar orientation="horizontal"/>
+                            </ScrollArea> 
                         </Carousel>
                     </div>
                     <div className="text-xl text-darkText underline my-4">Show more reviews</div>
