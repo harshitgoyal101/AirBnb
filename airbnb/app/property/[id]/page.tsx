@@ -6,6 +6,7 @@ import { PropertiesImages } from "@/components/Properties/PropertyImages";
 import { BookCard } from "@/components/Properties/BookCard";
 import Image from "next/image";
 import { IconWithLabel } from "@/components/ui/IconWIthLabel";
+import { CalendarCard } from "@/components/Properties/CalenderCard";
 
 export default function PropertyDetailPage() {
   return (
@@ -87,6 +88,8 @@ export default function PropertyDetailPage() {
                 <Separator/>
 
                 <div className="grid grid-cols-2 text-mediumText py-8">
+                    <div className="text-2xl font-semibold text-darkText col-span-2 mb-2">What this place offers?</div>
+
                     <IconWithLabel icon = "/caterogies/A frames.jpg"> Wifi </IconWithLabel>
                     <IconWithLabel icon = "/caterogies/A frames.jpg"> Free parking on premises </IconWithLabel>
                     <IconWithLabel icon = "/caterogies/A frames.jpg"> Pool </IconWithLabel>
@@ -98,10 +101,23 @@ export default function PropertyDetailPage() {
                     <IconWithLabel icon = "/caterogies/A frames.jpg"> Smoke alarm </IconWithLabel>
                 </div>
                 
-                <div className="py-4 ">
-                    <Button className="text-darkText" size={"lg"} variant={"outline"}>
+                <div className="py-2 mb-4 m-1 text-lg">
+                    <Button className="text-darkText outline-gray-500  font-semibold" size={"lg"} variant={"Border"}>
                         Show all 17 ameneties
                     </Button>
+                </div>
+
+                <Separator/>
+
+                <div className="my-6">
+                    <div className="text-2xl font-semibold text-darkText mb-2">2 nights in Anjar</div>
+                    <div className="text-sm text-lightText">16 Jan 2025 - 18 Jan 2025</div>
+
+                    <div className="flex justify-between py-2">
+                        <CalendarCard/>
+                        <CalendarCard/>
+                    </div>
+
                 </div>
                 
             </div>
