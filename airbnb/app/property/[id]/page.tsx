@@ -12,7 +12,7 @@ export default function PropertyDetailPage() {
   return (
     <>
     <div>
-        <div className="w-full mx-auto px-36 py-3 flex space-x-4">
+        <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 py-3 flex space-x-4">
             <div className="w-full flex justify-between place-items-center">
                 <div className="text-darkText font-semibold text-2xl">
                     StayVista at Desert Palms in Anjar-Kutch w/t Pool
@@ -27,15 +27,15 @@ export default function PropertyDetailPage() {
                 </div>
             </div>
         </div>
-        <div className="px-36">
+        <div className="px-10 lg:px-20 xl:px-36">
             <PropertiesImages/>
         </div>
         
 
-        <div className="flex px-36 py-3">
+        <div className="flex px-10 lg:px-20 xl:px-36 py-3">
             
             
-            <div className="w-3/5 overflow-y-hidden">
+            <div className="w-full md:w-1/2 lg:w-3/5 overflow-y-hidden">
                 <div className="text-darkText font-semibold text-lg mb-5">
                     Entire villa in Anjar, India
                     <p className="text-sm text-lightText">15 guests5 bedrooms4 beds7 bathrooms</p>
@@ -87,8 +87,8 @@ export default function PropertyDetailPage() {
 
                 <Separator/>
 
-                <div className="grid grid-cols-2 text-mediumText py-8">
-                    <div className="text-2xl font-semibold text-darkText col-span-2 mb-2">What this place offers?</div>
+                <div className="grid grid-cols-1 lg:grid-cols-2 text-mediumText py-8">
+                    <div className="text-2xl font-semibold text-darkText lg:col-span-2 mb-2">What this place offers?</div>
 
                     <IconWithLabel icon = "/caterogies/A frames.jpg"> Wifi </IconWithLabel>
                     <IconWithLabel icon = "/caterogies/A frames.jpg"> Free parking on premises </IconWithLabel>
@@ -113,21 +113,75 @@ export default function PropertyDetailPage() {
                     <div className="text-2xl font-semibold text-darkText mb-2">2 nights in Anjar</div>
                     <div className="text-sm text-lightText">16 Jan 2025 - 18 Jan 2025</div>
 
-                    <div className="flex justify-between py-2">
+                    <div className="flex justify-between py-2 overflow-x-hidden">
                         <CalendarCard/>
-                        <CalendarCard/>
+                        <div className = "hidden xl:flex"><CalendarCard />  </div>
                     </div>
 
                 </div>
                 
             </div>
-            <div className="w-2/5 pr-0 py-5 pl-20  lg:sticky lg:top-0 lg:h-screen">
+            <div className="invisible w-0 md:visible md:w-1/2 lg:w-2/5 pr-0 py-5 pl-0 md:pl-12 lg:pl-20  md:sticky md:top-0 md:h-screen">
                 <BookCard />
             </div>
         </div>
 
-       
+
+        <div className="w-full invisible md:visible mx-auto px-10 lg:px-20 xl:px-36 p-3">
+            <Separator/>
+            <div className="flex h-44 font-semibold text-sm text-darkText p-10 pl-0">
+                <div className="w-1/6 pl-0 pr-3">
+                    Overall rating
+                    <div className="p-2 text-xs font-normal justify-start text-lightText">
+                        <div>5</div>
+                        <div>4</div>
+                        <div>3</div>
+                        <div>2</div>
+                        <div>1</div>
+                    </div>
+                    
+                </div>
+                <Separator orientation="vertical"/>
+                <div className="w-1/6 justify-self-start px-3">
+                    Cleanliness
+                    <div className="text-xl mt-1">4.7</div>
+                </div>
+                <Separator orientation="vertical"/>
+
+                <div className="w-1/6 justify-self-start px-3">
+                    Accuracy
+                    <div className="text-xl mt-1">4.7</div>
+                </div>
+                <Separator orientation="vertical"/>
+
+                <div className="w-1/6 justify-self-start px-3">
+                    Check-in
+                    <div className="text-xl mt-1">4.7</div>
+                </div>
+                <Separator orientation="vertical"/>
+
+                <div className="w-1/6 justify-self-start px-3">
+                    Communication
+                    <div className="text-xl mt-1">4.7</div>
+                </div>
+                <Separator orientation="vertical"/>
+
+                <div className="w-1/6 justify-self-start px-3">
+                    Location
+                    <div className="text-xl mt-1">4.7</div>
+                </div>
+                <Separator orientation="vertical"/>
+
+                <div className="w-1/6 justify-self-start px-3">
+                    Value
+                    <div className="text-xl mt-1">4.7</div>
+                </div>
+
+            </div>
             
+        </div>
+
+
     </div>
     </>
   );
