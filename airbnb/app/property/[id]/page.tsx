@@ -11,6 +11,12 @@ import { ReviewCard } from "@/components/User/ReviewCard";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
 import { ScrollBar } from "@/components/ui/scroll-area";
+import { PiSprayBottleLight } from "react-icons/pi";
+import { PiCheckCircle } from "react-icons/pi";
+import { HiOutlineKey } from "react-icons/hi2";
+import { BsChatSquare } from "react-icons/bs";
+import { CiMap } from "react-icons/ci";
+import { GoTag } from "react-icons/go";
 
 export default function PropertyDetailPage() {
   return (
@@ -44,7 +50,7 @@ export default function PropertyDetailPage() {
             <div className="w-full md:w-1/2 lg:w-3/5 overflow-y-hidden">
                 <div className="text-darkText font-semibold text-lg mb-5">
                     Entire villa in Anjar, India
-                    <p className="text-sm text-lightText">15 guests5 bedrooms4 beds7 bathrooms</p>
+                    <p className="text-sm text-lightText">15 guests-5 bedrooms-4 beds-7 bathrooms-6</p>
                     <div className="text-sm">★ 4 Reviews</div>
                 </div>
                 <Separator/>
@@ -108,7 +114,7 @@ export default function PropertyDetailPage() {
                 </div>
                 
                 <div className="py-2 mb-4 m-1 text-lg">
-                    <Button className="text-darkText outline-gray-500  font-semibold" size={"lg"} variant={"Border"}>
+                    <Button className="text-darkText  outline-gray-800 outline-1 font-semibold" size={"lg"} variant={"Border"}>
                         Show all 17 ameneties
                     </Button>
                 </div>
@@ -135,7 +141,7 @@ export default function PropertyDetailPage() {
         </div>
 {/* ---------------------------------------------------Ratings section------------------------------------------------------ */}
 
-        <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 p-3">
+        <div className="w-full mx-auto min-w-[xl] px-10 lg:px-20 xl:px-36 p-3">
             <Separator className="invisible md:visible "/>
             <div className="flex invisible md:visible h-0 md:h-48 font-semibold text-sm text-darkText md:my-4 md:p-10 md:pl-0">
                 <div className="w-1/6 pl-0 pr-3">
@@ -150,39 +156,45 @@ export default function PropertyDetailPage() {
                     
                 </div>
                 <Separator orientation="vertical"/>
-                <div className="w-1/6 justify-self-start px-3">
+                <div className="w-1/6 justify-self-start px-5">
                     Cleanliness
-                    <div className="text-xl mt-1">4.7</div>
+                    <div className="text-xl mt-1 mb-6">4.7</div>
+                    <PiSprayBottleLight size={36}/>
                 </div>
                 <Separator orientation="vertical"/>
 
-                <div className="w-1/6 justify-self-start px-3">
+                <div className="w-1/6 justify-self-start px-5">
                     Accuracy
-                    <div className="text-xl mt-1">4.7</div>
+                    <div className="text-xl mt-1 mb-6">4.7</div>
+                    <PiCheckCircle size={36}/>
                 </div>
                 <Separator orientation="vertical"/>
 
-                <div className="w-1/6 justify-self-start px-3">
+                <div className="w-1/6 justify-self-start px-5">
                     Check-in
-                    <div className="text-xl mt-1">4.7</div>
+                    <div className="text-xl mt-1 mb-6">4.8</div>
+                    <HiOutlineKey size={36}/>
                 </div>
                 <Separator orientation="vertical"/>
 
-                <div className="w-1/6 justify-self-start px-3">
+                <div className="w-1/6 justify-self-start px-5">
                     Communication
-                    <div className="text-xl mt-1">4.7</div>
+                    <div className="text-xl mt-1 mb-6">4.8</div>
+                    <BsChatSquare size={36}/>
                 </div>
                 <Separator orientation="vertical"/>
 
-                <div className="w-1/6 justify-self-start px-3">
+                <div className="w-1/6 justify-self-start px-5">
                     Location
-                    <div className="text-xl mt-1">4.7</div>
+                    <div className="text-xl mt-1 mb-6">4.8</div>
+                    <CiMap size={36}/>
                 </div>
                 <Separator orientation="vertical"/>
 
-                <div className="w-1/6 justify-self-start px-3">
+                <div className="w-1/6 justify-self-start px-5">
                     Value
-                    <div className="text-xl mt-1">4.7</div>
+                    <div className="text-xl mt-1 mb-6">5.0</div>
+                    <GoTag size={36}/>
                 </div>
 
             </div>
@@ -227,7 +239,19 @@ export default function PropertyDetailPage() {
                         ))}
                     </CarouselContent>
                 </Carousel>
+
+                
             </div>
+
+            <div className="py- mb-4 m-1 text-lg">
+                <Button className="text-darkText outline-gray-800 outline-1  font-semibold" size={"lg"} variant={"Border"}>
+                    Show all 9 review
+                </Button>
+            </div>
+            <Separator/>
+{/* -----------------------------------------------------------user info --------------------------------------------------------------- */}
+
+            
             
         </div>
 
