@@ -23,11 +23,11 @@ export const Categories = () => {
             <div className="flex">
                 <div className="mr-9 p-2"><CarouselPrevious variant = "outline"/></div>
                 <div>
-                        <ScrollArea>
                     <CarouselContent className=" max-w-sm lg:max-w-lg xl:max-w-3xl" >
                         {Array.from({ length: 54 }).map((_, index) => (
-                        <div className="flex">
-                            <CarouselItem key={index} className="basis-1/10">
+                        <ScrollArea className="">
+                            <div className="">
+                            {/* <CarouselItem key={index} className="basis-1/10"> */}
                                 <div className="px-4">
                                     <div className="border flex flex-col items-center cursor-pointer py-3 space-y-2 border-b-2 border-white opacity-80 hover:opacity-100 hover:border-b-black">
                                         <Image
@@ -39,13 +39,13 @@ export const Categories = () => {
                                         <p className="text-xs">A frames</p>
                                     </div>
                                 </div>
-                            </CarouselItem>
+                            {/* </CarouselItem> */}
                         </div>
+                <ScrollBar orientation="horizontal"/>
+                </ScrollArea>
                         ))}
                     </CarouselContent>
                     
-                <ScrollBar orientation="horizontal"/>
-                </ScrollArea>
                 </div>
                 <div className="p-2"><CarouselNext variant = "outline" /></div>
             </div>

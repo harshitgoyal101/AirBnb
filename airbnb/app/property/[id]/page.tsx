@@ -7,11 +7,16 @@ import { BookCard } from "@/components/Properties/BookCard";
 import Image from "next/image";
 import { IconWithLabel } from "@/components/ui/IconWIthLabel";
 import { CalendarCard } from "@/components/Properties/CalenderCard";
+import { ReviewCard } from "@/components/User/ReviewCard";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import { ScrollArea } from "@radix-ui/react-scroll-area";
+import { ScrollBar } from "@/components/ui/scroll-area";
 
 export default function PropertyDetailPage() {
   return (
     <>
     <div>
+        {/* ----------------------------------property images---------------------------------------------------- */}
         <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 py-3 flex space-x-4">
             <div className="w-full flex justify-between place-items-center">
                 <div className="text-darkText font-semibold text-2xl">
@@ -31,10 +36,11 @@ export default function PropertyDetailPage() {
             <PropertiesImages/>
         </div>
         
+        {/* --------------------------------------Place info--------------------------------------------- */}
 
         <div className="flex px-10 lg:px-20 xl:px-36 py-3">
             
-            
+            {/* ----------------------------------------host info (short) ------------------------------------- */}
             <div className="w-full md:w-1/2 lg:w-3/5 overflow-y-hidden">
                 <div className="text-darkText font-semibold text-lg mb-5">
                     Entire villa in Anjar, India
@@ -57,7 +63,7 @@ export default function PropertyDetailPage() {
                 </div>
 
                 <Separator/>
-
+{/* ------------------------------------------------------place info and ameneties--------------------------------------------------------- */}
                 <div className="py-4">
                     <IconWithLabel className="my-2" icon = "/caterogies/A frames.jpg">                        
                     <div className="font-semibold text-mediumText ml-2">Shared bathroom</div> 
@@ -108,6 +114,7 @@ export default function PropertyDetailPage() {
                 </div>
 
                 <Separator/>
+                {/* ----------------------------------------calander------------------------------------------------ */}
 
                 <div className="my-6">
                     <div className="text-2xl font-semibold text-darkText mb-2">2 nights in Anjar</div>
@@ -121,23 +128,24 @@ export default function PropertyDetailPage() {
                 </div>
                 
             </div>
+            {/* ---------------------------------------------------booking card (price break-up) --------------------------------------------------- */}
             <div className="invisible w-0 md:visible md:w-1/2 lg:w-2/5 pr-0 py-5 pl-0 md:pl-12 lg:pl-20  md:sticky md:top-0 md:h-screen">
                 <BookCard />
             </div>
         </div>
+{/* ---------------------------------------------------Ratings section------------------------------------------------------ */}
 
-
-        <div className="w-full invisible md:visible mx-auto px-10 lg:px-20 xl:px-36 p-3">
-            <Separator/>
-            <div className="flex h-44 font-semibold text-sm text-darkText p-10 pl-0">
+        <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 p-3">
+            <Separator className="invisible md:visible "/>
+            <div className="flex invisible md:visible h-0 md:h-48 font-semibold text-sm text-darkText md:my-4 md:p-10 md:pl-0">
                 <div className="w-1/6 pl-0 pr-3">
                     Overall rating
-                    <div className="p-2 text-xs font-normal justify-start text-lightText">
-                        <div>5</div>
-                        <div>4</div>
-                        <div>3</div>
-                        <div>2</div>
-                        <div>1</div>
+                    <div className="py-2 text-xs font-normal justify-start text-lightText">
+                        <div className="flex items-center">5 <Separator className="h-1 w-9/12 ml-2 rounded-s-sm bg-gray-800"/> <Separator className="h-1 w-1/12 mr-4 rounded-sm"/></div>
+                        <div className="flex items-center">4 <Separator className="h-1 w-1/12 ml-2 rounded-s-sm bg-gray-800"/> <Separator className="h-1 w-9/12 mr-4 rounded-sm"/></div>
+                        <div className="flex items-center">3 <Separator className="h-1 ml-2 w-10/12 mr-4 rounded-sm"/></div>
+                        <div className="flex items-center">2 <Separator className="h-1 ml-2 w-10/12 mr-4 rounded-sm"/></div>
+                        <div className="flex items-center">1 <Separator className="h-1 ml-3 w-10/12 mr-4 rounded-sm"/></div>
                     </div>
                     
                 </div>
@@ -177,6 +185,48 @@ export default function PropertyDetailPage() {
                     <div className="text-xl mt-1">4.7</div>
                 </div>
 
+            </div>
+
+            <Separator/>
+
+            {/* ---------------------------------------------------------Reviews------------------------------------------------------- */}
+
+            <div className="invisible h-0 md:h-fit md:visible md:grid grid-cols-2 justify-self-stretch md:py-10">
+                <ReviewCard className = "border-none"/>
+                <ReviewCard className = "border-none"/>
+                <ReviewCard className = "border-none"/>
+                <ReviewCard className = "border-none"/>
+                <ReviewCard className = "border-none"/>
+                <ReviewCard className = "border-none"/>
+            </div>
+
+            <div className="md:hidden">
+                <Carousel
+                    opts={{
+                        align: "start",
+                    }}
+                    className="xl: w-full"
+                    >
+                    <div className="flex justify-between my-6 mr-6">
+                        <div className="text-2xl font-semibold text-mediumText mt-3">What guests are saying about Harshit</div>
+                        <div className="flex justify-between">
+                            <div className="mr-6"><CarouselPrevious /></div>
+                            <div className="ml-6"><CarouselNext /></div>
+                        </div>
+                    </div>
+                    <CarouselContent className=" w-full min-w-[500px]">
+                        {Array.from({ length: 5 }).map((_, index) => (
+                        <ScrollArea className="flex">
+                        <div className="flex ">
+                            <CarouselItem key={index} className="xl:basis-1/2">
+                                <ReviewCard/>
+                            </CarouselItem>
+                        </div>
+                        <ScrollBar orientation="horizontal"/>
+                        </ScrollArea> 
+                        ))}
+                    </CarouselContent>
+                </Carousel>
             </div>
             
         </div>
