@@ -122,7 +122,7 @@ export default function UserDetailPage() {
                                     <div className="ml-6"><CarouselNext /></div>
                                 </div>
                             </div>
-                                <ScrollArea>
+                            <ScrollArea>
                             <CarouselContent className="w-full min-w-[500px]">
                                 {Array.from({ length: 5 }).map((_, index) => (
                                 <div className="flex ">
