@@ -9,25 +9,20 @@ import {
 import { Button } from "./ui/button";
 import { RiSoundModuleLine } from "react-icons/ri";
 import { Switch } from "@/components/ui/switch"
-import { ScrollArea, Scrollbar } from "@radix-ui/react-scroll-area";
-import { ScrollBar } from "./ui/scroll-area";
-export const Categories = () => {
+
+export const Categories = ({
+    withTax, setWithTax
+}: {
+    withTax: boolean, setWithTax: (value: boolean) => void
+}) => {
     return (
         <div className="w-full mx-auto px-24 py-3 flex space-x-8 items-center">
-            <Carousel
-            opts={{
-                align: "start",
-            }}
-            className="w-full"
-            >
-            <div className="flex">
-                <div className="mr-9 p-2"><CarouselPrevious variant = "outline"/></div>
-                <div>
-                    <CarouselContent className=" max-w-sm lg:max-w-lg xl:max-w-3xl" >
-                        {Array.from({ length: 54 }).map((_, index) => (
-                        <ScrollArea className="">
-                            <div className="">
-                            {/* <CarouselItem key={index} className="basis-1/10"> */}
+            <Carousel className="w-full relative">
+                <CarouselPrevious variant="outline" className="absolute left-0 top-1/2 transform -translate-y-1/2 "/>    
+                <div className="mx-12">
+                    <CarouselContent className="max-w-sm">
+                        {Array.from({length: 54}).map((_, index) => (
+                            <CarouselItem key={index} className="basis-1/10 mt-2">
                                 <div className="px-4">
                                     <div className="border flex flex-col items-center cursor-pointer py-3 space-y-2 border-b-2 border-white opacity-80 hover:opacity-100 hover:border-b-black">
                                         <Image
@@ -39,25 +34,27 @@ export const Categories = () => {
                                         <p className="text-xs">A frames</p>
                                     </div>
                                 </div>
-                            {/* </CarouselItem> */}
-                        </div>
-                <ScrollBar orientation="horizontal"/>
-                </ScrollArea>
+                            </CarouselItem>
                         ))}
                     </CarouselContent>
-                    
                 </div>
-                <div className="p-2"><CarouselNext variant = "outline" /></div>
-            </div>
+                <CarouselNext variant="outline" className="absolute right-0 top-1/2 transform -translate-y-1/2 "/>
             </Carousel>            
-            <Button variant={"Border"} className="hidden lg:flex">
+
+            <Button variant={"border"} className="hidden lg:flex">
                 <RiSoundModuleLine className="rotate-90"/>
-                <div className="text-mediumText font-sm py-2">Filter</div>
+                <div className="text-mediumText font-sm py-2">
+                    Filter
+                </div>
             </Button>
 
-            <Button variant={"Border"}  className="hidden lg:flex"> 
-                <div className="text-mediumText font-sm py-2"> Display total before taxes</div>
-                <Switch/>
+            <Button asChild variant={"border"} className="hidden lg:flex" onClick={() => {
+                setWithTax(!withTax)
+            }}> 
+                <div className="text-mediumText font-sm py-2">              
+                    Display total before taxes
+                    <Switch checked={withTax}/>
+                </div>
             </Button>
         </div>
     );

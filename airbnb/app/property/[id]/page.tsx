@@ -116,7 +116,7 @@ export default function PropertyDetailPage() {
                 </div>
                 
                 <div className="py-2 mb-4 m-1 text-lg">
-                    <Button className="text-darkText  outline-gray-800 outline-1 font-semibold" size={"lg"} variant={"Border"}>
+                    <Button className="text-darkText  outline-gray-800 outline-1 font-semibold" size={"lg"} variant={"border"}>
                         Show all 17 ameneties
                     </Button>
                 </div>
@@ -246,7 +246,7 @@ export default function PropertyDetailPage() {
             </div>
 
             <div className="py- mb-4 m-1 text-lg">
-                <Button className="text-darkText outline-gray-800 outline-1  font-semibold" size={"lg"} variant={"Border"}>
+                <Button className="text-darkText outline-gray-800 outline-1  font-semibold" size={"lg"} variant={"border"}>
                     Show all 9 review
                 </Button>
             </div>
@@ -278,7 +278,7 @@ export default function PropertyDetailPage() {
                         Responds within an hour
                     </div>
                     
-                    <Button variant={"Border"} size={"lg"} className= "bg-gray-800 h-12 outline-0 font-semibold text-md w-1/3 mb-6 hover:bg-gray-900 text-white">
+                    <Button variant={"border"} size={"lg"} className= "bg-gray-800 h-12 outline-0 font-semibold text-md w-1/3 mb-6 hover:bg-gray-900 text-white">
                         Message Host
                     </Button>
                     <div className="text-lg mb-4">

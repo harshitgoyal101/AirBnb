@@ -3,7 +3,11 @@ import { Card } from "@/components/ui/Card";
 import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
 
-export const UserCard = ({className}:{className ?: string}) => {
+export const UserCard = ({
+    className
+}:{
+    className ?: string
+}) => {
     return (
         <Card className = {`p-6 flex flex-row justify-between items-center ${className}`}>
             <div className="flex flex-col justify-between items-center">

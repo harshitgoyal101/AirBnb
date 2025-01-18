@@ -1,7 +1,11 @@
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 
-export const Properties = () => {
+export const Properties = ({
+    withTax
+}: {
+    withTax: boolean
+}) => {
     return (
         <div className="w-full px-24 py-3 space-x-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             <div className="cursor-pointer m-3 rounded-xl">
