@@ -1,3 +1,5 @@
+"use client";
+
 import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button";
 import { FaRegHeart } from "react-icons/fa";
@@ -6,7 +8,7 @@ import { PropertiesImages } from "@/components/Properties/PropertyImages";
 import { BookCard } from "@/components/Properties/BookCard";
 import Image from "next/image";
 import { IconWithLabel } from "@/components/ui/IconWIthLabel";
-import { CalendarCard } from "@/components/Properties/CalenderCard";
+import { Calendar } from '@/components/ui/calendar';
 import { ReviewCard } from "@/components/User/ReviewCard";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { ScrollArea } from "@radix-ui/react-scroll-area";
@@ -19,8 +21,23 @@ import { CiMap } from "react-icons/ci";
 import { GoTag } from "react-icons/go";
 import { UserCard } from "@/components/User/UserCard";
 import Link from "next/link";
+import { useState } from "react";
 
 export default function PropertyDetailPage() {
+    const [range, setRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
+        from: undefined,
+        to: undefined,
+      });
+    
+      // Handle date selection
+      const handleDateChange = (date: Date) => {
+        if (!range.from || (range.from && range.to)) {
+          setRange({ from: date, to: undefined });
+        } else {
+          setRange({ ...range, to: date });
+        }
+      };
+      
   return (
     <>
     <div>
@@ -126,11 +143,19 @@ export default function PropertyDetailPage() {
 
                 <div className="my-6">
                     <div className="text-2xl font-semibold text-darkText mb-2">2 nights in Anjar</div>
-                    <div className="text-sm text-lightText">16 Jan 2025 - 18 Jan 2025</div>
+                    <div className="text-sm text-lightText">{
+                        range.from && range.to ? 
+                        <p>{range.from.toLocaleDateString()} - {range.to.toLocaleDateString()}</p>
+                        : <p>Add your travel dates for exact pricing</p>
+                    }</div>
 
-                    <div className="flex justify-between py-2 overflow-x-hidden">
-                        <CalendarCard/>
-                        <div className = "hidden xl:flex"><CalendarCard />  </div>
+                    <div className="flex justify-between py-2 overflow-x-hidden w-full">
+                        <Calendar
+                            selected={{ from: range.from, to: range.to }} // Pass selected range
+                            onDayClick={handleDateChange} // Handle day selection
+                            numberOfMonths={2} // Display two months
+                            mode="range" // Enable range mode
+                        />
                     </div>
 
                 </div>
