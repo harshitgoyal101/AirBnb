@@ -41,14 +41,14 @@ export const Categories = ({
                 <CarouselNext variant="outline" className="absolute right-1 top-1/2 transform -translate-y-1/2 "/>
             </Carousel>            
             <div className="md:space-x-4 mt-2 lg:mt-0 hidden sm:flex">
-                <Button variant={"border"}>
+                <Button variant={"outline"} className="rounded-lg">
                     <RiSoundModuleLine className="rotate-90"/>
                     <div className="text-mediumText font-sm py-2">
                         Filter
                     </div>
                 </Button>
 
-                <Button asChild variant={"border"} onClick={() => {
+                <Button asChild variant={"outline"} className="rounded-lg" onClick={() => {
                     setWithTax(!withTax)
                 }}> 
                     <div className="text-mediumText font-sm py-2">              
