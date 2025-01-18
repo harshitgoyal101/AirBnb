@@ -1,6 +1,7 @@
 import { RiMedalFill } from "react-icons/ri";
 import { Card } from "@/components/ui/Card";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils"
 import Image from "next/image";
 
 export const UserCard = ({
@@ -9,7 +10,7 @@ export const UserCard = ({
     className ?: string
 }) => {
     return (
-        <Card className = {`p-6 flex flex-row justify-between items-center ${className}`}>
+        <Card className = {cn('p-6 flex flex-row justify-between items-center', className)}>
             <div className="flex flex-col justify-between items-center">
                 <Image
                     width={144}

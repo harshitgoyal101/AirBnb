@@ -1,5 +1,6 @@
 import { Button } from "./button";
 import { FaSearch } from "react-icons/fa";
+import { cn } from "@/lib/utils"
 import './input-label.css'
 
 interface InputwithLabelProps {
@@ -22,7 +23,7 @@ export const InputwithLabel = ({
     onMouseLeave=()=>{}
 }: InputwithLabelProps) => {
     return (
-        <Button className={`flex justify-between m-0 p-3 h-14 ${className}`} style={{width: width}} 
+        <Button className={cn('flex justify-between m-0 p-3 h-14', className)} style={{width: width}} 
           onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
             <div className="text-left">
                 <p className="text-darkText text-xs px-4">{label}</p>
