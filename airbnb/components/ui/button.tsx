@@ -11,7 +11,7 @@ const buttonVariants = cva(
       variant: {
         default: "bg-white text-lightText hover:bg-gray-200 hover:text-mediumText",
         active: "bg-white text-darkText text-bold",
-        outline: "bg-white outline outline-gray-200 hover:shadow-lg",
+        outline: "bg-white outline outline-gray-200 hover:shadow-lg"
       },
       size: {
         default: "h-10 px-4 py-2",
