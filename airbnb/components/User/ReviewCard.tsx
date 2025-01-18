@@ -1,8 +1,13 @@
 import Image from "next/image"
+import { cn } from "@/lib/utils"
 
-export const ReviewCard = () => {
+export const ReviewCard = ({className}:{className ?: string}) => {
   return (
-    <div className="w-[350px] h-[225px]  border rounded-xl mr-3 my-3  p-5 flex flex-col justify-between">
+    <>
+    <div className={cn(
+            "min-w-[350px] min-h-[225px]  border rounded-xl mr-3 my-3  p-5 flex flex-col justify-between",
+            className
+          )}>
       <div className="text-mediumText font-sm mb-2">
         "…Our caretaker Kaushal bhai and Abhay made us feel at home. 
         Abhay even took us on a hike to Sangla Kanda lake. 
@@ -24,6 +29,7 @@ export const ReviewCard = () => {
         </div>
       </div>
     </div>
+    </>
   );
 }
 

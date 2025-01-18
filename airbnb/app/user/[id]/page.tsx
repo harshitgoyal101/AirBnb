@@ -21,10 +21,12 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 
 import Link from "next/link";
 import Image from "next/image";
+import { IconWithLabel } from "@/components/ui/IconWIthLabel";
 
 export default function UserDetailPage() {
     return (
@@ -51,50 +53,53 @@ export default function UserDetailPage() {
             <div className="overflow-y-hidden">
                 <div className="min-w-[480px] max-w-[500px] lg:max-w-[1000px] w-full p-10 xl:grid grid-cols-2">
                     <div className="col-span-2 text-3xl text-darkText font-bold p-2">About Harshit</div>
-                    <div className="flex p-2">
-                        <GoBriefcase size={24} className="mr-3"/> 
-                        My work: CEO Zostel, Zo World
-                    </div>
-                    <div className="flex p-2">
-                        <HiOutlineMusicalNote size={24} className="mr-3"/> 
-                        Favourite song: Country Roads
-                    </div>
-                    <div className="flex p-2">
-                        <BsBalloon size={24} className="mr-3"/> 
-                        Born in the 90s
-                    </div>
-                    <div className="flex p-2">
-                        <SlGraduation size={24} className="mr-3"/> 
-                        Where I went to school: Jodhpur public school
-                    </div>
-                    <div className="flex p-2">
-                        <GoClock size={24} className="mr-3"/> 
-                        I spend too much time: Reading, Travelling
-                    </div>
-                    <div className="flex p-2">
-                        <IoMdHeartEmpty size={24} className="mr-3"/> 
-                        I'm obsessed with: Gaming and Poker
-                    </div>
-                    <div className="flex p-2">
-                        <PiBookOpenText size={24} className="mr-3"/> 
-                        My biography title: Meandering with DV!
-                    </div>
-                    <div className="flex p-2">
-                        <BsChatSquareHeart size={24} className="mr-3"/> 
-                        Speaks English and Hindi
-                    </div>
-                    <div className="flex p-2">
-                        <PiGlobeStand size={24} className="mr-3"/> 
-                        Lives in Gurugram, India
-                    </div>
-                    <div className="flex p-2">
-                        <LuCoffee size={24} className="mr-3"/> 
-                        What's for breakfast: Eggs and Black Coffee
-                    </div>
-                    <div className="flex p-2">
-                        <PiPawPrint size={24} className="mr-3"/> 
-                        Pets: Don't have any, but love them all!
-                    </div>
+                       <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            My work: CEO Zostel, Zo World
+                        </IconWithLabel>
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            Favourite song: Country Roads
+                        </IconWithLabel>
+
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            Born in the 90s
+                        </IconWithLabel>
+                        
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            Where I went to school: Jodhpur public school
+                        </IconWithLabel>
+
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            I spend too much time: Reading, Travelling
+                        </IconWithLabel>
+
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            I'm obsessed with: Gaming and Poker
+                        </IconWithLabel>
+
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            My biography title: Meandering with DV!
+                        </IconWithLabel>
+
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            My biography title: Meandering with DV!
+                        </IconWithLabel>
+                    
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            Speaks English and Hindi
+                        </IconWithLabel>
+
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            Lives in Gurugram, India
+                        </IconWithLabel>
+                    
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            What's for breakfast: Eggs and Black Coffee
+                        </IconWithLabel>
+
+                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
+                            Pets: Don't have any, but love them all!
+                        </IconWithLabel>
+                    
                     <div className="col-span-2 mt-5 p-2">Zostel is India's first and largest chain of budget hostels for the sociable explorer.
                         Our properties across India and Nepal are a melting pot of cultures and social connections. 
                         The budget stays that we offer are as much about exploration as they are about social 
@@ -117,15 +122,18 @@ export default function UserDetailPage() {
                                     <div className="ml-6"><CarouselNext /></div>
                                 </div>
                             </div>
-                            
+                            <ScrollArea>
                             <CarouselContent className="w-full min-w-[500px]">
                                 {Array.from({ length: 5 }).map((_, index) => (
-                                <CarouselItem key={index} className="xl:basis-1/2">
-                                    <ReviewCard/>
-                                </CarouselItem>
+                                <div className="flex ">
+                                    <CarouselItem key={index} className="xl:basis-1/2">
+                                        <ReviewCard/>
+                                    </CarouselItem>
+                                </div>
                                 ))}
                             </CarouselContent>
-                            
+                            <ScrollBar orientation="horizontal"/>
+                            </ScrollArea> 
                         </Carousel>
                     </div>
                     <div className="text-xl text-darkText underline my-4">Show more reviews</div>

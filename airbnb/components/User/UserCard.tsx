@@ -1,15 +1,20 @@
 import { RiMedalFill } from "react-icons/ri";
 import { Card } from "@/components/ui/Card";
 import { Separator } from "@/components/ui/separator";
+import { cn } from "@/lib/utils"
 import Image from "next/image";
 
-export const UserCard = () => {
+export const UserCard = ({
+    className
+}:{
+    className ?: string
+}) => {
     return (
-        <Card className="p-6 flex flex-row justify-between items-center">
+        <Card className = {cn('p-6 flex flex-row justify-between items-center', className)}>
             <div className="flex flex-col justify-between items-center">
                 <Image
-                    width={150}
-                    height={150}
+                    width={144}
+                    height={144}
                     className="m-5 rounded-full object-cover max-w-[150px] max-h-[150px]"
                     src="/temp.avif"
                     alt="Small Image 1"
