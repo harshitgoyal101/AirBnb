@@ -1,4 +1,5 @@
 
+from datetime import timedelta
 import os
 from pathlib import Path
 
@@ -28,8 +29,46 @@ SECRET_KEY = 'django-insecure-ci(q*55juh@1fj#0q_n78o(=!83^_j=fr&1te(gu0uhga1r-j3
 
 ALLOWED_HOSTS = DJANGO_ALLOWED_HOSTS
 
+AUTH_USER_MODEL = 'User.User'
 
-# Application definition
+SITE_ID = 1
+WEBSITE_URL = 'http://localhost:8000'
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=7),
+    "ROTATE_REFRESH_TOKEN": False,
+    "BLACKLIST_AFTER_ROTATION": False,
+    "UPDATE_LAST_LOGIN": True,
+    "SIGNING_KEY": 'complex_key',
+    "ALGORIGTHM": "HS512",
+}
+
+ACCOUNT_USER_MODEL_USERNAME_FIELD = None 
+ACCOUNT_EMAIL_REQUIRED = True 
+ACCOUNT_USERNAME_REQUIRED = False 
+ACCOUNT_AUTHENTICATION_METHOD = ' email ' 
+ACCOUNT_EMAIL_VERIFICATION = None 
+
+REST_FRAMEWORK = { 
+    'DEFAULT_AUTHENTICATION_CLASSES' : (
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+    ), 
+    'DEFAULT_PERMISSION_CLASSES' : (
+        'rest_framework.permissions.IsAuthenticated', 
+    )
+} 
+CORS_ALLOWED_ORIGINS = [ 
+    'http://127.0.0.1:8000', 
+    'http://127.0.0.1:3000', 
+]
+
+REST_AUTH = { 
+    "USE_JWT": True, 
+    "JWT_AUTH_HTTPONLY": False 
+}
+
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,11 +77,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'rest_framework_simplejwt',
+    'allauth',
+    'allauth.account',
+    'dj_rest_auth',
+    'dj_rest_auth.registration',
+    'corsheaders',
+    'User',
+    'Property'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
@@ -121,6 +171,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = 'static/'
+MEDIA_URL = 'media/'
+MEDIA_ROOT = BASE_DIR / 'media'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
