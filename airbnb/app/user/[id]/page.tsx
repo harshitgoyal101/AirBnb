@@ -14,6 +14,8 @@ import { LuCoffee } from "react-icons/lu";
 import { PiPawPrint } from "react-icons/pi";
 import { Separator } from "@radix-ui/react-separator";
 import { ReviewCard } from "@/components/User/ReviewCard";
+import { PropertyCard } from "@/components/Properties/PropertyCard";
+
 import {
   Carousel,
   CarouselContent,
@@ -156,37 +158,7 @@ export default function UserDetailPage() {
                             <CarouselContent className="w-full">
                                 {Array.from({ length: 5 }).map((_, index) => (
                                 <CarouselItem key={index} className="basic-1/1 md:basis-1/2 lg:basis-1/3">
-                                    <div className="cursor-pointer m-3 rounded-xl">
-                                        <div>
-                                            <div className="relative">
-                                                <div className="relative overflow-hidden aspect-square rounded-xl">
-                                                    <Image
-                                                        fill
-                                                        sizes="(max-width: 256px) 256px, (max-width: 256px): 256px, 256px"
-                                                        className="hover:scale-R110 object-cover transition h-[256px] w-[256px]"
-                                                        src="/temp.avif" 
-                                                        alt="/temp.avif"
-                                                    />
-                                                </div>
-                                               
-                                            </div>
-                                            <div className="mt-4 flex flex-col space-x-0 text-lightText">
-                                                <div className="text-md flex justify-between font-semibold m-0 p-0 text-darkText">
-                                                    <div>Harshit Goyal</div>
-                                                    <div>★ 4.3</div>
-                                                </div>
-                                                <div className="text-sm m-0 p-0">
-                                                    2,123 away
-                                                </div>
-                                                <div className="text-sm m-0 p-0">
-                                                    123.213
-                                                </div>
-                                                <div className="text-sm mt-2 p-0 text-darkText">
-                                                <strong>$ 500</strong> per night
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <PropertyCard/>
                                 </CarouselItem>
                                 ))}
                             </CarouselContent>
