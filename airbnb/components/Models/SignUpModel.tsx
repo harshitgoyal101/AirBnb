@@ -1,11 +1,12 @@
 "use client"
 
-import { Input } from "@/components/ui/input"
-import { Model } from '@/components/ui/Model'
 import React from 'react';
 import useLoginModel from '@/app/hooks/useLoginModel';
 import useSignUpModel from '@/app/hooks/useSignUpModel';
 import Link from "next/link";
+
+import { Input } from "@/components/ui/input"
+import { Model } from '@/components/ui/Model'
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
 
@@ -13,21 +14,22 @@ import { FcGoogle } from "react-icons/fc";
 import { FaApple, FaFacebookSquare } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
-export const LoginModel = () => {
+export const SignUpModel = () => {
 
     const loginModel = useLoginModel();
     const signUpModel = useSignUpModel();
 
     return (
         <Model 
-            isOpen={loginModel.isOpen}
-            close={loginModel.close}
-            label="Login"
+            isOpen={signUpModel.isOpen}
+            close={signUpModel.close}
+            label="Sign up"
         >
             <h1 className='text-xl font-bold'>Welcome to Airbnb</h1>
             <form className="mt-5">
                 <Input placeholder="Email" className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"/>
-                <Input placeholder="Password" className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"/>
+                <Input placeholder="Password" className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"/>
+                <Input placeholder="Re-enter Password" className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"/>
                 <p className="text-sm my-2">
                     We'll call or text you to confirm your number. Standard message and data rates apply. 
                     <Link href="/" className="font-semibold underline px-1">Privacy Policy</Link>
@@ -36,9 +38,9 @@ export const LoginModel = () => {
                     Continue
                 </Button>
                 <p className="text-sm my-2 text-darkText">
-                    Don't have an account?
-                    <Button onClick={() => {loginModel.close(); signUpModel.open()}} className="font-semibold underline px-1 hover:bg-white text-darkText">
-                        Try Sign Up
+                    Already have an account?
+                    <Button onClick={() => {signUpModel.close(); loginModel.open()}} className="font-semibold underline px-1 hover:bg-white text-darkText">
+                        Try Login
                     </Button>
                 </p>
             </form>
