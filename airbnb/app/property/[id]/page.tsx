@@ -231,12 +231,12 @@ export default function PropertyDetailPage() {
             {/* ---------------------------------------------------------Reviews------------------------------------------------------- */}
 
             <div className="invisible h-0 md:h-fit md:visible md:grid grid-cols-2 justify-self-stretch md:py-10">
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
             </div>
 
             <div className="md:hidden">
