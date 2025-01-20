@@ -231,12 +231,12 @@ export default function PropertyDetailPage() {
             {/* ---------------------------------------------------------Reviews------------------------------------------------------- */}
 
             <div className="invisible h-0 md:h-fit md:visible md:grid grid-cols-2 justify-self-stretch md:py-10">
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
             </div>
 
             <div className="md:hidden">
@@ -253,16 +253,11 @@ export default function PropertyDetailPage() {
                             <div className="ml-6"><CarouselNext /></div>
                         </div>
                     </div>
-                    <CarouselContent className=" w-full min-w-[500px]">
-                        {Array.from({ length: 5 }).map((_, index) => (
-                        <ScrollArea className="flex">
-                        <div className="flex ">
+                    <CarouselContent className="w-full min-w-[500px] overflow-x-scroll scrollbar-none">
+                        {Array.from({ length: 5 }).map((_key, index) => (
                             <CarouselItem key={index} className="xl:basis-1/2">
                                 <ReviewCard/>
                             </CarouselItem>
-                        </div>
-                        <ScrollBar orientation="horizontal"/>
-                        </ScrollArea> 
                         ))}
                     </CarouselContent>
                 </Carousel>
