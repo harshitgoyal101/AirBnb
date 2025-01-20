@@ -7,10 +7,12 @@ import { CgProfile } from "react-icons/cg";
 import { Card } from "../ui/Card";
 
 import useLoginModel from '@/app/hooks/useLoginModel';
+import useSignUpModel from '@/app/hooks/useSignUpModel';
 
 export const UserNav = () => {
 
     const loginModel = useLoginModel();
+    const signUpModel = useSignUpModel();
     const [isOpen, setIsOpen] = React.useState(false);
 
     useEffect(() => {
@@ -29,7 +31,7 @@ export const UserNav = () => {
                     <Button onClick={loginModel.open} className='w-full p-0 m-0 rounded-none rounded-t-lg justify-start px-6'>
                         Log in 
                     </Button>
-                    <Button onClick={loginModel.open} className='w-full p-0 m-0 rounded-none justify-start px-6'>
+                    <Button onClick={signUpModel.open} className='w-full p-0 m-0 rounded-none justify-start px-6'>
                         Sign up
                     </Button>
                     <Button className='w-full p-0 m-0 rounded-none justify-start px-6 border-t-2'>
