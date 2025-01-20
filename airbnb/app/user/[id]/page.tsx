@@ -29,8 +29,22 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 import Link from "next/link";
 import Image from "next/image";
 import { IconWithLabel } from "@/components/ui/IconWIthLabel";
+import { useEffect, useState } from "react";
+import { apiService } from "@/app/services/apiService";
+import { PropertyType } from "@/components/Properties/Properties";
 
 export default function UserDetailPage() {
+    const [properties, setProperties] = useState<PropertyType[]>([]);
+    
+        const getProperties = async () => {
+            const tmpProperties = await apiService.get('/api/properties/');
+            setProperties(tmpProperties.data);
+        }
+    
+        useEffect(() => {
+            getProperties();
+        }, [])
+    
     return (
         <div className="w-full flex flex-col justify-center items-center lg:items-start lg:flex-row px-20">
             <div className="flex flex-col mt-8 justify-center p-12 min-w-[480px] max-w-[500px] lg:sticky lg:top-0 lg:h-screen">

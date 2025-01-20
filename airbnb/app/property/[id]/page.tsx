@@ -253,8 +253,8 @@ export default function PropertyDetailPage() {
                             <div className="ml-6"><CarouselNext /></div>
                         </div>
                     </div>
-                    <CarouselContent className=" w-full min-w-[500px]">
                         {Array.from({ length: 5 }).map((_, index) => (
+                    <CarouselContent className=" w-full min-w-[500px]" key={index}>
                         <ScrollArea className="flex">
                         <div className="flex ">
                             <CarouselItem key={index} className="xl:basis-1/2">
@@ -263,8 +263,8 @@ export default function PropertyDetailPage() {
                         </div>
                         <ScrollBar orientation="horizontal"/>
                         </ScrollArea> 
-                        ))}
                     </CarouselContent>
+                        ))}
                 </Carousel>
 
                 
