@@ -22,6 +22,7 @@ import { GoTag } from "react-icons/go";
 import { UserCard } from "@/components/User/UserCard";
 import Link from "next/link";
 import { useState } from "react";
+import { addDays, format } from "date-fns"
 
 export default function PropertyDetailPage() {
     const [range, setRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
@@ -145,7 +146,8 @@ export default function PropertyDetailPage() {
                     <div className="text-2xl font-semibold text-darkText mb-2">2 nights in Anjar</div>
                     <div className="text-sm text-lightText">{
                         range.from && range.to ? 
-                        <p>{range.from.toLocaleDateString()} - {range.to.toLocaleDateString()}</p>
+                        <p>{format(range.from, "LLL dd, y")} -{" "}
+                                          {format(range.to, "LLL dd, y")}</p>
                         : <p>Add your travel dates for exact pricing</p>
                     }</div>
 
@@ -231,12 +233,12 @@ export default function PropertyDetailPage() {
             {/* ---------------------------------------------------------Reviews------------------------------------------------------- */}
 
             <div className="invisible h-0 md:h-fit md:visible md:grid grid-cols-2 justify-self-stretch md:py-10">
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
-                <ReviewCard className = "border-none"/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
+                <ReviewCard/>
             </div>
 
             <div className="md:hidden">
@@ -253,16 +255,11 @@ export default function PropertyDetailPage() {
                             <div className="ml-6"><CarouselNext /></div>
                         </div>
                     </div>
-                    <CarouselContent className=" w-full min-w-[500px]">
-                        {Array.from({ length: 5 }).map((_, index) => (
-                        <ScrollArea className="flex">
-                        <div className="flex ">
+                    <CarouselContent className="w-full min-w-[500px] overflow-x-scroll scrollbar-none">
+                        {Array.from({ length: 5 }).map((_key, index) => (
                             <CarouselItem key={index} className="xl:basis-1/2">
                                 <ReviewCard/>
                             </CarouselItem>
-                        </div>
-                        <ScrollBar orientation="horizontal"/>
-                        </ScrollArea> 
                         ))}
                     </CarouselContent>
                 </Carousel>

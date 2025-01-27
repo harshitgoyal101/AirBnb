@@ -115,7 +115,7 @@ export default function UserDetailPage() {
                             opts={{
                                 align: "start",
                             }}
-                            className="xl: w-full"
+                            className="xl: w-full overflow-x-scroll scrollbar-none"
                             >
                             <div className="flex justify-between my-6 mr-6">
                                 <div className="text-2xl font-semibold text-mediumText mt-3">What guests are saying about Harshit</div>
@@ -124,18 +124,13 @@ export default function UserDetailPage() {
                                     <div className="ml-6"><CarouselNext /></div>
                                 </div>
                             </div>
-                            <ScrollArea>
                             <CarouselContent className="w-full min-w-[500px]">
                                 {Array.from({ length: 5 }).map((_, index) => (
-                                <div className="flex ">
                                     <CarouselItem key={index} className="xl:basis-1/2">
                                         <ReviewCard/>
                                     </CarouselItem>
-                                </div>
                                 ))}
                             </CarouselContent>
-                            <ScrollBar orientation="horizontal"/>
-                            </ScrollArea> 
                         </Carousel>
                     </div>
                     <div className="text-xl text-darkText underline my-4">Show more reviews</div>
@@ -155,10 +150,15 @@ export default function UserDetailPage() {
                                 </div>
                             </div>
                             
-                            <CarouselContent className="w-full">
+                            <CarouselContent className="w-full overflow-x-scroll scrollbar-none">
                                 {Array.from({ length: 5 }).map((_, index) => (
                                 <CarouselItem key={index} className="basic-1/1 md:basis-1/2 lg:basis-1/3">
-                                    <PropertyCard/>
+                                    <PropertyCard property={{
+                                            id: "1",
+                                            title: "Angar Villa",
+                                            price_per_night: 1200,
+                                            image_url: "/temp.avif"
+                                        }}/>
                                 </CarouselItem>
                                 ))}
                             </CarouselContent>
