@@ -23,24 +23,25 @@ export function CalendarPop({
   })
 
   return (
-    <div className={cn("grid gap-2", className)}>
+    <div className={cn("", className)}>
       <Popover>
         <PopoverTrigger asChild>
           <Button
             id="date"
             variant={"default"}
             className={cn(
-              "w-full justify-start text-left font-normal",
+              "w-full justify-center text-left font-normal",
               !date && "text-muted-foreground"
             )}
           >
             <CalendarIcon />
             {date?.from ? (
               date.to ? (
-                <>
-                  {format(date.from, "LLL dd, y")} -{" "}
-                  {format(date.to, "LLL dd, y")}
-                </>
+                <div className="flex justify-between">
+                  <div>{format(date.from, "LLL dd, y")} </div>
+                  <div className="mx-8">-</div>
+                  <div>{format(date.to, "LLL dd, y")}</div>
+                </div>
               ) : (
                 format(date.from, "LLL dd, y")
               )
