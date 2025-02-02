@@ -15,7 +15,7 @@ export const IconWithLabel = (
                 <Image
                     width={24}
                     height={24}
-                    src={`/caterogies/${type}.jpg`}
+                    src={`/categories/${type}.jpg`}
                     alt={type}
                 />
                 <div>
@@ -29,7 +29,7 @@ export const IconWithLabel = (
                 <Image
                     width={24}
                     height={24}
-                    src={`/caterogies/${type}.jpg`}
+                    src={`/categories/${type}.jpg`}
                     alt={type}
                 />
                 <p className="text-md text-black mx-3">{type}</p>
@@ -39,7 +39,7 @@ export const IconWithLabel = (
                 <Image
                     width={20}
                     height={20}
-                    src={`/caterogies/${type}.jpg`}
+                    src={`/categories/${type}.jpg`}
                     alt={type}
                 />
                 <p className="text-xs">{type}</p>

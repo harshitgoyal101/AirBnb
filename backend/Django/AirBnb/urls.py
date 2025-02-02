@@ -18,9 +18,12 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import path, include
+from . import api
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/properties/', include('Property.urls')),
-    path('api/auth/', include('User.urls'))
+    path('api/auth/', include('User.urls')),
+    path('api/categories/', api.categories_list, name='categories_list'),
+    path('api/aminities/', api.aminities_list, name='aminities_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
