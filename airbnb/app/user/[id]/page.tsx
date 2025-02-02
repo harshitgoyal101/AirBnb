@@ -1,17 +1,6 @@
 import { UserCard } from "@/components/User/UserCard";
 import { IoMdCheckmark } from "react-icons/io";
 import { FaFlag } from "react-icons/fa6";
-import { GoBriefcase } from "react-icons/go";
-import { HiOutlineMusicalNote } from "react-icons/hi2";
-import { BsBalloon } from "react-icons/bs";
-import { SlGraduation } from "react-icons/sl";
-import { GoClock } from "react-icons/go";
-import { IoMdHeartEmpty } from "react-icons/io";
-import { PiBookOpenText } from "react-icons/pi";
-import { BsChatSquareHeart } from "react-icons/bs";
-import { PiGlobeStand } from "react-icons/pi";
-import { LuCoffee } from "react-icons/lu";
-import { PiPawPrint } from "react-icons/pi";
 import { Separator } from "@radix-ui/react-separator";
 import { ReviewCard } from "@/components/User/ReviewCard";
 import { PropertyCard } from "@/components/Properties/PropertyCard";
@@ -28,7 +17,6 @@ import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 import Link from "next/link";
 import Image from "next/image";
-import { IconWithLabel } from "@/components/ui/IconWIthLabel";
 
 export default function UserDetailPage() {
     return (
@@ -55,53 +43,7 @@ export default function UserDetailPage() {
             <div className="overflow-y-hidden">
                 <div className="min-w-[480px] max-w-[500px] lg:max-w-[1000px] w-full p-10 xl:grid grid-cols-2">
                     <div className="col-span-2 text-3xl text-darkText font-bold p-2">About Harshit</div>
-                       <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            My work: CEO Zostel, Zo World
-                        </IconWithLabel>
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            Favourite song: Country Roads
-                        </IconWithLabel>
-
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            Born in the 90s
-                        </IconWithLabel>
-                        
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            Where I went to school: Jodhpur public school
-                        </IconWithLabel>
-
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            I spend too much time: Reading, Travelling
-                        </IconWithLabel>
-
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            I'm obsessed with: Gaming and Poker
-                        </IconWithLabel>
-
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            My biography title: Meandering with DV!
-                        </IconWithLabel>
-
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            My biography title: Meandering with DV!
-                        </IconWithLabel>
-                    
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            Speaks English and Hindi
-                        </IconWithLabel>
-
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            Lives in Gurugram, India
-                        </IconWithLabel>
-                    
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            What's for breakfast: Eggs and Black Coffee
-                        </IconWithLabel>
-
-                        <IconWithLabel icon = "/caterogies/A frames.jpg"> 
-                            Pets: Don't have any, but love them all!
-                        </IconWithLabel>
-                    
+                       
                     <div className="col-span-2 mt-5 p-2">Zostel is India's first and largest chain of budget hostels for the sociable explorer.
                         Our properties across India and Nepal are a melting pot of cultures and social connections. 
                         The budget stays that we offer are as much about exploration as they are about social 
@@ -158,7 +100,7 @@ export default function UserDetailPage() {
                             <CarouselContent className="w-full">
                                 {Array.from({ length: 5 }).map((_, index) => (
                                 <CarouselItem key={index} className="basic-1/1 md:basis-1/2 lg:basis-1/3">
-                                    <PropertyCard/>
+                               
                                 </CarouselItem>
                                 ))}
                             </CarouselContent>

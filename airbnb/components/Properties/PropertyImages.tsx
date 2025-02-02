@@ -6,54 +6,55 @@ export const PropertiesImages = () => {
     return (
         <>
         <div className="relative rounded-2xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            <div className="relative col-span-2 row-span-2 m-1 ">
-            <Image
-                width={1600}
-                height={900}
-                className="object-cover w-full rounded-s-2xl h-full"
-                src="/temp2.avif"
-                alt="Large Image"
-            />
+            
+            <div className="relative col-span-2 row-span-2 m-1">
+                <Image
+                    width={1600}
+                    height={900}
+                    className="object-cover w-full h-full"
+                    src="/temp2.avif"
+                    alt="Large Image"
+                />
             </div>
 
-            <div className="relative m-1  ">
+            <div className="relative m-1">
+                <Image
+                    width={800}
+                    height={450}
+                    className="object-cover w-full h-full"
+                    src="/temp2.avif"
+                    alt="Small Image 1"
+                />
+            </div>
+
+            <div className="relative m-1">
             <Image
                 width={800}
                 height={450}
                 className="object-cover w-full h-full"
-                src="/temp2.avif"
-                alt="Small Image 1"
-            />
-            </div>
-
-            <div className="relative m-1 ">
-            <Image
-                width={800}
-                height={450}
-                className="object-cover rounded-tr-xl w-full h-full"
                 src="/temp2.avif"
                 alt="Small Image 2"
             />
             </div>
 
-            <div className="relative m-1  block lg:block md:hidden">
-            <Image
-                width={800}
-                height={450}
-                className="object-cover w-full h-full"
-                src="/temp2.avif"
-                alt="Small Image 3"
-            />
+            <div className="relative m-1 block lg:block md:hidden">
+                <Image
+                    width={800}
+                    height={450}
+                    className="object-cover w-full h-full"
+                    src="/temp2.avif"
+                    alt="Small Image 3"
+                />
             </div>
 
             <div className="relative block m-1 lg:block md:hidden">
-            <Image
-                width={800}
-                height={450}
-                className="object-cover rounded-br-xl  w-full h-full"
-                src="/temp2.avif"
-                alt="Small Image 4"
-            />
+                <Image
+                    width={800}
+                    height={450}
+                    className="object-cover w-full h-full"
+                    src="/temp2.avif"
+                    alt="Small Image 4"
+                />
             </div>
             
 
