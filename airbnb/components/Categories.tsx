@@ -23,7 +23,7 @@ export const Categories = ({
                     <CarouselContent>
                         {Array.from({length: 54}).map((_, index) => (
                             <CarouselItem key={index} className="basis-1/10 mt-2">
-                                <IconWithLabel type="A frames"/>
+                                <IconWithLabel type="Amazing pools"/>
                             </CarouselItem>
                         ))}
                     </CarouselContent>

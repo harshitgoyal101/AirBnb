@@ -21,6 +21,7 @@ import { GoTag } from "react-icons/go";
 import { UserCard } from "@/components/User/UserCard";
 import Link from "next/link";
 import { useState } from "react";
+import { IconWithLabel } from "@/components/ui/IconWIthLabel";
 
 export default function PropertyDetailPage() {
 
@@ -104,7 +105,11 @@ export default function PropertyDetailPage() {
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 text-mediumText py-8">
                     <div className="text-2xl font-semibold text-darkText lg:col-span-2 mb-2">What this place offers?</div>
-
+                    <IconWithLabel type="A frames"/>
+                    <IconWithLabel type="A frames"/>
+                    <IconWithLabel type="A frames"/>
+                    <IconWithLabel type="A frames"/>
+                    <IconWithLabel type="A frames"/>
                 </div>
                 
                 <div className="py-2 mb-4 m-1 text-lg">
@@ -255,7 +260,7 @@ export default function PropertyDetailPage() {
                     <UserCard className="my-4  w-[400px] h-[280px]"/>
                     <div className="my-4">
                     </div>
-                    <div className="py-2">​Zostel is India's first and largest chain of budget hostels for the sociable explorer. ​​Our properties....</div>
+                    <div className="py-2">Zostel is India's first and largest chain of budget hostels for the sociable explorer. Our properties....</div>
                     <Link href = "/user/1" className="text-darkText font-semibold underline">Show more</Link>
                 </div>
 
