@@ -1,7 +1,4 @@
-import { PiChats } from "react-icons/pi";
-import { Separator } from "@/components/ui/separator";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function ChatPage() {
     return (

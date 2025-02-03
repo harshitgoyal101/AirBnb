@@ -1,14 +1,11 @@
+import { apiService } from "@/app/services/apiService";
 import Image from "next/image";
-
-const aminities: Record<string, string> = {
-    "A frames": "huh",
-};
-
+const aminities = await apiService.get('/api/aminities/');
 
 export const IconWithLabel = (
   {type} : {type:string}
 ) => {
-  return (
+    return (
         aminities.hasOwnProperty(type) ? aminities[type] ? 
         <div className="px-4">
             <div className="flex items-center py-1 w-ful">

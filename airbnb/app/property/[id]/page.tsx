@@ -104,7 +104,9 @@ export default function PropertyDetailPage() {
                 <Separator/>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 text-mediumText py-8">
-                    <div className="text-2xl font-semibold text-darkText lg:col-span-2 mb-2">What this place offers?</div>
+                    <div className="text-2xl font-semibold text-darkText lg:col-span-2 mb-2">
+                        What this place offers?
+                    </div>
                     <IconWithLabel type="A frames"/>
                     <IconWithLabel type="A frames"/>
                     <IconWithLabel type="A frames"/>
