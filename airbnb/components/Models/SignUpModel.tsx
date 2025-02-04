@@ -1,10 +1,11 @@
 "use client"
 
-import React from 'react';
 import useLoginModel from '@/app/hooks/useLoginModel';
 import useSignUpModel from '@/app/hooks/useSignUpModel';
 import Link from "next/link";
 
+import { useState } from 'react';
+import { useRouter } from 'next/router';
 import { Input } from "@/components/ui/input"
 import { Model } from '@/components/ui/Model'
 import { Button } from "../ui/button";
@@ -19,6 +20,12 @@ export const SignUpModel = () => {
     const loginModel = useLoginModel();
     const signUpModel = useSignUpModel();
 
+    //const router = useRouter();
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [repassword, setRepassword] = useState("");
+    const [errors, setErrors] = useState<string[]>([]);
+
     return (
         <Model 
             isOpen={signUpModel.isOpen}
@@ -27,9 +34,31 @@ export const SignUpModel = () => {
         >
             <h1 className='text-xl font-bold'>Welcome to Airbnb</h1>
             <form className="mt-5">
-                <Input placeholder="Email" className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"/>
-                <Input placeholder="Password" className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"/>
-                <Input placeholder="Re-enter Password" className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"/>
+                <Input
+                    onChange={(e) => setEmail(e.target.value)}
+                    type='email' 
+                    placeholder="Email" 
+                    className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"
+                />
+                <Input 
+                    onChange={(e) => setPassword(e.target.value)}
+                    type='password' 
+                    placeholder="Password" 
+                    className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"
+                />
+                <Input 
+                    onChange={(e) => setRepassword(e.target.value)}
+                    type='password' 
+                    placeholder="Re-enter Password" 
+                    className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"
+                />
+                {errors.map((error, index) => {
+                    return(
+                        <p className="text-sm text-red-500 my-2">
+                            {error}
+                        </p>
+                    )
+                })}
                 <p className="text-sm my-2">
                     We'll call or text you to confirm your number. Standard message and data rates apply. 
                     <Link href="/" className="font-semibold underline px-1">Privacy Policy</Link>
@@ -37,7 +66,7 @@ export const SignUpModel = () => {
                 <Button className="w-full rounded-sm bg-airbnb hover:bg-airbnbDark text-white hover:text-white my-3">
                     Continue
                 </Button>
-                <p className="text-sm my-2 text-darkText">
+                <p className="text-sm text-darkText">
                     Already have an account?
                     <Button onClick={() => {signUpModel.close(); loginModel.open()}} className="font-semibold underline px-1 hover:bg-white text-darkText">
                         Try Login
