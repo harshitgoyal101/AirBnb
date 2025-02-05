@@ -1,10 +1,14 @@
-import { apiService } from "@/app/services/apiService";
 import Image from "next/image";
-const aminities = await apiService.get('/api/aminities/');
 
 export const IconWithLabel = (
   {type} : {type:string}
 ) => {
+    
+    const aminities: { [key: string]: string } = {
+        "A frames": "",
+        "Boats": "Nishi"
+    };
+
     return (
         aminities.hasOwnProperty(type) ? aminities[type] ? 
         <div className="px-4">
