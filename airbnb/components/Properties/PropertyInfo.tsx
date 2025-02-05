@@ -75,11 +75,11 @@ export const PropertyInfo = () => {
                 <Separator/>
                 <div className="my-6">
                     <div className="text-2xl font-semibold text-darkText mb-2">2 nights in Anjar</div>
-                    <div className="text-sm text-lightText">{
-                        range.from && range.to ? 
+                    <div className="text-sm text-lightText">
+                    {range.from && range.to ? 
                         <p>{range.from.toLocaleDateString()} - {range.to.toLocaleDateString()}</p>
                         : <p>Add your travel dates for exact pricing</p>
-                    }</div>
+                    } </div>
 
                     <div className="flex justify-between py-2 overflow-x-hidden w-full">
                         <Calendar
@@ -89,17 +89,12 @@ export const PropertyInfo = () => {
                             mode="range"
                         />
                     </div>
-
                 </div>
-                
             </div>
-            
             <div className="invisible w-0 md:visible md:w-1/2 lg:w-2/5 pr-0 py-5 pl-0 md:pl-12 lg:pl-20  md:sticky md:top-0 md:h-screen">
                 <BookCard />
             </div>
-
         </div>
-
     </div>
   )
 }

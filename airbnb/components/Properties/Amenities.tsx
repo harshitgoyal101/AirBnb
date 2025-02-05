@@ -4,10 +4,7 @@ import { Separator } from "../ui/separator"
 
 export const Amenities = () => (
     <div>
-        
-        
         <div className="py-4"> 
-            {/* add pre-amenities using iconwithlabel */}
             <div className="text-md">Shared room</div>
             <div className="text-md">Shared commonspaces</div>
             <div className="text-md">Shared Bathroom</div>
@@ -23,7 +20,6 @@ export const Amenities = () => (
             Choose from snug dorms to private and luxurious suites for a rejuvenating stay at our 
             hostel. Meanwhile, our sprightly and spacious common areas feature a range of games 
             that would serve as a perfect icebreaker for social interactions with fellow travellers...
-            
             <div className="my-2 font-semibold underline  text-darkText">Show more</div>
         </div>            
 
@@ -40,7 +36,7 @@ export const Amenities = () => (
         </div>
 
         <div className="py-2 mb-4 m-1 text-lg">
-            <Button className="text-darkText  outline-gray-800 outline-1 font-semibold rounded-lg" size={"lg"} variant={"outline"}>
+            <Button className="text-darkText outline-gray-800 outline-1 font-semibold rounded-lg" size={"lg"} variant={"outline"}>
                 Show all 17 ameneties
             </Button>
         </div>
