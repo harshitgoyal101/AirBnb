@@ -1,17 +1,18 @@
 import { ReviewCard } from "@/components/User/ReviewCard";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
+import { RatingCard } from "./RatingCard";
 
 export const ReviewSection = () => {
   return (
     <div>
       <div className="invisible h-0 md:h-fit md:visible md:grid grid-cols-2 justify-self-stretch md:py-10">
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
-            <ReviewCard />
+            <RatingCard />
+            <RatingCard />
+            <RatingCard />
+            <RatingCard />
+            <RatingCard />
+            <RatingCard />
         </div>
 
         <div className="md:hidden">
