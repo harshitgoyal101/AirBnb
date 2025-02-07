@@ -1,11 +1,10 @@
 "use client"
 
+import React from 'react';
 import useLoginModel from '@/app/hooks/useLoginModel';
 import useSignUpModel from '@/app/hooks/useSignUpModel';
 import Link from "next/link";
 
-import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { Input } from "@/components/ui/input"
 import { Model } from '@/components/ui/Model'
 import { Button } from "../ui/button";
@@ -15,16 +14,78 @@ import { FcGoogle } from "react-icons/fc";
 import { FaApple, FaFacebookSquare } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 
+import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
+import * as Yup from 'yup';
+import { apiService } from '@/app/services/apiService';
+import { useRouter } from 'next/navigation';
+
+
+interface FormValues {
+    email: string;
+    password: string;
+    confirmPassword: string;
+}
+
 export const SignUpModel = () => {
 
     const loginModel = useLoginModel();
     const signUpModel = useSignUpModel();
+    const router = useRouter();
+    const initialValues: FormValues = {
+    email: '',
+    password: '',
+    confirmPassword: '',
+  };
 
-    //const router = useRouter();
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [repassword, setRepassword] = useState("");
-    const [errors, setErrors] = useState<string[]>([]);
+  const validationSchema = Yup.object({
+    email: Yup.string()
+      .email('Invalid email address')
+      .required('Email is required'),
+      password: Yup.string()
+      .min(8, "This password is too short. It must contain at least 8 characters.") // Fixed min length to 8
+      .matches(/^(?!\d+$).*/, "This password is entirely numeric.") // Ensures password is not only numbers
+      .notOneOf(["password", "12345678", "qwerty", "letmein"], "This password is too common.") // Example common passwords
+      .required("Password is required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref('password')], 'Passwords must match')
+      .required('Re-entering the password is required'),
+  });
+
+  const handleSubmit = async(
+    values: FormValues,
+    { resetForm }:any
+  ) => {
+    console.log('Form Values:', values);
+
+
+    const signup ={
+        "email":values.email,
+        "password1":values.password,
+        "password2":values.confirmPassword
+    }
+ try {
+        const response = await apiService.post("/api/auth/register/", JSON.stringify(signup));
+
+        console.log("Signup Response:", response);
+
+        if (response) { 
+            resetForm();
+            signUpModel.close();
+            router.push("/");
+        }
+    } catch (error: any) {
+        console.error("Signup Error:", error);
+        if (error.response) {
+            if (error.response.status === 400) {
+                alert("Email already exists. Please use a different email.");
+            } else {
+                alert("Something went wrong. Please try again.");
+            }
+        } else {
+            alert("Network error. Please check your connection.");
+        }
+    }
+  };        
 
     return (
         <Model 
@@ -33,46 +94,91 @@ export const SignUpModel = () => {
             label="Sign up"
         >
             <h1 className='text-xl font-bold'>Welcome to Airbnb</h1>
-            <form className="mt-5">
-                <Input
-                    onChange={(e) => setEmail(e.target.value)}
-                    type='email' 
-                    placeholder="Email" 
-                    className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"
-                />
-                <Input 
-                    onChange={(e) => setPassword(e.target.value)}
-                    type='password' 
-                    placeholder="Password" 
-                    className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"
-                />
-                <Input 
-                    onChange={(e) => setRepassword(e.target.value)}
-                    type='password' 
-                    placeholder="Re-enter Password" 
-                    className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText"
-                />
-                {errors.map((error, index) => {
-                    return(
-                        <p className="text-sm text-red-500 my-2">
-                            {error}
+                <Formik
+                    initialValues={initialValues}
+                    validationSchema={validationSchema}
+                    onSubmit={handleSubmit}
+                >
+                    {() => (
+                        <Form className="mt-5">
+                        {/* Email Field */}
+                        <div>
+                            <Field
+                            name="email"
+                            type="email"
+                            placeholder="Email"
+                            className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                            />
+                            <ErrorMessage
+                            name="email"
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                            />
+                        </div>
+
+                        {/* Password Field */}
+                        <div>
+                            <Field
+                            name="password"
+                            type="password"
+                            placeholder="Password"
+                            className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                            />
+                            <ErrorMessage
+                            name="password"
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                            />
+                        </div>
+
+                        {/* Re-enter Password Field */}
+                        <div>
+                            <Field
+                            name="confirmPassword"
+                            type="password"
+                            placeholder="Re-enter Password"
+                            className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                            />
+                            <ErrorMessage
+                            name="confirmPassword"
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                            />
+                        </div>
+
+                        {/* Info Text */}
+                        <p className="text-sm my-2">
+                            We'll call or text you to confirm your number. Standard message and data rates apply.
+                            <Link href="/" className="font-semibold underline px-1">
+                            Privacy Policy
+                            </Link>
                         </p>
-                    )
-                })}
-                <p className="text-sm my-2">
-                    We'll call or text you to confirm your number. Standard message and data rates apply. 
-                    <Link href="/" className="font-semibold underline px-1">Privacy Policy</Link>
-                </p>
-                <Button className="w-full rounded-sm bg-airbnb hover:bg-airbnbDark text-white hover:text-white my-3">
-                    Continue
-                </Button>
-                <p className="text-sm text-darkText">
-                    Already have an account?
-                    <Button onClick={() => {signUpModel.close(); loginModel.open()}} className="font-semibold underline px-1 hover:bg-white text-darkText">
-                        Try Login
-                    </Button>
-                </p>
-            </form>
+
+                        {/* Submit Button */}
+                        <button
+                            type="submit"
+                            className="w-full rounded-sm bg-airbnb hover:bg-airbnbDark text-white hover:text-white my-3 p-2"
+                        >
+                            Continue
+                        </button>
+
+                        {/* Login Link */}
+                        <p className="text-sm my-2 text-darkText">
+                            Already have an account?
+                            <button
+                            type="button"
+                            onClick={() => {
+                                signUpModel.close();
+                                loginModel.open();
+                            }}
+                            className="font-semibold underline px-1 hover:bg-white text-darkText"
+                            >
+                            Try Login
+                            </button>
+                        </p>
+                        </Form>
+                    )}
+                </Formik>
 
             <div className="flex w-auto items-center justify-between">
                 <Separator className="flex-auto"/>

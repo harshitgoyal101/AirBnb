@@ -4,6 +4,7 @@ import { RiShare2Fill } from "react-icons/ri";
 import { PropertiesImages } from "@/components/Properties/PropertyImages";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator"
+// import { Amenities } from "./Amenities";
 import { Amenities } from "./Amenities";
 import { BookCard } from "./BookCard";
 import { Calendar } from '@/components/ui/calendar';
