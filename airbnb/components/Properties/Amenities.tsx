@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from "react";
 import { Button } from "../ui/button"
 import { IconWithLabel } from "../ui/IconWIthLabel"
@@ -5,7 +6,8 @@ import { Separator } from "../ui/separator"
 import { apiService } from "@/app/services/apiService";
 
 
-export const Amenities = () => {
+export const Amenities = ({all_aminities} : {all_aminities:Record<string, string>}) => {
+
     const [amenities, setAmenities] = useState<string[]>([]);
     const [loading, setLoading] = useState(true);
 
@@ -54,7 +56,7 @@ export const Amenities = () => {
                     <p className="text-gray-500">Loading amenities...</p>
                 ) : (
                     amenities?.map((amenity, index) => (
-                        <IconWithLabel key={index} type={amenity} />
+                        <IconWithLabel key={index} type={amenity} all_aminities={all_aminities}/>
                     ))
                 )}
             </div>

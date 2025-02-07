@@ -4,15 +4,28 @@ import { RiShare2Fill } from "react-icons/ri";
 import { PropertiesImages } from "@/components/Properties/PropertyImages";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator"
-// import { Amenities } from "./Amenities";
 import { Amenities } from "./Amenities";
 import { BookCard } from "./BookCard";
 import { Calendar } from '@/components/ui/calendar';
 import { Button } from "../ui/button"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { apiService } from "@/app/services/apiService";
 
 export const PropertyInfo = () => {
-     const [range, setRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
+
+
+    const [all_aminities, setAll_aminities] = useState<Record<string, string>>({});
+
+    const get_all_aminities = async() => {
+        const temp_all_aminities = await apiService.get("/api/all_aminities/")
+        setAll_aminities(temp_all_aminities.data);
+    }
+
+    useEffect(() => {
+        get_all_aminities();
+    }, []);
+
+    const [range, setRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
         from: undefined,
         to: undefined,
     });
@@ -71,7 +84,7 @@ export const PropertyInfo = () => {
                 </div>
                 <Separator/>
 
-                <Amenities/>
+                <Amenities all_aminities={all_aminities}/>
 
                 <Separator/>
                 <div className="my-6">

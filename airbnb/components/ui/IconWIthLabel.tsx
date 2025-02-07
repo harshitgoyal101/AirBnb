@@ -1,37 +1,14 @@
-import { apiService } from "@/app/services/apiService";
 import Image from "next/image";
-import { useEffect, useState } from "react";
-const aminities = await apiService.get('/api/all_aminities/');
-console.log("aminities",aminities.data)
 
-export const IconWithLabel = (
-  {type} : {type:string}
-) => {
-    const [amenities, setAmenities] = useState<{ [key: string]: string }>({});
-    const [loading, setLoading] = useState(true);
-
-
-    const fetchAmenities = async () => {
-        try {
-            const response = await apiService.get("/api/all_aminities/");
-            console.log("Fetched amenities:", response); // Debug log
-            setAmenities(response?.data?.data || {}); // Ensure response is valid
-        } catch (error) {
-            console.error("Error fetching amenities:", error);
-        } finally {
-            setLoading(false);
-        }
-    };
-    console.log("amm",aminities.data)
-    useEffect(() => {
-        fetchAmenities();
-    }, []);
-    return  loading ? (
-        <div className="flex justify-center items-center h-16">
-            <p className="text-md text-gray-500">Loading...</p>
-        </div>
-    ) : amenities.hasOwnProperty(type) ? (
-        amenities[type] ? (
+export const IconWithLabel = ({
+    type,
+    all_aminities = {},
+}: {
+    type: string;
+    all_aminities?: Record<string, string>;
+}) => {
+    return all_aminities.hasOwnProperty(type) ? (
+        all_aminities[type] ? (
             <div className="px-4">
                 <div className="flex items-center py-1 w-full">
                     <Image
@@ -42,7 +19,7 @@ export const IconWithLabel = (
                     />
                     <div>
                         <p className="text-md text-black font-semibold mx-3 mt-1">{type}</p>
-                        <p className="text-md text-black mx-3">{amenities[type]}</p>
+                        <p className="text-md text-black mx-3">{all_aminities[type]}</p>
                     </div>
                 </div>
             </div>

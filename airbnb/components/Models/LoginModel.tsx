@@ -1,6 +1,5 @@
-"use client"
+'use client'
 
-import { Input } from "@/components/ui/input"
 import { Model } from '@/components/ui/Model'
 import React from 'react';
 import useLoginModel from '@/app/hooks/useLoginModel';
@@ -24,32 +23,32 @@ export const LoginModel = () => {
     interface FormValues {
         email: string;
         password: string;
-      }
+    }
 
     const initialValues = {
         email: '',
         password: '',
-      };
+    };
     
-      const validationSchema = Yup.object({
+    const validationSchema = Yup.object({
         email: Yup.string()
-          .email('Invalid email address')
-          .required('Email is required'),
+            .email('Invalid email address')
+            .required('Email is required'),
         password: Yup.string()
-          .min(6, 'Password must be at least 6 characters')
-          .required('Password is required'),
-      });
+            .min(6, 'Password must be at least 6 characters')
+            .required('Password is required'),
+    });
     
-      const handleSubmit = (values :FormValues, { resetForm }:any ) => {
+    const handleSubmit = (values :FormValues, { resetForm }:any ) => {
         console.log('Form Values:', values);
-            const login ={
-                email:values.email,
-                password:values.password
-            }
-            const response = apiService.post('/api/auth/login/',login);
-            console.log("login",response);
+        const login = {
+            email:values.email,
+            password:values.password
+        }
+        const response = apiService.post('/api/auth/login/',login);
+        console.log("login",response);
         resetForm();
-      };
+    };
 
     return (
         <Model 
@@ -65,66 +64,66 @@ export const LoginModel = () => {
             >
                 {() => (
                     <Form className="mt-5">
-                    {/* Email Field */}
-                    <div>
-                        <Field
-                        name="email"
-                        type="email"
-                        placeholder="Email"
-                        className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
-                        />
-                        <ErrorMessage
-                        name="email"
-                        component="div"
-                        className="text-red-500 text-sm mt-1"
-                        />
-                    </div>
+                        {/* Email Field */}
+                        <div>
+                            <Field
+                                name="email"
+                                type="email"
+                                placeholder="Email"
+                                className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                            />
+                            <ErrorMessage
+                                name="email"
+                                component="div"
+                                className="text-red-500 text-sm mt-1"
+                            />
+                        </div>
 
-                    {/* Password Field */}
-                    <div>
-                        <Field
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
-                        />
-                        <ErrorMessage
-                        name="password"
-                        component="div"
-                        className="text-red-500 text-sm mt-1"
-                        />
-                    </div>
+                        {/* Password Field */}
+                        <div>
+                            <Field
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                            />
+                            <ErrorMessage
+                                name="password"
+                                component="div"
+                                className="text-red-500 text-sm mt-1"
+                            />
+                        </div>
 
-                    {/* Info Text */}
-                    <p className="text-sm my-2">
-                        We'll call or text you to confirm your number. Standard message and data rates apply.
-                        <Link href="/" className="font-semibold underline px-1">
-                        Privacy Policy
-                        </Link>
-                    </p>
+                        {/* Info Text */}
+                        <p className="text-sm my-2">
+                            We'll call or text you to confirm your number. Standard message and data rates apply.
+                            <Link href="/" className="font-semibold underline px-1">
+                                Privacy Policy
+                            </Link>
+                        </p>
 
-                    {/* Submit Button */}
-                    <button
-                        type="submit"
-                        className="w-full rounded-sm bg-airbnb hover:bg-airbnbDark text-white hover:text-white my-3 p-2"
-                    >
-                        Continue
-                    </button>
-
-                    {/* Sign-Up Link */}
-                    <p className="text-sm my-2 text-darkText">
-                        Don't have an account?
+                        {/* Submit Button */}
                         <button
-                        type="button"
-                        onClick={() => {
-                            loginModel.close();
-                            signUpModel.open();
-                        }}
-                        className="font-semibold underline px-1 hover:bg-white text-darkText"
+                            type="submit"
+                            className="w-full rounded-sm bg-airbnb hover:bg-airbnbDark text-white hover:text-white my-3 p-2"
                         >
-                        Try Sign Up
+                            Continue
                         </button>
-                    </p>
+
+                        {/* Sign-Up Link */}
+                        <p className="text-sm my-2 text-darkText">
+                            Don't have an account?
+                            <button
+                                type="button"
+                                onClick={() => {
+                                    loginModel.close();
+                                    signUpModel.open();
+                                }}
+                                className="font-semibold underline px-1 hover:bg-white text-darkText"
+                            >
+                                Try Sign Up
+                            </button>
+                        </p>
                     </Form>
                 )}
             </Formik>

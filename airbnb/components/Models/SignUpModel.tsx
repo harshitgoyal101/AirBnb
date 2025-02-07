@@ -1,11 +1,10 @@
-"use client"
+'use client'
 
 import React from 'react';
 import useLoginModel from '@/app/hooks/useLoginModel';
 import useSignUpModel from '@/app/hooks/useSignUpModel';
 import Link from "next/link";
 
-import { Input } from "@/components/ui/input"
 import { Model } from '@/components/ui/Model'
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -31,61 +30,61 @@ export const SignUpModel = () => {
     const loginModel = useLoginModel();
     const signUpModel = useSignUpModel();
     const router = useRouter();
+
     const initialValues: FormValues = {
-    email: '',
-    password: '',
-    confirmPassword: '',
-  };
+        email: '',
+        password: '',
+        confirmPassword: '',
+    };
 
-  const validationSchema = Yup.object({
-    email: Yup.string()
-      .email('Invalid email address')
-      .required('Email is required'),
-      password: Yup.string()
-      .min(8, "This password is too short. It must contain at least 8 characters.") // Fixed min length to 8
-      .matches(/^(?!\d+$).*/, "This password is entirely numeric.") // Ensures password is not only numbers
-      .notOneOf(["password", "12345678", "qwerty", "letmein"], "This password is too common.") // Example common passwords
-      .required("Password is required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref('password')], 'Passwords must match')
-      .required('Re-entering the password is required'),
-  });
+    const validationSchema = Yup.object({
+        email: Yup.string()
+            .email('Invalid email address')
+            .required('Email is required'),
+        password: Yup.string()
+            .min(8, "This password is too short. It must contain at least 8 characters.")
+            .matches(/^(?!\d+$).*/, "This password is entirely numeric.") 
+            .notOneOf(["password", "12345678", "qwerty", "letmein"], "This password is too common.")
+            .required("Password is required"),
+        confirmPassword: Yup.string()
+            .oneOf([Yup.ref('password')], 'Passwords must match')
+            .required('Re-entering the password is required'),
+    });
 
-  const handleSubmit = async(
-    values: FormValues,
-    { resetForm }:any
-  ) => {
-    console.log('Form Values:', values);
+    const handleSubmit = async(
+        values: FormValues,
+        { resetForm }:any
+    ) => {
+        
+        console.log('Form Values:', values);
 
-
-    const signup ={
-        "email":values.email,
-        "password1":values.password,
-        "password2":values.confirmPassword
-    }
- try {
-        const response = await apiService.post("/api/auth/register/", JSON.stringify(signup));
-
-        console.log("Signup Response:", response);
-
-        if (response) { 
-            resetForm();
-            signUpModel.close();
-            router.push("/");
+        const signup = {
+            "email":values.email,
+            "password1":values.password,
+            "password2":values.confirmPassword
         }
-    } catch (error: any) {
-        console.error("Signup Error:", error);
-        if (error.response) {
-            if (error.response.status === 400) {
-                alert("Email already exists. Please use a different email.");
-            } else {
-                alert("Something went wrong. Please try again.");
+
+        try {
+            const response = await apiService.post("/api/auth/register/", JSON.stringify(signup));
+            console.log("Signup Response:", response);
+            if (response) { 
+                resetForm();
+                signUpModel.close();
+                router.push("/");
             }
-        } else {
-            alert("Network error. Please check your connection.");
+        } catch (error: any) {
+            console.error("Signup Error:", error);
+            if (error.response) {
+                if (error.response.status === 400) {
+                    alert("Email already exists. Please use a different email.");
+                } else {
+                    alert("Something went wrong. Please try again.");
+                }
+            } else {
+                alert("Network error. Please check your connection.");
+            }
         }
-    }
-  };        
+    };        
 
     return (
         <Model 
@@ -104,45 +103,45 @@ export const SignUpModel = () => {
                         {/* Email Field */}
                         <div>
                             <Field
-                            name="email"
-                            type="email"
-                            placeholder="Email"
-                            className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                name="email"
+                                type="email"
+                                placeholder="Email"
+                                className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                             />
                             <ErrorMessage
-                            name="email"
-                            component="div"
-                            className="text-red-500 text-sm mt-1"
+                                name="email"
+                                component="div"
+                                className="text-red-500 text-sm mt-1"
                             />
                         </div>
 
                         {/* Password Field */}
                         <div>
                             <Field
-                            name="password"
-                            type="password"
-                            placeholder="Password"
-                            className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                name="password"
+                                type="password"
+                                placeholder="Password"
+                                className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                             />
                             <ErrorMessage
-                            name="password"
-                            component="div"
-                            className="text-red-500 text-sm mt-1"
+                                name="password"
+                                component="div"
+                                className="text-red-500 text-sm mt-1"
                             />
                         </div>
 
                         {/* Re-enter Password Field */}
                         <div>
                             <Field
-                            name="confirmPassword"
-                            type="password"
-                            placeholder="Re-enter Password"
-                            className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                name="confirmPassword"
+                                type="password"
+                                placeholder="Re-enter Password"
+                                className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                             />
                             <ErrorMessage
-                            name="confirmPassword"
-                            component="div"
-                            className="text-red-500 text-sm mt-1"
+                                name="confirmPassword"
+                                component="div"
+                                className="text-red-500 text-sm mt-1"
                             />
                         </div>
 
