@@ -19,6 +19,7 @@ import { apiService } from '@/app/services/apiService';
 import { useRouter } from 'next/navigation';
 import { handleLogin } from '@/lib/actions';
 import { TailSpin } from 'react-loader-spinner'
+import { Input } from '../ui/input';
 
 interface FormValues {
     email: string;
@@ -68,6 +69,7 @@ export const SignUpModel = () => {
             "password1": values.password,
             "password2": values.confirmPassword
         }
+        console.log("signup",signup)
 
         const response = await apiService.post("/api/auth/register/", JSON.stringify(signup));
         if(response.access) {
@@ -104,6 +106,7 @@ export const SignUpModel = () => {
                                 type="email"
                                 placeholder="Email"
                                 className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                as={Input}
                             />
                         </div>
 
@@ -113,6 +116,7 @@ export const SignUpModel = () => {
                                 type="password"
                                 placeholder="Password"
                                 className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                as={Input}
                             />
                         </div>
 
@@ -122,6 +126,7 @@ export const SignUpModel = () => {
                                 type="password"
                                 placeholder="Re-enter Password"
                                 className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                as={Input}
                             />
                         </div>
 
@@ -146,7 +151,7 @@ export const SignUpModel = () => {
                         {errors.map((error) => {
                             return <p className="text-sm my-2 text-red-500">
                                 {error}
-                            </p>
+                                </p>
                         })}
 
                         <p className="text-sm my-2">

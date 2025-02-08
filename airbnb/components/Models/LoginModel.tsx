@@ -17,6 +17,7 @@ import { apiService } from "@/app/services/apiService";
 import { handleLogin } from '@/lib/actions';
 import { useRouter } from 'next/navigation';
 import { TailSpin } from 'react-loader-spinner'
+import { Input } from '../ui/input';
 
 export const LoginModel = () => {
 
@@ -93,6 +94,7 @@ export const LoginModel = () => {
                                 type="email"
                                 placeholder="Email"
                                 className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                as={Input}
                             />
                         </div>
 
@@ -102,6 +104,7 @@ export const LoginModel = () => {
                                 type="password"
                                 placeholder="Password"
                                 className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                as={Input}
                             />
                         </div>
 
