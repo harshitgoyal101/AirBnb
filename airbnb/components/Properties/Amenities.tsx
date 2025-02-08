@@ -52,6 +52,7 @@ export const Amenities = ({all_aminities} : {all_aminities:Record<string, string
                 <div className="text-2xl font-semibold text-darkText lg:col-span-2 mb-2">
                     What this place offers?
                 </div>
+
                 {loading ? (
                     <p className="text-gray-500">Loading amenities...</p>
                 ) : (
@@ -69,4 +70,3 @@ export const Amenities = ({all_aminities} : {all_aminities:Record<string, string
         </div>
     );
 };
-
