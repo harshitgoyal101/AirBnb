@@ -16,10 +16,7 @@ export const ReviewSection = () => {
         </div>
 
         <div className="md:hidden">
-            <Carousel
-                opts={{align: "start"}}
-                className="xl: w-full"
-            >
+            <Carousel className="w-full md:overflow-auto relative">
                 <div className="flex justify-between my-6 mr-6">
                     <div className="text-2xl font-semibold text-mediumText mt-3">
                         What guests are saying about Harshit
@@ -31,11 +28,9 @@ export const ReviewSection = () => {
                 </div>
                 <CarouselContent className=" w-full min-w-[500px]">
                     {Array.from({ length: 5 }).map((_, index) => (
-                    <div className="flex ">
                         <CarouselItem key={index} className="xl:basis-1/2">
                             <ReviewCard/>
                         </CarouselItem>
-                    </div>
                     ))}
                 </CarouselContent>
             </Carousel>
