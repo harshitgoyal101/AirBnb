@@ -38,9 +38,7 @@ export const SearchFilters = (params: {tab: string}) => {
                                 "checkIn": false,
                                 "checkOut": false,
                                 "addGuest": false,
-                            })
-                            console.log(hoverState);
-                            }
+                            })}
                         }
                     />
                     <Separator orientation="vertical" className="h-8" 
@@ -119,9 +117,7 @@ export const SearchFilters = (params: {tab: string}) => {
                                 "checkIn": false,
                                 "checkOut": false,
                                 "addGuest": false,
-                            })
-                            console.log(hoverState);
-                            }
+                            })}
                         }
                     />
                     <Separator orientation="vertical" className="h-8" 
@@ -136,9 +132,7 @@ export const SearchFilters = (params: {tab: string}) => {
                                 "checkIn": false,
                                 "checkOut": false,
                                 "addGuest": false,
-                            })
-                            console.log(hoverState);
-                            }
+                            })}
                         }
                     />
                     <Separator orientation="vertical" className="h-8" 

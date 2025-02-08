@@ -7,7 +7,7 @@ import { HostDetails } from "@/components/Properties/HostDetails";
 export default function PropertyDetailPage() {
     return (
         <div>
-        <PropertyInfo/>
+            <PropertyInfo/>
             <div className="w-full mx-auto min-w-[xl] px-10 lg:px-20 xl:px-36 p-3">
                 <RatingsSection/>
                 <Separator/>
