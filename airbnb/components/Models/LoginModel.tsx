@@ -1,7 +1,7 @@
 'use client'
 
 import { Model } from '@/components/ui/Model'
-import React from 'react';
+import React, { useState } from 'react';
 import useLoginModel from '@/app/hooks/useLoginModel';
 import useSignUpModel from '@/app/hooks/useSignUpModel';
 import Link from "next/link";
@@ -14,12 +14,17 @@ import { MdOutlineEmail } from "react-icons/md";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { apiService } from "@/app/services/apiService";
+import { handleLogin } from '@/lib/actions';
+import { useRouter } from 'next/navigation';
+import { TailSpin } from 'react-loader-spinner'
 
 export const LoginModel = () => {
 
     const loginModel = useLoginModel();
     const signUpModel = useSignUpModel();
-    
+    const router = useRouter();
+    const [loading, setLoading] = useState(false);
+
     interface FormValues {
         email: string;
         password: string;
@@ -30,24 +35,42 @@ export const LoginModel = () => {
         password: '',
     };
     
+    const [errors, setErrors] = useState<String[]>([]);
+    
     const validationSchema = Yup.object({
         email: Yup.string()
             .email('Invalid email address')
             .required('Email is required'),
         password: Yup.string()
-            .min(6, 'Password must be at least 6 characters')
+            .min(4, 'Password must be at least 4 characters')
             .required('Password is required'),
     });
     
-    const handleSubmit = (values :FormValues, { resetForm }:any ) => {
-        console.log('Form Values:', values);
+    const handleSubmit = async (
+        values : FormValues, 
+        { resetForm } : any 
+    ) => {
+        setErrors([]);
+        setLoading(true);
         const login = {
-            email:values.email,
-            password:values.password
+            email: values.email,
+            password: values.password
         }
-        const response = apiService.post('/api/auth/login/',login);
-        console.log("login",response);
-        resetForm();
+        const response = await apiService.post('/api/auth/login/', JSON.stringify(login));
+        if(response.access) {
+            handleLogin(response.user.pk, response.access, response.refresh);
+            resetForm();
+            loginModel.close();
+            router.push('/')
+        } else {
+            const tmpErrors: string[] = Object.values(response).map((error: any) => {
+                console.log(error)
+                return error
+            });
+            console.log(tmpErrors);
+            setErrors(tmpErrors);
+        }
+        setLoading(false);
     };
 
     return (
@@ -64,7 +87,6 @@ export const LoginModel = () => {
             >
                 {() => (
                     <Form className="mt-5">
-                        {/* Email Field */}
                         <div>
                             <Field
                                 name="email"
@@ -72,14 +94,8 @@ export const LoginModel = () => {
                                 placeholder="Email"
                                 className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                             />
-                            <ErrorMessage
-                                name="email"
-                                component="div"
-                                className="text-red-500 text-sm mt-1"
-                            />
                         </div>
 
-                        {/* Password Field */}
                         <div>
                             <Field
                                 name="password"
@@ -87,14 +103,26 @@ export const LoginModel = () => {
                                 placeholder="Password"
                                 className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                             />
-                            <ErrorMessage
-                                name="password"
-                                component="div"
-                                className="text-red-500 text-sm mt-1"
-                            />
                         </div>
 
-                        {/* Info Text */}
+                        <ErrorMessage
+                            name="email"
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                        />
+
+                        <ErrorMessage
+                            name="password"
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                        />
+
+                        {errors.map((error) => {
+                            return <p className="text-sm my-2 text-red-500">
+                                {error}
+                            </p>
+                        })}
+
                         <p className="text-sm my-2">
                             We'll call or text you to confirm your number. Standard message and data rates apply.
                             <Link href="/" className="font-semibold underline px-1">
@@ -102,15 +130,27 @@ export const LoginModel = () => {
                             </Link>
                         </p>
 
-                        {/* Submit Button */}
                         <button
                             type="submit"
+                            disabled={loading}
                             className="w-full rounded-sm bg-airbnb hover:bg-airbnbDark text-white hover:text-white my-3 p-2"
                         >
-                            Continue
-                        </button>
+                            {!loading?
+                                <p>Continue</p>:
+                                <TailSpin
+                                    visible={true}
+                                    height="24"
+                                    width="24"
+                                    color="white"
+                                    ariaLabel="tail-spin-loading"
+                                    radius="1"
+                                    wrapperStyle={{}}
+                                    wrapperClass="flex justify-center"
+                                />
+                            }
+                        </button> 
+                        
 
-                        {/* Sign-Up Link */}
                         <p className="text-sm my-2 text-darkText">
                             Don't have an account?
                             <button

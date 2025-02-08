@@ -1,6 +1,6 @@
 'use client'
 
-import React from 'react';
+import React, { useState } from 'react';
 import useLoginModel from '@/app/hooks/useLoginModel';
 import useSignUpModel from '@/app/hooks/useSignUpModel';
 import Link from "next/link";
@@ -17,7 +17,8 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { apiService } from '@/app/services/apiService';
 import { useRouter } from 'next/navigation';
-
+import { handleLogin } from '@/lib/actions';
+import { TailSpin } from 'react-loader-spinner'
 
 interface FormValues {
     email: string;
@@ -30,6 +31,9 @@ export const SignUpModel = () => {
     const loginModel = useLoginModel();
     const signUpModel = useSignUpModel();
     const router = useRouter();
+    const [loading, setLoading] = useState(false);
+
+    const [errors, setErrors] = useState<String[]>([]);
 
     const initialValues: FormValues = {
         email: '',
@@ -51,39 +55,34 @@ export const SignUpModel = () => {
             .required('Re-entering the password is required'),
     });
 
-    const handleSubmit = async(
+    const handleSubmit = async (
         values: FormValues,
-        { resetForm }:any
+        { resetForm }: any
     ) => {
+
+        setErrors([]);
+        setLoading(true);
         
-        console.log('Form Values:', values);
-
         const signup = {
-            "email":values.email,
-            "password1":values.password,
-            "password2":values.confirmPassword
+            "email": values.email,
+            "password1": values.password,
+            "password2": values.confirmPassword
         }
 
-        try {
-            const response = await apiService.post("/api/auth/register/", JSON.stringify(signup));
-            console.log("Signup Response:", response);
-            if (response) { 
-                resetForm();
-                signUpModel.close();
-                router.push("/");
-            }
-        } catch (error: any) {
-            console.error("Signup Error:", error);
-            if (error.response) {
-                if (error.response.status === 400) {
-                    alert("Email already exists. Please use a different email.");
-                } else {
-                    alert("Something went wrong. Please try again.");
-                }
-            } else {
-                alert("Network error. Please check your connection.");
-            }
+        const response = await apiService.post("/api/auth/register/", JSON.stringify(signup));
+        if(response.access) {
+            handleLogin(response.user.pk, response.access, response.refresh);
+            resetForm();
+            signUpModel.close();
+            router.push('/')
+        } else {
+            const tmpErrors: string[] = Object.values(response).map((error: any) => {
+                console.log(error)
+                return error
+            });
+            setErrors(tmpErrors);
         }
+        setLoading(false);
     };        
 
     return (
@@ -98,9 +97,7 @@ export const SignUpModel = () => {
                     validationSchema={validationSchema}
                     onSubmit={handleSubmit}
                 >
-                    {() => (
-                        <Form className="mt-5">
-                        {/* Email Field */}
+                    {() => ( <Form className="mt-5">
                         <div>
                             <Field
                                 name="email"
@@ -108,14 +105,8 @@ export const SignUpModel = () => {
                                 placeholder="Email"
                                 className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                             />
-                            <ErrorMessage
-                                name="email"
-                                component="div"
-                                className="text-red-500 text-sm mt-1"
-                            />
                         </div>
 
-                        {/* Password Field */}
                         <div>
                             <Field
                                 name="password"
@@ -123,14 +114,8 @@ export const SignUpModel = () => {
                                 placeholder="Password"
                                 className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                             />
-                            <ErrorMessage
-                                name="password"
-                                component="div"
-                                className="text-red-500 text-sm mt-1"
-                            />
                         </div>
 
-                        {/* Re-enter Password Field */}
                         <div>
                             <Field
                                 name="confirmPassword"
@@ -138,14 +123,32 @@ export const SignUpModel = () => {
                                 placeholder="Re-enter Password"
                                 className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                             />
-                            <ErrorMessage
-                                name="confirmPassword"
-                                component="div"
-                                className="text-red-500 text-sm mt-1"
-                            />
                         </div>
 
-                        {/* Info Text */}
+                        <ErrorMessage
+                            name="email"
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                        />
+
+                        <ErrorMessage
+                            name="password"
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                        />
+
+                        <ErrorMessage
+                            name="confirmPassword"
+                            component="div"
+                            className="text-red-500 text-sm mt-1"
+                        />
+    
+                        {errors.map((error) => {
+                            return <p className="text-sm my-2 text-red-500">
+                                {error}
+                            </p>
+                        })}
+
                         <p className="text-sm my-2">
                             We'll call or text you to confirm your number. Standard message and data rates apply.
                             <Link href="/" className="font-semibold underline px-1">
@@ -153,15 +156,26 @@ export const SignUpModel = () => {
                             </Link>
                         </p>
 
-                        {/* Submit Button */}
                         <button
                             type="submit"
+                            disabled={loading}
                             className="w-full rounded-sm bg-airbnb hover:bg-airbnbDark text-white hover:text-white my-3 p-2"
                         >
-                            Continue
-                        </button>
+                            {!loading?
+                                <p>Continue</p>:
+                                <TailSpin
+                                    visible={true}
+                                    height="24"
+                                    width="24"
+                                    color="white"
+                                    ariaLabel="tail-spin-loading"
+                                    radius="1"
+                                    wrapperStyle={{}}
+                                    wrapperClass="flex justify-center"
+                                />
+                            }
+                        </button> 
 
-                        {/* Login Link */}
                         <p className="text-sm my-2 text-darkText">
                             Already have an account?
                             <button
@@ -175,8 +189,7 @@ export const SignUpModel = () => {
                             Try Login
                             </button>
                         </p>
-                        </Form>
-                    )}
+                    </Form>)}
                 </Formik>
 
             <div className="flex w-auto items-center justify-between">
