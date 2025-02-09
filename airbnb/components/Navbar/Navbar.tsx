@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React from 'react';
 import Image from "next/image";
@@ -13,6 +13,7 @@ export const Navbar = () => {
 
     const [tabValue, setTabValue] = React.useState("stays");
     const [logo, setLogo] = React.useState("/airbnb.svg");
+
 
     React.useEffect(() => {
         const handleTab = () => {
@@ -52,7 +53,7 @@ export const Navbar = () => {
                                 width={logo === "/airbnb.svg" ? 100 : 30}
                                 height={38}
                                 style={{ alignSelf: "flex-start" }}
-                                className="pt-3 max-h-[40px]"
+                                className="pt-3 max-h-[40px] min-w-[30px]"
                             />
                         </Link>
                         

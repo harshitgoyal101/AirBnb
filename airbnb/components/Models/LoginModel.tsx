@@ -14,7 +14,7 @@ import { MdOutlineEmail } from "react-icons/md";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { apiService } from "@/app/services/apiService";
-import { handleLogin } from '@/lib/actions';
+import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { TailSpin } from 'react-loader-spinner'
 import { Input } from '../ui/input';
@@ -25,6 +25,7 @@ export const LoginModel = () => {
     const signUpModel = useSignUpModel();
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const { handleLogin } = useAuth();
 
     interface FormValues {
         email: string;

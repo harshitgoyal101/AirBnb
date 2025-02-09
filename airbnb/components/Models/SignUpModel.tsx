@@ -17,9 +17,10 @@ import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { apiService } from '@/app/services/apiService';
 import { useRouter } from 'next/navigation';
-import { handleLogin } from '@/lib/actions';
 import { TailSpin } from 'react-loader-spinner'
 import { Input } from '../ui/input';
+import { useAuth } from '@/context/AuthContext';
+
 
 interface FormValues {
     email: string;
@@ -33,6 +34,8 @@ export const SignUpModel = () => {
     const signUpModel = useSignUpModel();
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+
+    const { handleLogin } = useAuth();
 
     const [errors, setErrors] = useState<String[]>([]);
 
