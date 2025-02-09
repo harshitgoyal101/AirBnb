@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import { apiService } from "@/app/services/apiService";
 import {
@@ -14,11 +14,9 @@ import { Switch } from "@/components/ui/switch"
 import { IconWithLabel } from "./ui/IconWIthLabel";
 import { useState, useEffect } from 'react';
 
-export const Categories = ({
-    withTax, setWithTax
-}: {
-    withTax: boolean, setWithTax: (value: boolean) => void
-}) => {
+export const Categories = () => {
+
+	const [withTax, setWithTax] = useState(true);
 
     const [categories, setCategories] = useState<String[]>([]);
 

@@ -1,4 +1,4 @@
-"use client"
+'use client'
 
 import React from 'react';
 import Image from "next/image";
@@ -13,6 +13,7 @@ export const Navbar = () => {
 
     const [tabValue, setTabValue] = React.useState("stays");
     const [logo, setLogo] = React.useState("/airbnb.svg");
+
 
     React.useEffect(() => {
         const handleTab = () => {
