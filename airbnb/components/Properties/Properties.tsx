@@ -12,11 +12,7 @@ export type PropertyType = {
     image_url: string
 }
 
-export const Properties = ({
-    withTax
-}: {
-    withTax: boolean
-}) => {
+export const Properties = () => {
 
     const [properties, setProperties] = useState<PropertyType[]>([]);
 
@@ -30,7 +26,7 @@ export const Properties = ({
     }, [])
 
     return (
-        <div className="w-full px-24 py-3 space-x-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+        <div className="w-full px-12 lg:px-24 py-3 space-x-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
             {properties.map((property) => {
                 return  (
                     <Link href ={`/property/${property.id}`} key={property.id}>

@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import React, { useEffect } from 'react';
 import { IoMenu } from "react-icons/io5";
@@ -8,8 +8,12 @@ import { Card } from "../ui/Card";
 
 import useLoginModel from '@/app/hooks/useLoginModel';
 import useSignUpModel from '@/app/hooks/useSignUpModel';
+import { useAuth } from '@/context/AuthContext';
+
 
 export const UserNav = () => {
+
+    const { userId, isAuthenticated, handleLogout } = useAuth();
 
     const loginModel = useLoginModel();
     const signUpModel = useSignUpModel();
@@ -28,12 +32,21 @@ export const UserNav = () => {
 
             {isOpen && (
                 <Card className='w-[200px] absolute top-[50px] right-0 px-0 m-0 z-20 bg-white'>
-                    <Button onClick={loginModel.open} className='w-full p-0 m-0 rounded-none rounded-t-lg justify-start px-6'>
-                        Log in 
-                    </Button>
-                    <Button onClick={signUpModel.open} className='w-full p-0 m-0 rounded-none justify-start px-6'>
-                        Sign up
-                    </Button>
+                    {isAuthenticated?
+                        <>
+                            <Button onClick={handleLogout} className='w-full p-0 m-0 rounded-none rounded-t-lg justify-start px-6'>
+                                Logout
+                            </Button>
+                        </>:
+                        <>
+                            <Button onClick={loginModel.open} className='w-full p-0 m-0 rounded-none rounded-t-lg justify-start px-6'>
+                                Log in 
+                            </Button>
+                            <Button onClick={signUpModel.open} className='w-full p-0 m-0 rounded-none justify-start px-6'>
+                                Sign up
+                            </Button>
+                        </>
+                    }   
                     <Button className='w-full p-0 m-0 rounded-none justify-start px-6 border-t-2'>
                         Airbnb your home
                     </Button>

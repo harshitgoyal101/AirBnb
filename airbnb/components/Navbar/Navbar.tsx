@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import React, { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,9 +11,8 @@ import { TbWorld } from "react-icons/tb";
 
 export const Navbar = () => {
 
-    const [tabValue, setTabValue] = React.useState("stays");
-    const [logo, setLogo] = React.useState("/airbnb.svg");
-
+    const [tabValue, setTabValue] = useState("stays");
+    const [logo, setLogo] = useState("/airbnb.svg");
 
     const handleTab = () => {
         setLogo("/airbnb.svg");
@@ -32,7 +31,7 @@ export const Navbar = () => {
     };
 
     useEffect(() => {
-  
+
         window.addEventListener("scroll", handleTab);
         window.addEventListener("resize", handleTab);
         handleTab();
@@ -55,7 +54,7 @@ export const Navbar = () => {
                                 width={logo === "/airbnb.svg" ? 100 : 30}
                                 height={38}
                                 style={{ alignSelf: "flex-start" }}
-                                className="pt-3 max-h-[40px]"
+                                className="pt-3 max-h-[40px] min-w-[30px]"
                             />
                         </Link>
                         
