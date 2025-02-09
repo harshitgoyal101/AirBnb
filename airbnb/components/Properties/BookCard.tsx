@@ -4,6 +4,7 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/button";
 import { InputwithLabel } from "../ui/input-label";
 import { Separator } from "@radix-ui/react-separator";
+import { GuestDropdown } from "./GuestDropdown";
 
 export const BookCard = () => {
     return (
@@ -30,12 +31,7 @@ export const BookCard = () => {
                     />
                 </div>
                 <Separator className="h-[1px] bg-lightText"/>
-                <InputwithLabel 
-                    label="Guests" 
-                    placeholder="1 guest"
-                    className="rounded-md font-semibold"
-                    width="100%"
-                />
+                <GuestDropdown/>
             </div>
             <Button className="w-full rounded-sm font-semibold bg-airbnb hover:bg-airbnbDark text-white hover:text-white">
                 Reserve

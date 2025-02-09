@@ -52,7 +52,7 @@ export const Navbar = () => {
                                 width={logo === "/airbnb.svg" ? 100 : 30}
                                 height={38}
                                 style={{ alignSelf: "flex-start" }}
-                                className="pt-3 max-h-[40px]"
+                                className="pt-3 max-h-[40px] min-w-[30px]"
                             />
                         </Link>
                         
