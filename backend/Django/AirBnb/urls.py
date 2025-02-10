@@ -26,4 +26,6 @@ urlpatterns = [
     path('api/auth/', include('User.urls')),
     path('api/categories/', api.categories_list, name='categories_list'),
     path('api/aminities/', api.aminities_list, name='aminities_list'),
+    path('api/all_aminities/', api.all_aminities_list, name='all_aminities_list'),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+  
