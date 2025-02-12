@@ -12,11 +12,7 @@ export type PropertyType = {
     image_url: string
 }
 
-export const Properties = ({
-    withTax
-}: {
-    withTax: boolean
-}) => {
+export const Properties = () => {
 
     const [properties, setProperties] = useState<PropertyType[]>([]);
 

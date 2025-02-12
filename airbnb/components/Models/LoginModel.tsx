@@ -14,9 +14,10 @@ import { MdOutlineEmail } from "react-icons/md";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import { apiService } from "@/app/services/apiService";
-import { handleLogin } from '@/lib/actions';
+import { useAuth } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { TailSpin } from 'react-loader-spinner'
+import { Input } from '../ui/input';
 
 export const LoginModel = () => {
 
@@ -24,6 +25,7 @@ export const LoginModel = () => {
     const signUpModel = useSignUpModel();
     const router = useRouter();
     const [loading, setLoading] = useState(false);
+    const { handleLogin } = useAuth();
 
     interface FormValues {
         email: string;
@@ -93,6 +95,7 @@ export const LoginModel = () => {
                                 type="email"
                                 placeholder="Email"
                                 className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                as={Input}
                             />
                         </div>
 
@@ -102,6 +105,7 @@ export const LoginModel = () => {
                                 type="password"
                                 placeholder="Password"
                                 className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
+                                as={Input}
                             />
                         </div>
 

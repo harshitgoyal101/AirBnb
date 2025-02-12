@@ -1,6 +1,6 @@
-"use client"
+'use client'
 
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
 
@@ -11,34 +11,36 @@ import { TbWorld } from "react-icons/tb";
 
 export const Navbar = () => {
 
-    const [tabValue, setTabValue] = React.useState("stays");
-    const [logo, setLogo] = React.useState("/airbnb.svg");
+    const [tabValue, setTabValue] = useState("stays");
+    const [logo, setLogo] = useState("/airbnb.svg");
 
-    React.useEffect(() => {
-        const handleTab = () => {
-            setLogo("/airbnb.svg");
+    const handleTab = () => {
+        setLogo("/airbnb.svg");
 
-            if (window.innerWidth < 950) {
-                setTabValue("none");
-            } else if (window.innerWidth < 1000) {
-                setTabValue("short");
-                setLogo("/airbnb-short.svg");
-            } else {
-                setTabValue("stays");
-            }
-            if (window.innerWidth < 550) {
-                setLogo("/airbnb-short.svg");
-            }
-        };
+        if (window.innerWidth < 950) {
+            setTabValue("none");
+        } else if (window.innerWidth < 1000) {
+            setTabValue("short");
+            setLogo("/airbnb-short.svg");
+        } else {
+            setTabValue("stays");
+        }
+        if (window.innerWidth < 550) {
+            setLogo("/airbnb-short.svg");
+        }
+    };
+
+    useEffect(() => {
 
         window.addEventListener("scroll", handleTab);
         window.addEventListener("resize", handleTab);
+        handleTab();
 
         return () => {
             window.removeEventListener("scroll", handleTab);
             window.removeEventListener("resize", handleTab);
         };
-    }, []);
+    }, [handleTab]);
 
     return (
         <nav className="w-full top-0 left-0 py-4 border-b bg-white z-10">
