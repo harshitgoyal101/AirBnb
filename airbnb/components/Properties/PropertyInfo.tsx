@@ -44,11 +44,11 @@ export const PropertyInfo = () => {
         </div>
 
 
-        <div className="px-10 lg:px-20 xl:px-36">
+        <div className="px-10 lg:px-20 xl:px-36" id = "PhotoRef">
             <PropertiesImages/>
         </div>
         
-        <div className="flex px-10 lg:px-20 xl:px-36 py-3">
+        <div className="flex px-10 lg:px-20 xl:px-36 py-3" id="AmenitiesRef">
             <div className="w-full md:w-1/2 lg:w-3/5 overflow-y-hidden">
                 <div className="text-darkText font-semibold text-lg mb-5">
                     Entire villa in Anjar, India
