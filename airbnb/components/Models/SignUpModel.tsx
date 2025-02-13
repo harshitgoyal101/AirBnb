@@ -103,7 +103,7 @@ export const SignUpModel = () => {
                     onSubmit={handleSubmit}
                 >
                     {() => ( <Form className="mt-5">
-                        <div>
+
                             <Field
                                 name="email"
                                 type="email"
@@ -111,9 +111,7 @@ export const SignUpModel = () => {
                                 className="rounded-none rounded-t-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                                 as={Input}
                             />
-                        </div>
-
-                        <div>
+                    
                             <Field
                                 name="password"
                                 type="password"
@@ -121,9 +119,7 @@ export const SignUpModel = () => {
                                 className="rounded-none focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                                 as={Input}
                             />
-                        </div>
-
-                        <div>
+                        
                             <Field
                                 name="confirmPassword"
                                 type="password"
@@ -131,8 +127,7 @@ export const SignUpModel = () => {
                                 className="rounded-none rounded-b-md focus-visible:ring-0 focus-visible:border-black focus-visible:border-2 border-lightText w-full p-2"
                                 as={Input}
                             />
-                        </div>
-
+        
                         <ErrorMessage
                             name="email"
                             component="div"
