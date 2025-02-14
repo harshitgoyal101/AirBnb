@@ -50,7 +50,8 @@ export default function PropertyDetailPage() {
                 </div>
             </nav>
             <div className="w-full mx-auto min-w-[xl] px-10 lg:px-20 xl:px-36 p-3">
-                <RatingsSection/>
+                <Separator className="invisible md:visible "/>
+                <RatingsSection type = "default"/>
                 <Separator/>
                 <div id="ReviewRef" >
                     <ReviewSection />
