@@ -83,57 +83,57 @@ export const RatingsSection = ({type} : {type : "default" | "pop" }) => {
                     </div>
                     <div className="pr-10">
                         <Separator orientation="horizontal" className="w-full"/>
-                        <div className="flex justify-between my-2 items-center">
+                        <div className="flex justify-between my-1 items-center">
                             <div className="flex items-center">
                                 <PiSprayBottleLight size = {24}/>
                                 <div className="ml-4">Cleanliness</div>
                             </div>
-                            <div className="text-sm  mr-2 my-4 ">4.7</div>
+                            <div className="text-sm  mr-2 my-2 ">4.7</div>
                         </div>
 
                         <Separator orientation="horizontal" className="w-full"/>
-                        <div className="flex justify-between my-2 items-center">
+                        <div className="flex justify-between my-1 items-center">
                             <div className="flex">
                                 <PiCheckCircle size = {24}/>
                                 <div className="ml-4" >Accuracy</div>
                             </div>
-                            <div className="text-sm  my-4  mr-2">4.8</div>
+                            <div className="text-sm  my-2  mr-2">4.8</div>
                         </div>
                         
                         <Separator orientation="horizontal" className="w-full"/>
-                        <div className="flex justify-between my-2 items-center">
+                        <div className="flex justify-between my-1 items-center">
                             <div className="flex">
                                 <HiOutlineKey size = {24}/>
                                 <div className="ml-4">Check-in</div>
                             </div>
-                            <div className="text-sm  my-4  mr-2">4.8</div>
+                            <div className="text-sm  my-2  mr-2">4.8</div>
                         </div>
                         
                         <Separator orientation="horizontal" className="w-full"/>
-                        <div className="flex justify-between my-2 items-center">
+                        <div className="flex justify-between my-1 items-center">
                             <div className="flex">
                                 <BsChatSquare size = {24}/>
                                 <div className="ml-4">Communication</div>
                             </div>
-                            <div className="text-sm  my-4  mr-2">4.7</div>
+                            <div className="text-sm  my-2  mr-2">4.7</div>
                         </div>
                         
                         <Separator orientation="horizontal" className="w-full"/>
-                        <div className="flex justify-between my-2 items-center">
+                        <div className="flex justify-between my-1 items-center">
                             <div className="flex">
                                 <CiMap size = {24}/>
                                 <div className="ml-4">Location</div>
                             </div>
-                            <div className="text-sm  my-4  mr-2">4.7</div>
+                            <div className="text-sm  my-2  mr-2">4.7</div>
                         </div>
                         
                         <Separator orientation="horizontal" className="w-full"/>
-                        <div className="flex justify-between my-2 items-center">
+                        <div className="flex justify-between my-1 items-center">
                             <div className="flex">
                                 <GoTag size = {24}/>
                                 <div className="ml-4">Value</div>
                             </div>
-                            <div className="text-sm  my-4  mr-2">4.7</div>
+                            <div className="text-sm  my-2  mr-2">4.7</div>
                         </div>
                     </div>  
                   </div>

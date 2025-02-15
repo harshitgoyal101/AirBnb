@@ -20,7 +20,7 @@ export const RatingCard = ({className}:{className ?: string}) => {
         <div className="w-full ">
             <div className="items-center">
                 <div className="font-semibold">Hashmeen</div>
-                <div className="right text-lightText">One month on Airbnb</div>
+                <div className="right text-lightText text-sm">One month on Airbnb</div>
             </div>            
         </div>                
       </div>

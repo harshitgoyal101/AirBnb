@@ -6,6 +6,8 @@ import { useEffect, useState, useCallback } from "react";
 import useSignUpModel from '@/app/hooks/useSignUpModel';
 import { Model } from '@/components/ui/Model'
 import { RatingsSection } from "./RatingsSection";
+import { Input } from '../ui/input';
+import { Separator } from "../ui/separator";
 
 export const ReviewSection = () => {
   const [isOpen, setIsOpen] = useState(false);    
@@ -54,12 +56,36 @@ export const ReviewSection = () => {
                 close   ={()=>{setIsOpen(!isOpen)}}
                 size="Full"
             >   
-                <div className="w-[1000px] flex p-5">
-                    <div className="w-2/5">
+                <div className="w-[1000px] flex pl-5 pt-10 pr-10">
+                    <div className="w-2/5 sticky ">
+                        <div className="text-2xl font-semibold ml-4">★ 4.86</div>
                         <RatingsSection type = "pop"/>
                     </div>
-                    <div className="w-3/5">
-                        search
+                    <div className="w-3/5 ">
+                        <div className="sticky ">
+                            <div className="flex justify-between">
+                                <div>
+                                    <div className="text-2xl text-darkText font-semibold">158 reviews</div>
+                                    <div className="underline text-lightText text-xs">Learn how reviews work</div>
+                                </div>
+                                <Button variant={"active"} size={"sm"} className="border py-0 text-xs">Most recent</Button>
+                            </div>
+                        </div>
+                        <Input className="w-full rounded-full mt-12 mb-8" placeholder="Search reviews"/>
+                        <Separator/>
+                        <div className="overflow-y-scroll scrollbar-none max-h-96 text-sm">
+                            <RatingCard/>
+                            <RatingCard/>
+                            <RatingCard/>
+                            <RatingCard/>
+                            <RatingCard/>
+                            <RatingCard/>
+                            <RatingCard/>
+                            <RatingCard/>
+                            <RatingCard/>
+                            <RatingCard/>
+                        </div>
+
                     </div>
                 </div>
             </Model>    
