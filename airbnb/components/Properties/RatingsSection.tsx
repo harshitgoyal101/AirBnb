@@ -70,7 +70,7 @@ export const RatingsSection = ({type} : {type : "default" | "pop" }) => {
 
                 { type === "pop" &&
                   <div className="flex flex-col ml-4 w-full h-auto">
-                    <div className="w-full">
+                    <div className="w-full mb-5">
                         Overall rating
                         <div className="py-2 text-xs font-normal w-full justify-start text-lightText">
                             <div className="flex items-center"><div className="max-w-2 min-w-2 items-center">5</div> <Separator className="h-1 w-9/12 ml-2 rounded-s-sm bg-gray-800"/> <Separator className="h-1 w-1/12 rounded-sm"/></div>

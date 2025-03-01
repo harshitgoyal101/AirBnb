@@ -7,9 +7,11 @@ import { HostDetails } from "@/components/Properties/HostDetails";
 import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+
 export default function PropertyDetailPage() {
     const [IsNavVisible, SetIsNavVisible] = useState(false);
     const propertyInfoRef = useRef<HTMLDivElement>(null);
+    
     useEffect(() => {
         const handleScroll = ()=> {
             if(propertyInfoRef.current) {
@@ -22,6 +24,7 @@ export default function PropertyDetailPage() {
         window.addEventListener("scroll", handleScroll);
         return () => window.removeEventListener("scroll", handleScroll);        
     })
+
     return (
         <div>
             <div ref = {propertyInfoRef}>

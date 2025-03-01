@@ -2,20 +2,20 @@ import { ReviewCard } from "@/components/User/ReviewCard";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Button } from "@/components/ui/button";
 import { RatingCard } from "./RatingCard";
-import { useEffect, useState, useCallback } from "react";
-import useSignUpModel from '@/app/hooks/useSignUpModel';
+import { useEffect, useState } from "react";
 import { Model } from '@/components/ui/Model'
 import { RatingsSection } from "./RatingsSection";
 import { Input } from '../ui/input';
 import { Separator } from "../ui/separator";
 
 export const ReviewSection = () => {
-  const [isOpen, setIsOpen] = useState(false);    
-  useEffect(() => {
-    setIsOpen(false);
-  }, []); 
- const signUpModel = useSignUpModel();
-  return (
+    const [isOpen, setIsOpen] = useState(false);    
+    
+    useEffect(() => {
+        setIsOpen(false);
+    }, []); 
+    
+    return (
     <div>
       <div className="invisible h-0 md:h-fit md:visible md:grid grid-cols-2 justify-self-stretch md:py-10">
             <RatingCard />
