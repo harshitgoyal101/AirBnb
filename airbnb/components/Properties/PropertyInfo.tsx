@@ -6,10 +6,10 @@ import Image from "next/image";
 import { Separator } from "@/components/ui/separator"
 import { Amenities } from "./Amenities";
 import { BookCard } from "./BookCard";
-import { Calendar } from '@/components/ui/calendar';
 import { Button } from "../ui/button"
 import { useEffect, useState } from "react";
 import { apiService } from "@/app/services/apiService";
+import { CalenderMain } from "./CalenderMain";
 
 export const PropertyInfo = () => {
 
@@ -24,20 +24,7 @@ export const PropertyInfo = () => {
     useEffect(() => {
         get_all_aminities();
     }, []);
-
-    const [range, setRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
-        from: undefined,
-        to: undefined,
-    });
-
-    const handleDateChange = (date: Date) => {
-        if (!range.from || (range.from && range.to)) {
-            setRange({ from: date, to: undefined });
-        } else {
-            setRange({ ...range, to: date });
-        }
-    };
-
+    
   return (
     <div>
         <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 py-3 flex space-x-4">
@@ -57,11 +44,11 @@ export const PropertyInfo = () => {
         </div>
 
 
-        <div className="px-10 lg:px-20 xl:px-36">
+        <div className="px-10 lg:px-20 xl:px-36" id = "PhotoRef">
             <PropertiesImages/>
         </div>
         
-        <div className="flex px-10 lg:px-20 xl:px-36 py-3">
+        <div className="flex px-10 lg:px-20 xl:px-36 py-3" id="AmenitiesRef">
             <div className="w-full md:w-1/2 lg:w-3/5 overflow-y-hidden">
                 <div className="text-darkText font-semibold text-lg mb-5">
                     Entire villa in Anjar, India
@@ -87,23 +74,7 @@ export const PropertyInfo = () => {
                 <Amenities all_aminities={all_aminities}/>
 
                 <Separator/>
-                <div className="my-6">
-                    <div className="text-2xl font-semibold text-darkText mb-2">2 nights in Anjar</div>
-                    <div className="text-sm text-lightText">
-                    {range.from && range.to ? 
-                        <p>{range.from.toLocaleDateString()} - {range.to.toLocaleDateString()}</p>
-                        : <p>Add your travel dates for exact pricing</p>
-                    } </div>
-
-                    <div className="flex justify-between py-2 overflow-x-hidden w-full">
-                        <Calendar
-                            selected={{ from: range.from, to: range.to }} 
-                            onDayClick={handleDateChange} 
-                            numberOfMonths={2} 
-                            mode="range"
-                        />
-                    </div>
-                </div>
+                <CalenderMain/>
             </div>
             <div className="invisible w-0 md:visible md:w-1/2 lg:w-2/5 pr-0 py-5 pl-0 md:pl-12 lg:pl-20  md:sticky md:top-0 md:h-screen">
                 <BookCard />

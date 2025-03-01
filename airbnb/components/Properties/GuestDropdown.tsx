@@ -5,20 +5,20 @@ import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/button";
 export const GuestDropdown = () => {
 
-    const [isOpen, setIsOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-    useEffect(() => {
-        setIsOpen(false);
-    }, []);
+  useEffect(() => {
+      setIsOpen(false);
+  }, []);
 
   return (
-    <div className='relative '>
-        <Button variant="default" className="w-full items-start text-darkText" onClick={() => {setIsOpen(!isOpen)}}>
+    <div className='relative'>
+        <Button variant="active" className="w-full items-start text-darkText" onClick={() => {setIsOpen(!isOpen)}}>
             1 Guest
         </Button>
 
         {isOpen && (
-            <Card className='w-[340px] absolute top-[40px] rounded-sm  px-4 py-6 z-20 bg-white'>
+            <Card className='w-[340px] absolute top-[40px] rounded-sm  px-4 py-6 z-10 bg-white'>
                 <div className="flex justify-between">
                     <div>
                         <div className="text-md text-darkText font-semibold mb-1">Adults</div>
@@ -50,7 +50,7 @@ export const GuestDropdown = () => {
                 <div className="my-4 font-thin text-xs text-mediumText">
                     This place has a maximum of 8 guests, not including infants. 
                 </div>
-                <Button variant = {"active"} onClick={() => {setIsOpen(false)}} className="w-full text-md text-darkText font-semibold underline">Close</Button>
+                <Button variant = {"active"} onClick={() => {setIsOpen(false)}} className="w-full text-md items-end text-darkText font-semibold underline">Close</Button>
             </Card>
         )}
     </div>

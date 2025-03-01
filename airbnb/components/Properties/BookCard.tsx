@@ -2,9 +2,9 @@
 
 import { Card } from "@/components/ui/Card";
 import { Button } from "@/components/ui/button";
-import { InputwithLabel } from "../ui/input-label";
 import { Separator } from "@radix-ui/react-separator";
 import { GuestDropdown } from "./GuestDropdown";
+import { CalenderPop } from "./CalenderPop";
 
 export const BookCard = () => {
     return (
@@ -15,21 +15,7 @@ export const BookCard = () => {
                 <div className="text-sm pb-0.5">night</div>
             </div>
             <div className="my-5 w-full rounded-md border border-lightText">
-                <div className="w-full flex">
-                    <InputwithLabel 
-                        label="CHECK-IN" 
-                        placeholder="Add dates"
-                        className="rounded-sm font-semibold"
-                        width="50%"
-                    />
-                    <Separator orientation="vertical" className="w-[1px] bg-lightText"/>
-                    <InputwithLabel 
-                        label="CHECKOUT" 
-                        placeholder="Add dates"
-                        className="rounded-md font-semibold"
-                        width="50%"
-                    />
-                </div>
+                <CalenderPop/>
                 <Separator className="h-[1px] bg-lightText"/>
                 <GuestDropdown/>
             </div>

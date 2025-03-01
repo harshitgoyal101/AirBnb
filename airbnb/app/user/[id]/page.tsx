@@ -3,7 +3,6 @@ import { IoMdCheckmark } from "react-icons/io";
 import { FaFlag } from "react-icons/fa6";
 import { Separator } from "@radix-ui/react-separator";
 import { ReviewCard } from "@/components/User/ReviewCard";
-import { PropertyCard } from "@/components/Properties/PropertyCard";
 
 import {
   Carousel,
@@ -12,11 +11,11 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel"
-import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area"
 
 
 import Link from "next/link";
 import Image from "next/image";
+import { Button } from "@/components/ui/button";
 
 export default function UserDetailPage() {
     return (
@@ -40,8 +39,14 @@ export default function UserDetailPage() {
                     <Link href="/" className="underline font-semibold">Report this profile</Link>
                 </div>
             </div>
-            <div className="overflow-y-hidden">
+            <div className="overflow-y-hidden">                
                 <div className="min-w-[480px] max-w-[500px] lg:max-w-[1000px] w-full p-10 xl:grid grid-cols-2">
+                    <Link href={'/EditProfile'}>
+                        <Button variant={"active"} size={"lg"} className="w-[160px] mb-4 text-md rounded-md font-semibold bg-airbnb hover:bg-airbnbDark
+                        text-white hover:text-white">
+                            Edit profile
+                        </Button>
+                    </Link>
                     <div className="col-span-2 text-3xl text-darkText font-bold p-2">About Harshit</div>
                        
                     <div className="col-span-2 mt-5 p-2">Zostel is India's first and largest chain of budget hostels for the sociable explorer.
@@ -66,18 +71,13 @@ export default function UserDetailPage() {
                                     <div className="ml-6"><CarouselNext /></div>
                                 </div>
                             </div>
-                            <ScrollArea>
                             <CarouselContent className="w-full min-w-[500px]">
                                 {Array.from({ length: 5 }).map((_, index) => (
-                                <div className="flex ">
                                     <CarouselItem key={index} className="xl:basis-1/2">
                                         <ReviewCard/>
                                     </CarouselItem>
-                                </div>
                                 ))}
                             </CarouselContent>
-                            <ScrollBar orientation="horizontal"/>
-                            </ScrollArea> 
                         </Carousel>
                     </div>
                     <div className="text-xl text-darkText underline my-4">Show more reviews</div>
