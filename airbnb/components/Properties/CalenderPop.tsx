@@ -3,18 +3,26 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "../ui/Card";
 import { CalenderMain } from "./CalenderMain";
-import { useAuth } from "@/context/AuthContext";
+import { useAuthDate } from "@/context/AuthContext";
 
 export const CalenderPop = () => {
 
     const [isOpen, setIsOpen] = useState(false);
+    const { checkIn, checkOut, setCheckIn, setCheckOut } = useAuthDate();
     
     useEffect(() => {
         setIsOpen(false);
     }, []); 
-  const {checkin,checkout,setCheckin,setCheckout} = useAuth();
-  console.log("checkin",checkin)
-console.log("checkout",checkout)
+
+    const formatToNumericDate = (date: string | null) => {
+        if (!date) return "Add dates";
+        const parsedDate = new Date(date);
+        return parsedDate.toLocaleDateString("en-GB", {
+            day: "2-digit",
+            month: "2-digit",
+            year: "numeric",
+        });
+    };
         
     return (
         <div className="w-full flex z-30">
@@ -22,14 +30,14 @@ console.log("checkout",checkout)
                 <Button variant="active" className="w-1/2 items-center text-darkText m-0 hover:outline hover:outline-2 rounded-md hover:outline-black " onClick={() => {setIsOpen(true)}}>
                     <div className="flex flex-col justify-center items-center ">
                         <div className="font-semibold text-xs text-darkText">CHECK-IN</div>
-                        <div className="font-semibold text-xs text-lightText">Add dates</div>
+                        <div className="font-semibold text-xs text-lightText">{checkIn?formatToNumericDate(checkIn):"Add dates"}</div>
                     </div>
                 </Button>            
                 <Separator orientation="vertical" className="w-[1px] bg-lightText z-0"/>
                 <Button variant="active" className="w-1/2 m-0 py-1 items-center text-darkText hover:outline hover:outline-2 rounded-md hover:outline-black " onClick={() => {setIsOpen(true)}}>
                     <div className="flex flex-col justify-center items-center ">
                         <div className="font-semibold text-xs text-darkText">CHECKOUT</div>
-                        <div className="font-semibold text-xs text-lightText">Add dates</div>
+                        <div className="font-semibold text-xs text-lightText">{checkOut?formatToNumericDate(checkOut):"Add dates"}</div>
                     </div>
                 </Button>    
             </div>

@@ -8,12 +8,12 @@ import { Card } from "../ui/Card";
 
 import useLoginModel from '@/app/hooks/useLoginModel';
 import useSignUpModel from '@/app/hooks/useSignUpModel';
-import { useAuth } from '@/context/AuthContext';
+import { useAuthDate } from '@/context/AuthContext';
 
 
 export const UserNav = () => {
 
-    const { userId, isAuthenticated, handleLogout } = useAuth();
+    const { userId, isAuthenticated, handleLogout } = useAuthDate();
 
     const loginModel = useLoginModel();
     const signUpModel = useSignUpModel();

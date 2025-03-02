@@ -7,10 +7,10 @@ interface AuthContextType {
     setUserId: (id: string | null) => void;
     handleLogout: () => Promise<void>; 
     handleLogin: (userId: string, accessToken: string, refreshToken: string) => Promise<void>; 
-    checkin:string |null;
-    checkout:string |null;
-    setCheckin:(date: string | null) => void;
-    setCheckout:(date: string | null) => void;
+    checkIn: string | null;
+    checkOut: string | null;
+    setCheckIn: (date: string | null) => void;
+    setCheckOut: (date: string | null) => void;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -18,8 +18,8 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const [userId, setUserId] = useState<string | null>(null);
-    const [checkin,setCheckin] = useState<string|null>(null);
-    const [checkout,setCheckout] = useState<string|null>(null);
+    const [checkIn, setCheckIn] = useState<string | null>(null);
+    const [checkOut, setCheckOut] = useState<string | null>(null);
 
     useEffect(() => {
         async function fetchUserId() {
@@ -62,18 +62,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <AuthContext.Provider value={{ userId, isAuthenticated, setUserId, handleLogin, handleLogout, checkin, checkout, setCheckin, setCheckout }} >
+        <AuthContext.Provider value={{ userId, isAuthenticated, setUserId, handleLogin, handleLogout, checkIn, checkOut, setCheckIn, setCheckOut }} >
             {children}
         </AuthContext.Provider>
     );
 }
 
-export function useAuth() {
+export function useAuthDate() {
     const authcontext = useContext(AuthContext);
     if (!authcontext) {
-        throw new Error("useAuth must be used within an AuthProvider");
+        throw new Error("useAuthDate must be used within an AuthProvider");
     }
     return authcontext;
 }
-
-

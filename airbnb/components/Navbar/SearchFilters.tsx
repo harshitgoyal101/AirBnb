@@ -1,12 +1,21 @@
 import { InputwithLabel } from "../ui/input-label";
 import { Separator } from "@/components/ui/separator"
-import { useAuth } from "@/context/AuthContext";
-import React from 'react';
+import { useAuthDate } from "@/context/AuthContext";
+import React, { useEffect, useState } from 'react';
+import { CalenderMain } from "../Properties/CalenderMain";
+import { Card } from "../ui/Card";
+import { Button } from "../ui/button";
 
 export const SearchFilters = (params: {tab: string}) => {
 
     const tab = params.tab;
-    const {checkin,checkout,setCheckin,setCheckout} = useAuth();
+    const [isOpen, setIsOpen] = useState(false);
+    const { checkIn, checkOut, setCheckIn, setCheckOut } = useAuthDate();
+    
+    useEffect(() => {
+        setIsOpen(false);
+    }, []); 
+
     const [hoverState, setHoverState] = React.useState({
         "search": false,
         "checkIn": false,
@@ -45,9 +54,8 @@ export const SearchFilters = (params: {tab: string}) => {
                         style={{visibility:(hoverState.search||hoverState.checkIn)?"hidden":"visible"}}/>
                     {tab == "stays" ? <>
                     <InputwithLabel 
-                        label="Check in" 
-                        placeholder="Add dates"
-                        value = {checkin}
+                        label="Check in"
+                        placeholder={checkIn?checkIn:"Add dates"}
                         onMouseLeave={onMouseLeave}
                         onMouseEnter={
                             () => { setHoverState({
@@ -57,14 +65,13 @@ export const SearchFilters = (params: {tab: string}) => {
                                 "addGuest": false,
                             })}
                         }
-                        onChange={(e)=>setCheckin(e.target.value)}
+                        onClick={() => {setIsOpen(true);}}
                     />
                     <Separator orientation="vertical" className="h-8" 
                         style={{visibility:(hoverState.checkOut||hoverState.checkIn)?"hidden":"visible"}}/>
                     <InputwithLabel 
-                        label="Check out" 
-                        placeholder="Add dates"
-                        value={checkout}
+                        label="Check Out"
+                        placeholder={checkOut?checkOut:"Add dates"}
                         onMouseLeave={onMouseLeave}
                         onMouseEnter={
                             () => { setHoverState({
@@ -74,7 +81,7 @@ export const SearchFilters = (params: {tab: string}) => {
                                 "addGuest": false,
                             })}
                         }
-                        onChange={(e)=>setCheckout(e.target.value)}
+                        onClick={() => {setIsOpen(true);}}
                     />
                     </> : <> <InputwithLabel 
                         label="Dates" 
@@ -156,6 +163,12 @@ export const SearchFilters = (params: {tab: string}) => {
                         isButton
                     />
                 </div>}
+                {isOpen && (
+                    <Card className='w-[765px] absolute top-[40px] rounded-xl  px-8  py-6 z-20  bg-white'>
+                        <CalenderMain/>
+                        <Button variant = {"active"} onClick={() => {setIsOpen(false)}} className="w-full text-md items-end text-darkText font-semibold underline">Close</Button>
+                    </Card>
+                )}    
             </div>
         </div>
     );
@@ -163,32 +176,3 @@ export const SearchFilters = (params: {tab: string}) => {
 
 
 
-// return isButton ? (
-//     <Button
-//         className={cn("flex justify-between m-0 p-3 h-14", className)}
-//         style={{ width: width }}
-//         onMouseEnter={onMouseEnter}
-//         onMouseLeave={onMouseLeave}
-//     >
-//         <div className="text-left">
-//             <p className="text-darkText text-xs px-4">{label}</p>
-//             <p className="text-lightText text-xs px-4">{placeholder}</p>
-//         </div>
-//         <div className="search_btn">
-//             <FaSearch />
-//         </div>
-//     </Button>
-// ) : (
-//     <div className={cn("flex flex-col px-4 py-2", className)} style={{ width: width }}>
-//         <label className="text-darkText text-xs">{label}</label>
-//         <input
-//             type="text"
-//             className="border-none text-lightText text-sm outline-none w-full"
-//             placeholder={placeholder}
-//             value={value ?? ""}
-//             onChange={onChange}
-//             onMouseEnter={onMouseEnter} // Move hover events to input
-//             onMouseLeave={onMouseLeave}
-//         />
-//     </div>
-// );
