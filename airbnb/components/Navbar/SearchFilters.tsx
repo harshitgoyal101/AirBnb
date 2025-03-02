@@ -1,10 +1,20 @@
 import { InputwithLabel } from "../ui/input-label";
 import { Separator } from "@/components/ui/separator"
-import React from 'react';
+import { useAuthDate } from "@/context/AuthContext";
+import React, { useEffect, useState } from 'react';
+import { CalenderMain } from "../Properties/CalenderMain";
+import { Card } from "../ui/Card";
+import { Button } from "../ui/button";
 
 export const SearchFilters = (params: {tab: string}) => {
 
     const tab = params.tab;
+    const [isOpen, setIsOpen] = useState(false);
+    const { checkIn, checkOut, setCheckIn, setCheckOut } = useAuthDate();
+    
+    useEffect(() => {
+        setIsOpen(false);
+    }, []); 
 
     const [hoverState, setHoverState] = React.useState({
         "search": false,
@@ -45,8 +55,8 @@ export const SearchFilters = (params: {tab: string}) => {
                         style={{visibility:(hoverState.search||hoverState.checkIn)?"hidden":"visible"}}/>
                     {tab == "stays" ? <>
                     <InputwithLabel 
-                        label="Check in" 
-                        placeholder="Add dates"
+                        label="Check in"
+                        placeholder={checkIn?checkIn:"Add dates"}
                         onMouseLeave={onMouseLeave}
                         onMouseEnter={
                             () => { setHoverState({
@@ -56,12 +66,13 @@ export const SearchFilters = (params: {tab: string}) => {
                                 "addGuest": false,
                             })}
                         }
+                        onClick={() => {setIsOpen(true);}}
                     />
                     <Separator orientation="vertical" className="h-8" 
                         style={{visibility:(hoverState.checkOut||hoverState.checkIn)?"hidden":"visible"}}/>
                     <InputwithLabel 
-                        label="Check out" 
-                        placeholder="Add dates"
+                        label="Check Out"
+                        placeholder={checkOut?checkOut:"Add dates"}
                         onMouseLeave={onMouseLeave}
                         onMouseEnter={
                             () => { setHoverState({
@@ -71,6 +82,7 @@ export const SearchFilters = (params: {tab: string}) => {
                                 "addGuest": false,
                             })}
                         }
+                        onClick={() => {setIsOpen(true);}}
                     />
                     </> : <> <InputwithLabel 
                         label="Dates" 
@@ -152,6 +164,12 @@ export const SearchFilters = (params: {tab: string}) => {
                         isButton
                     />
                 </div>}
+                {isOpen && (
+                    <Card className='w-[765px] absolute top-[40px] rounded-xl  px-8  py-6 z-20  bg-white'>
+                        <CalenderMain/>
+                        <Button variant = {"active"} onClick={() => {setIsOpen(false)}} className="w-full text-md items-end text-darkText font-semibold underline">Close</Button>
+                    </Card>
+                )}    
             </div>
         </div>
     );

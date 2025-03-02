@@ -19,7 +19,7 @@ import { apiService } from '@/app/services/apiService';
 import { useRouter } from 'next/navigation';
 import { TailSpin } from 'react-loader-spinner'
 import { Input } from '../ui/input';
-import { useAuth } from '@/context/AuthContext';
+import { useAuthDate } from '@/context/AuthContext';
 
 
 interface FormValues {
@@ -35,7 +35,7 @@ export const SignUpModel = () => {
     const router = useRouter();
     const [loading, setLoading] = useState(false);
 
-    const { handleLogin } = useAuth();
+    const { handleLogin } = useAuthDate();
 
     const [errors, setErrors] = useState<String[]>([]);
 
