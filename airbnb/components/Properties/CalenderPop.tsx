@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "../ui/Card";
 import { CalenderMain } from "./CalenderMain";
+import { useAuth } from "@/context/AuthContext";
 
 export const CalenderPop = () => {
 
@@ -11,7 +12,9 @@ export const CalenderPop = () => {
     useEffect(() => {
         setIsOpen(false);
     }, []); 
-
+  const {checkin,checkout,setCheckin,setCheckout} = useAuth();
+  console.log("checkin",checkin)
+console.log("checkout",checkout)
         
     return (
         <div className="w-full flex z-30">

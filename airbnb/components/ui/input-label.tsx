@@ -8,9 +8,11 @@ interface InputwithLabelProps {
     label?: string,
     width?: string,
     placeholder?: string,
+    value?:string|null,
     isButton?: boolean,
     onMouseEnter?: () => void,
-    onMouseLeave?: () => void
+    onMouseLeave?: () => void,
+    onChange?:(e: React.ChangeEvent<HTMLInputElement>)=>void
 }
 
 export const InputwithLabel = ({
@@ -19,8 +21,10 @@ export const InputwithLabel = ({
     width = "125px",
     placeholder = "",
     isButton = false,
+    value ="",
     onMouseEnter=()=>{},
-    onMouseLeave=()=>{}
+    onMouseLeave=()=>{},
+    onChange =()=>{}
 }: InputwithLabelProps) => {
     return (
         <Button className={cn('flex justify-between m-0 p-3 h-14', className)} style={{width: width}} 

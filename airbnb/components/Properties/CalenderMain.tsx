@@ -1,12 +1,17 @@
 "use client"
 import { Calendar } from '@/components/ui/calendar';
+import { useAuth } from '@/context/AuthContext';
 import { useState } from 'react';
 
 export const CalenderMain = ()  => {
+    const {checkin,checkout,setCheckin,setCheckout} = useAuth();
     const [range, setRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
             from: undefined,
             to: undefined,
     });
+    const formatDate = (date: Date) => {
+        return date.toLocaleDateString("en-GB", { day: "2-digit", month: "numeric", year: "numeric" });
+    };
     const RangeLength =  (range: {from: Date | undefined; to: Date | undefined  }): number => {
         if (!range.from || !range.to) return 0;
         const timeDiff = range.from.getTime() - range.to.getTime();
@@ -16,11 +21,14 @@ export const CalenderMain = ()  => {
     const handleDateChange = (date: Date) => {
         if (!range.from || (range.from && range.to)) {
             setRange({ from: date, to: undefined });
+            setCheckin(formatDate(date));
         } else {
             setRange({ ...range, to: date });
+            setCheckout(formatDate(date));
         }
     };
-
+console.log("checkin",checkin)
+console.log("checkout",checkout)
     return (
         <div className="my-6">
             <div className="text-2xl font-semibold text-darkText mb-2">
