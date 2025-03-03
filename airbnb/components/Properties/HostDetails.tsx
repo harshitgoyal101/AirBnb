@@ -2,8 +2,11 @@ import { Separator } from "@/components/ui/separator"
 import { Button } from "@/components/ui/button";
 import { UserCard } from "@/components/User/UserCard";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 export const HostDetails = () => {
+
+    const router = useRouter();
   return (
     <div>
       <div className="flex-row py-12 lg:flex">
@@ -29,7 +32,7 @@ export const HostDetails = () => {
                         Responds within an hour
                     </div>
                     
-                    <Button variant={"outline"} size={"lg"} className= "bg-gray-800 h-12 outline-0 font-semibold text-md w-1/2 mb-6 hover:bg-gray-900 text-white rounded-lg">
+                    <Button variant={"outline"} size={"lg"} className= "bg-gray-800 h-12 outline-0 font-semibold text-md w-1/2 mb-6 hover:bg-gray-900 text-white rounded-lg" onClick={()=>router.push('/chats')}>
                         Message Host
                     </Button>
                     <div className="text-lg mb-4">

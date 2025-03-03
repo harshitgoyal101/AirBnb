@@ -56,7 +56,10 @@ export const CalenderMain = ()  => {
             </div>
             <div className="flex justify-between py-2 overflow-x-hidden w-full">
                 <Calendar
-                    selected={{ from: checkIn ?? undefined, to: checkOut ?? undefined }}
+                     selected={{
+                        from: checkIn ? new Date(checkIn) : undefined,
+                        to: checkOut ? new Date(checkOut) : undefined,
+                    }}
                     onDayClick={handleDateChange} 
                     numberOfMonths={2} 
                     mode="range"
