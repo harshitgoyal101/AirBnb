@@ -7,10 +7,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-pa(#k^m9#&m#!78ofigw$c8y^k)@k!6p9y$g_$mp_o4($wtgf3'
 DEBUG = True
 
-ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "[::1]"]
+ALLOWED_HOSTS = ["localhost", "0.0.0.0", "127.0.0.1", "[::1]", "harshitgoyal101.pythonanywhere.com"]
 
 SITE_ID = 1
-WEBSITE_URL = 'http://localhost:8000'
+WEBSITE_URL = 'https://harshitgoyal101.pythonanywhere.com'
 
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=60),
