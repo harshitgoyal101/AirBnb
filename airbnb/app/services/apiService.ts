@@ -17,8 +17,7 @@ export const apiService = {
         });
     },
 
-    post: async function(url: string, data: any, accessToken?: string): Promise<any> {
-        console.log(data)
+    post: async function(url: string, data: any): Promise<any> {
         return new Promise((resolve, reject) => {
             fetch(`${process.env.NEXT_PUBLIC_API_HOST}${url}`, {
                 method: 'POST',

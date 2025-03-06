@@ -28,18 +28,13 @@ export default async function RootLayout({
 }: Readonly<{
     children: React.ReactNode;
 }>) {    
-
-    const cookieStore = await cookies();
-    const accessToken = cookieStore.get("session_access_token")?.value || '';
-
-
     return (
         <html lang="en">
             <body
                 className={`${geistSans.variable} ${geistMono.variable} antialiased overflow-x-hidden`}
             > 
                 <AuthProvider>
-                    <Navbar accessToken={accessToken}/>
+                    <Navbar/>
                     <div>
                         {children}
                     </div>

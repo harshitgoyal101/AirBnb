@@ -8,9 +8,8 @@ import { Button } from "../ui/button";
 import { SearchFilters } from "./SearchFilters";
 import { UserNav } from "./UserNav";
 import { TbWorld } from "react-icons/tb";
-import { apiService } from '@/app/services/apiService';
 
-export const Navbar = ({accessToken}: {accessToken: string}) => {
+export const Navbar = () => {
 
     const [tabValue, setTabValue] = useState("stays");
     const [logo, setLogo] = useState("/airbnb.svg");
@@ -43,22 +42,6 @@ export const Navbar = ({accessToken}: {accessToken: string}) => {
         };
     }, [handleTab]);
 
-    const createProperties = async () => {
-        const data = {
-            "title": "Abcd",
-            "description": "hsdjfdkf",
-            "price_per_night": 1200,
-            "bedrooms": 4,
-            "bathrooms": 3,
-            "guests": 10,
-            "country": "India",
-            "country_code": "+91",
-            "category": "Flat"
-        }    
-        const createdProperty = await apiService.post('/api/properties/create/', JSON.stringify(data), accessToken);
-        console.log("propertcreated", createdProperty?.data);
-    };
-
     return (
         <nav className="w-full top-0 left-0 py-4 border-b bg-white z-10">
             <div className="place-items-center">
@@ -89,7 +72,7 @@ export const Navbar = ({accessToken}: {accessToken: string}) => {
                         </div>
 
                         <div className="flex items-center">
-                            <Button className="text-darkText" onClick={createProperties}>
+                            <Button className="text-darkText">
                                 Airbnb your home
                             </Button>
                             <Button className="text-darkText">
