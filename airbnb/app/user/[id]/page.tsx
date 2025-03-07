@@ -15,6 +15,8 @@ import {
 
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { PropertyCard } from "@/components/Properties/PropertyCard";
+import { Properties } from "@/components/Properties/Properties";
 
 export default function UserDetailPage() {
     return (
@@ -99,7 +101,12 @@ export default function UserDetailPage() {
                             <CarouselContent className="w-full">
                                 {Array.from({ length: 5 }).map((_, index) => (
                                 <CarouselItem key={index} className="basic-1/1 md:basis-1/2 lg:basis-1/3">
-                               
+                                    <PropertyCard property={{
+                                            id: "1",
+                                            title: "Jannath Homes",
+                                            price_per_night: 2500,
+                                            image_url: "/temp.avif"
+                                        }}/>
                                 </CarouselItem>
                                 ))}
                             </CarouselContent>

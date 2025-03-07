@@ -72,9 +72,11 @@ export const Navbar = () => {
                         </div>
 
                         <div className="flex items-center">
-                            <Button className="text-darkText">
-                                Airbnb your home
-                            </Button>
+                            <Link href = "/becomehost">
+                                <Button className="text-darkText">
+                                    Airbnb your home
+                                </Button>                            
+                            </Link>
                             <Button className="text-darkText">
                                 <TbWorld />
                             </Button>
