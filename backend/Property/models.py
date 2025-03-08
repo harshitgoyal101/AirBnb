@@ -30,6 +30,7 @@ class Category(Constant):
         proxy = True
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+        
 class Property(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)

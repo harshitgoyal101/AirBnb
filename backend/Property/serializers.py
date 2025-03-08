@@ -11,3 +11,8 @@ class PropertiesListSerializers(serializers.ModelSerializer):
             'price_per_night',
             'image_url'
         )
+
+class PropertyDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Property
+        fields = '__all__'

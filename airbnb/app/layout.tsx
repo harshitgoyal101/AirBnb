@@ -6,7 +6,6 @@ import { LoginModel } from "@/components/Models/LoginModel";
 import { SignUpModel } from "@/components/Models/SignUpModel";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/context/AuthContext";
-import { cookies } from "next/headers";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
