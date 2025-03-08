@@ -2,8 +2,6 @@
 
 import { Model } from '@/components/ui/Model'
 import React, { useState } from 'react';
-import useLoginModel from '@/app/hooks/useLoginModel';
-import useSignUpModel from '@/app/hooks/useSignUpModel';
 import Link from "next/link";
 import { Button } from "../ui/button";
 import { Separator } from "../ui/separator";
@@ -13,11 +11,13 @@ import { FaApple, FaFacebookSquare } from "react-icons/fa";
 import { MdOutlineEmail } from "react-icons/md";
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-import { apiService } from "@/app/services/apiService";
 import { useAuthDate } from '@/context/AuthContext';
 import { useRouter } from 'next/navigation';
 import { TailSpin } from 'react-loader-spinner'
 import { Input } from '../ui/input';
+import useLoginModel from '@/app/(UsingGlobalLayout)/hooks/useLoginModel';
+import useSignUpModel from '@/app/(UsingGlobalLayout)/hooks/useSignUpModel';
+import { apiService } from '@/app/(UsingGlobalLayout)/services/apiService';
 
 export const LoginModel = () => {
 

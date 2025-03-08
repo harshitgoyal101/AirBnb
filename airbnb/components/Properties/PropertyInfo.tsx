@@ -8,7 +8,7 @@ import { Amenities } from "./Amenities";
 import { BookCard } from "./BookCard";
 import { Button } from "../ui/button"
 import { useEffect, useState } from "react";
-import { apiService } from "@/app/services/apiService";
+import { apiService } from "@/app/(UsingGlobalLayout)/services/apiService";
 import { CalenderMain } from "./CalenderMain";
 
 export const PropertyInfo = () => {

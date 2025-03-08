@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button"
 import { IconWithLabel } from "../ui/IconWIthLabel"
 import { Separator } from "../ui/separator"
-import { apiService } from "@/app/services/apiService";
+import { apiService } from "@/app/(UsingGlobalLayout)/services/apiService";
 
 
 export const Amenities = ({all_aminities} : {all_aminities:Record<string, string>}) => {

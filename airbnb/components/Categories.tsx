@@ -1,6 +1,6 @@
 'use client'
 
-import { apiService } from "@/app/services/apiService";
+import { apiService } from "@/app/(UsingGlobalLayout)/services/apiService";
 import {
   Carousel,
   CarouselContent,

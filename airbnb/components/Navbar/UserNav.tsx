@@ -6,8 +6,8 @@ import { Button } from "../ui/button";
 import { CgProfile } from "react-icons/cg";
 import { Card } from "../ui/Card";
 
-import useLoginModel from '@/app/hooks/useLoginModel';
-import useSignUpModel from '@/app/hooks/useSignUpModel';
+import useLoginModel from '@/app/(UsingGlobalLayout)/hooks/useLoginModel';
+import useSignUpModel from '@/app/(UsingGlobalLayout)/hooks/useSignUpModel';
 import { useAuthDate } from '@/context/AuthContext';
 
 

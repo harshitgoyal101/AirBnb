@@ -1,6 +1,6 @@
 "use client"
 
-import { apiService } from "@/app/services/apiService";
+import { apiService } from "@/app/(UsingGlobalLayout)/services/apiService";
 import { PropertyCard } from "./PropertyCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";

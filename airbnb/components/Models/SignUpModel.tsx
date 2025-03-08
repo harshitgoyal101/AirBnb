@@ -1,8 +1,8 @@
 'use client'
 
 import React, { useState } from 'react';
-import useLoginModel from '@/app/hooks/useLoginModel';
-import useSignUpModel from '@/app/hooks/useSignUpModel';
+import useLoginModel from '@/app/(UsingGlobalLayout)/hooks/useLoginModel';
+import useSignUpModel from '@/app/(UsingGlobalLayout)/hooks/useSignUpModel';
 import Link from "next/link";
 
 import { Model } from '@/components/ui/Model'
@@ -15,7 +15,7 @@ import { MdOutlineEmail } from "react-icons/md";
 
 import { Formik, Field, Form, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
-import { apiService } from '@/app/services/apiService';
+import { apiService } from '@/app/(UsingGlobalLayout)/services/apiService';
 import { useRouter } from 'next/navigation';
 import { TailSpin } from 'react-loader-spinner'
 import { Input } from '../ui/input';
