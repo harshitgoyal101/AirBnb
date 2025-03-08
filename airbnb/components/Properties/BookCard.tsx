@@ -25,7 +25,7 @@ export const BookCard = () => {
             <div className="text-sm text-lightText text-center p-3">You won't be charged yet</div>
             <div className="flex justify-between p-2 text-mediumText ">
                 <div className="underline md">₹6,000 x 1 night</div>
-                <div>₹5,000 </div>
+                <div>₹6,000 </div>
             </div>
             <div className="flex justify-between p-2 text-mediumText ">
                 <div className="underline md">Special offer</div>

@@ -77,7 +77,7 @@ export const PropertyInfo = () => {
                 <CalenderMain/>
             </div>
             <div className="invisible w-0 md:visible md:w-1/2 lg:w-2/5 pr-0 py-5 pl-0 md:pl-12 lg:pl-20  md:sticky md:top-0 md:h-screen">
-                <BookCard />
+                <BookCard/>
             </div>
         </div>
     </div>
