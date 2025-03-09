@@ -30,6 +30,20 @@ def create_property(request):
         print('error', form.errors, form.non_field_errors)
         return JsonResponse({"errors": form.errors.as_json()}, status=400, safe=False)
     
+@api_view(['PUT'])
+def edit_property(request, property_id):
+    try:
+        property = Property.objects.get(id=property_id, landlord=request.user)
+    except Property.DoesNotExist:
+        return JsonResponse({'error': 'Property not found or unauthorized'}, status=404)
+    
+    form = PropertyForm(request.POST, request.FILES, instance=property)
+    if form.is_valid():
+        property = form.save()
+        serializer = PropertiesListSerializers(property)
+        return JsonResponse({'data': serializer.data})
+    else:
+        return JsonResponse({"errors": form.errors.as_json()}, status=400, safe=False)
 
 @api_view(['GET'])
 @authentication_classes([]) 

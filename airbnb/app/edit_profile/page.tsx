@@ -8,7 +8,7 @@ export function Avatar({name, size= "small"} : {name: string, size?: string}) {
   </div>
 }
 
-const EditPorfile = () => {
+const edit_profile = () => {
   return (
     <div className='px-36 py-8 flex'>
       <div className='h-fit py-4 w-fit ml-10 mr-16'>
@@ -41,4 +41,4 @@ const EditPorfile = () => {
   )
 }
 
-export default EditPorfile
+export default edit_profile

@@ -9,5 +9,6 @@ urlpatterns = [
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('<uuid:user_id>/', api.get_user_by_id, name='get_user_by_id'),
+    path('<uuid:user_id>/edit', api.edit_user, name='edit_user'),
 ]
 
