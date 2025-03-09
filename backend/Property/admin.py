@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Property, Aminity, Category, PropertyAminities
+from .models import *
 
 @admin.register(Property)
 class PropertyAdmin(admin.ModelAdmin):
@@ -23,3 +23,7 @@ class CategoryAdmin(admin.ModelAdmin):
 @admin.register(PropertyAminities)
 class PropertyAminitiesAdmin(admin.ModelAdmin):
     list_display = ('property', 'aminity')
+
+@admin.register(Reviews)
+class ReviewAdmin(admin.ModelAdmin):
+    pass
