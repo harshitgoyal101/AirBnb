@@ -1,12 +1,17 @@
+'use client'
 import { Separator } from "@/components/ui/separator"
 import Link from "next/link";
 import { TbWorld } from "react-icons/tb";
 import { FaFacebookSquare } from "react-icons/fa";
 import { FaSquareTwitter } from "react-icons/fa6";
 import { FaSquareInstagram } from "react-icons/fa6";
-
+import { DisableNavFooter } from "@/app/DisableNav";
+import { usePathname } from "next/navigation";
 export const Footer = () => {
+    const path = usePathname()
     return (
+        <>
+        {!DisableNavFooter.includes(path) && (
         <footer className="w-full bg-gray-50 border border-gray-200">
             <div className="p-8 px-12">
                 <Link href="/" className="hover:underline mx-2">Airbnb</Link> &gt; 
@@ -73,5 +78,7 @@ export const Footer = () => {
                 </div>
             </div>
         </footer>
+        )}
+        </>
     );
 }

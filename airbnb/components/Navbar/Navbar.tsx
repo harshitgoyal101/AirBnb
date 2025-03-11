@@ -3,14 +3,15 @@
 import { useState, useEffect } from 'react';
 import Image from "next/image";
 import Link from "next/link";
-
+import { DisableNavFooter } from '@/app/DisableNav';
 import { Button } from "../ui/button";
 import { SearchFilters } from "./SearchFilters";
 import { UserNav } from "./UserNav";
 import { TbWorld } from "react-icons/tb";
+import { usePathname } from 'next/navigation';
 
 export const Navbar = () => {
-
+    const path = usePathname()
     const [tabValue, setTabValue] = useState("stays");
     const [logo, setLogo] = useState("/airbnb.svg");
 
@@ -43,7 +44,9 @@ export const Navbar = () => {
     }, [handleTab]);
 
     return (
-        <nav className="w-full top-0 left-0 py-4 border-b bg-white z-10">
+    <>
+        { !DisableNavFooter.includes(path) && (
+            <nav className="w-full top-0 left-0 py-4 border-b bg-white z-10">
             <div className="place-items-center">
                 <div className="w-full mx-auto px-24">
                     <div className="flex justify-between h-[60px]">
@@ -72,9 +75,11 @@ export const Navbar = () => {
                         </div>
 
                         <div className="flex items-center">
-                            <Button className="text-darkText">
-                                Airbnb your home
-                            </Button>
+                            <Link href = "/becomehost">
+                                <Button className="text-darkText">
+                                    Airbnb your home
+                                </Button>                            
+                            </Link>
                             <Button className="text-darkText">
                                 <TbWorld />
                             </Button>
@@ -91,5 +96,10 @@ export const Navbar = () => {
                 </div>
             </div>
         </nav>
+        )           
+        }
+        
+    </>
+        
     );
 }
