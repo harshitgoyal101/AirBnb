@@ -1,6 +1,5 @@
 from rest_framework import serializers
-
-from .models import Property
+from .models import Property, Reviews
 
 class PropertiesListSerializers(serializers.ModelSerializer):
     class Meta:
@@ -11,3 +10,13 @@ class PropertiesListSerializers(serializers.ModelSerializer):
             'price_per_night',
             'image_url'
         )
+
+class PropertyDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Property
+        fields = '__all__'
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Reviews
+        fields = '__all__'

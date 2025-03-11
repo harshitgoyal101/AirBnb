@@ -2,6 +2,7 @@ import uuid
 from django.db import models
 from django.conf import settings
 from User.models import User
+from django.core.validators import MaxValueValidator, MinValueValidator 
 
 class Constant(models.Model):
     TYPE_CHOICES = (
@@ -30,6 +31,7 @@ class Category(Constant):
         proxy = True
         verbose_name = "Category"
         verbose_name_plural = "Categories"
+        
 class Property(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255)
@@ -60,3 +62,10 @@ class Property(models.Model):
 class PropertyAminities(models.Model):
     property = models.ForeignKey(Property, on_delete=models.CASCADE)
     aminity = models.ForeignKey(Aminity, on_delete=models.CASCADE)
+
+class Reviews(models.Model):
+    property = models.ForeignKey(Property, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    stars = models.SmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)

@@ -42,7 +42,7 @@ export default function UserDetailPage() {
             </div>
             <div className="overflow-y-hidden">                
                 <div className="min-w-[480px] max-w-[500px] lg:max-w-[1000px] w-full p-10 xl:grid grid-cols-2">
-                    <Link href={'/EditProfile'}>
+                    <Link href={'/edit_profile'}>
                         <Button variant={"active"} size={"lg"} className="w-[160px] mb-4 text-md rounded-md font-semibold bg-airbnb hover:bg-airbnbDark
                         text-white hover:text-white">
                             Edit profile
