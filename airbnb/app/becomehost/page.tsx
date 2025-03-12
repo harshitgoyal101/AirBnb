@@ -1,3 +1,6 @@
+import { CategorySelect } from "@/components/BecomHost/CategorySelect";
+import { PlaceInfo } from "@/components/BecomHost/PlaceInfo";
+import { PlaceSelect } from "@/components/BecomHost/PlaceSelect";
 import { Button } from "@/components/ui/button";
 import {
   Carousel,
@@ -5,6 +8,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
+  
 } from "@/components/ui/carousel"
 import  Image  from "next/image";
 
@@ -29,30 +33,34 @@ const BecomeHost = () => {
         opts={{
             align: "start",
         }}
-        className="xl:w-full mt-48"
+        className="xl:w-full mt-32"
         >
-        <div className="flex justify-between my-6 mr-6">
-            <div className="text-2xl font-semibold text-mediumText mt-3">Harshit's listings</div>
-            <div className="flex justify-between">
-                <div className="mr-6"><CarouselPrevious /></div>
-                <div className="ml-6"><CarouselNext /></div>
-            </div>
-        </div>
-        
-        <CarouselContent className="w-full mb-10">
-            {Array.from({ length: 5 }).map((_, index) => (
-            <CarouselItem key={index} className="basic-1/1 md:basis-1/2 lg:basis-1/3">
-                <div>category</div>
-                <div>amenities</div>
-                <div>type of guests</div>
-                <div>property images</div>
                 
+        <CarouselContent className="w-full mb-10">
+            <CarouselItem className="mb-24">
+                <CategorySelect/>
             </CarouselItem>
-            ))}
+            
+            <CarouselItem >
+                <PlaceSelect/>
+            </CarouselItem>
+
+            <CarouselItem >
+                <PlaceInfo/>
+            </CarouselItem>
+
+            <CarouselItem >                
+              <div>amenities</div>
+              <div>type of guests</div>
+              <div>property images</div>
+            </CarouselItem>
+            
+                
+            
         </CarouselContent>   
         <div className ="fixed bottom-0 w-full h-24 px-16 bg-white border-black border-t-4  flex justify-between items-center">
-            <Button size = {"lg"} className="underline text-darkText font-semibold mr-4">Back </Button>
-            <Button size = {"lg"} className="outline outline-1 text-white bg-black rounded-md font-semibold">Next </Button>
+            <Button size = {"lg"} className="underline text-darkText font-semibold mr-4 z-10">Back <CarouselPrevious className="opacity-0 hover:opacity-0 disabled:opacity-0" size={"lg"}/> </Button>
+            <Button size = {"lg"} className="outline outline-1 text-white bg-black rounded-md font-semibold">Next <CarouselNext size={"lg"} className="opacity-0 hover:opacity-0 disabled:opacity-0"/></Button>
         </div>          
     </Carousel>
     </div>

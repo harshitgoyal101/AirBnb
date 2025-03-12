@@ -2,9 +2,11 @@ import Image from "next/image";
 
 export const IconWithLabel = ({
     type,
+    className,
     all_aminities = {},
 }: {
     type: string;
+    className?: string;
     all_aminities?: Record<string, string>;
 }) => {
     return all_aminities.hasOwnProperty(type) ? (
@@ -38,14 +40,29 @@ export const IconWithLabel = ({
         )
     ) : (
         <div className="px-4">
-            <div className="border flex flex-col items-center cursor-pointer py-3 space-y-2 border-b-2 border-white opacity-80 hover:opacity-100 hover:border-b-black">
-                <Image
-                    width={20}
-                    height={20}
-                    src={`/categories/${type}.jpg`}
-                    alt={type}
-                />
-                <p className="text-xs">{type}</p>
+            <div className={`${className} border flex flex-col items-center cursor-pointer py-3 space-y-2 border-b-2 border-white opacity-80 hover:opacity-100 hover:border-b-black`}>
+                {className ? 
+                <>
+                    <Image
+                        width={32}
+                        height={32}
+                        src={`/categories/${type}.jpg`}
+                        alt={type}
+                    />
+                    <p >{type}</p>
+                </> :
+                <>
+                    <Image
+                        width={20}
+                        height={20}
+                        src={`/categories/${type}.jpg`}
+                        alt={type}
+                    />
+                    <p className = "text-xs">{type}</p>
+                </>
+
+                }
+                
             </div>
         </div>
     );
