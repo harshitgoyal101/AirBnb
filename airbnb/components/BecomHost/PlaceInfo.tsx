@@ -5,7 +5,7 @@ import { Separator } from "../ui/separator"
 export const PlaceInfo = () => {
   return (
     <div className='px-96 flex-row'> 
-        <div className="mb-12 mt-10">
+        <div className="mb-12">
             <p className="text-3xl font-semibold text-darkText">Share some basics about your place</p>
             <p className="text-lightText text-lg text-start">You'll add more details later, such as bed types.</p>
         </div>
