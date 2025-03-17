@@ -45,7 +45,7 @@ export const CalenderPop = () => {
 
             {isOpen && (
                 <Card className='w-[765px] absolute top-[40px] left-90 right-0 rounded-xl  px-8  py-6 z-20  bg-white'>
-                    <CalenderMain/>
+                    <CalenderMain />
                     <Button variant = {"active"} onClick={() => {setIsOpen(false)}} className="w-full text-md items-end text-darkText font-semibold underline">Close</Button>
                 </Card>
             )}    

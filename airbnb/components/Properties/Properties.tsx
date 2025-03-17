@@ -5,6 +5,7 @@ import { PropertyCard } from "./PropertyCard";
 import { useEffect, useState } from "react";
 import Link from "next/link";
 
+
 export type PropertyType = {
     id: string,
     title: string,
@@ -20,6 +21,8 @@ export const Properties = () => {
         const tmpProperties = await apiService.get('/api/properties/');
         setProperties(tmpProperties.data);
     }
+
+
 
     useEffect(() => {
         getProperties();

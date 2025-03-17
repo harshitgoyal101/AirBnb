@@ -11,6 +11,7 @@ interface AuthContextType {
     checkOut: string | null;
     setCheckIn: (date: string | null) => void;
     setCheckOut: (date: string | null) => void;
+    accessToken?: string| null;
 }
 
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
@@ -18,21 +19,24 @@ const AuthContext = createContext<AuthContextType | undefined>(undefined);
 export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     const [userId, setUserId] = useState<string | null>(null);
+    const [accessToken, setAccessToken] = useState<string | null>(null);
     const [checkIn, setCheckIn] = useState<string | null>(null);
     const [checkOut, setCheckOut] = useState<string | null>(null);
+
 
     useEffect(() => {
         async function fetchUserId() {
             try {
                 const response = await fetch("/api/auth/getUser");
                 const data = await response.json();
-                setUserId(data.userId);
+                setUserId(data?.userId);
+                setAccessToken(data?.accessToken);
             } catch (error) {
                 console.error("Failed to fetch user ID", error);
             }
         }
 
-        fetchUserId();
+        fetchUserId();    
     }, []);
 
     const isAuthenticated = !!userId;
@@ -62,7 +66,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     return (
-        <AuthContext.Provider value={{ userId, isAuthenticated, setUserId, handleLogin, handleLogout, checkIn, checkOut, setCheckIn, setCheckOut }} >
+        <AuthContext.Provider value={{ userId, isAuthenticated, accessToken, setUserId, handleLogin, handleLogout, checkIn, checkOut, setCheckIn, setCheckOut }} >
             {children}
         </AuthContext.Provider>
     );

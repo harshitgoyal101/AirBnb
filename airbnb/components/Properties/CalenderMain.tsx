@@ -1,7 +1,8 @@
 "use client"
+import { apiService } from '@/app/services/apiService';
 import { Calendar } from '@/components/ui/calendar';
 import { useAuthDate } from '@/context/AuthContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export const CalenderMain = ()  => {
     const { checkIn, checkOut, setCheckIn, setCheckOut } = useAuthDate();
@@ -9,6 +10,28 @@ export const CalenderMain = ()  => {
         from: undefined,
         to: undefined,
     });   
+    const {accessToken} = useAuthDate();
+
+    useEffect(()=>{
+        createProperties();
+    },[])
+    const createProperties = async () => {
+
+        const formData = new FormData();
+        formData.append("title","Abcd"),
+        formData.append("description","hsdjfdkf"),  
+        formData.append("price_per_night","1200"),
+        formData.append("bedrooms","4");
+        formData.append("bathrooms","3"),
+        formData.append("guests","10"),
+        formData.append("country","India"),
+        formData.append("country_code","+91"),
+        formData.append("category","Flat"),
+        formData.append("image","public/gettyimages-514");
+  
+        const createdProperty = await apiService.post('/api/properties/create/', formData, accessToken ?? undefined);
+        console.log("propertcreated", createdProperty?.data);
+    };
 
     const formatDate = (date: Date,) => {
         return date.toLocaleDateString("en-GB", {

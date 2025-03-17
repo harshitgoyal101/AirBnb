@@ -1,3 +1,5 @@
+
+
 export const apiService = {
     get: async function (url: string): Promise<any> {
         return new Promise((resolve, reject) => {
@@ -17,15 +19,18 @@ export const apiService = {
         });
     },
 
-    post: async function(url: string, data: any): Promise<any> {
+    post: async function(url: string, data: any,accessToken?: string): Promise<any> {
+     
         return new Promise((resolve, reject) => {
             fetch(`${process.env.NEXT_PUBLIC_API_HOST}${url}`, {
                 method: 'POST',
+                body: data,
                 headers: {
-                    "Content-Type": "application/json", 
-                    "Accept": "application/json",
+                    // "Content-Type": "multipart/form-data; boundary=<calculated when request is sent>", 
+                    // "Accept": "*/*",
+                     "Content-Type": "multipart/form-data",
+                    "Authorization": `Bearer ${accessToken}`
                 },
-                body: data
             }).then(response => response.json())
             .then((json) => {
                 resolve(json);
