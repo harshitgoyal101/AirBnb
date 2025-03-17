@@ -8,9 +8,12 @@ import { useRef, useState, useEffect } from "react";
 import { PropertyNav } from "@/components/Properties/PropertyNav";
 
 
-export default function PropertyDetailPage() {
+export default function PropertyDetailPage({ params }: { params: { id: string } }) {
+    
     const [IsNavVisible, SetIsNavVisible] = useState(false);
+    const [id, setId] = useState("");
     const PropertInfoRef = useRef<HTMLDivElement>(null);
+    
     useEffect(() => {
         const handleScroll = ()=> {
             if(PropertInfoRef.current) {
@@ -21,13 +24,20 @@ export default function PropertyDetailPage() {
         }
 
         window.addEventListener("scroll", handleScroll);
-        return () => window.removeEventListener("scroll", handleScroll);        
-    })
+
+        async function fetchParams() {
+            const resolvedParams = await params; // ✅ Await the params promise
+            setId(resolvedParams.id);
+        }
+        fetchParams();
+        return () => window.removeEventListener("scroll", handleScroll);     
+         
+    }, [])
 
     return (
         <div>   
             <div ref = {PropertInfoRef}>
-                <PropertyInfo/>                  
+                <PropertyInfo property_id={id}/>                  
             </div>         
             <PropertyNav IsNavVisible = {IsNavVisible} />
             <div className="w-full mx-auto min-w-[xl] px-10 lg:px-20 xl:px-36 p-3">

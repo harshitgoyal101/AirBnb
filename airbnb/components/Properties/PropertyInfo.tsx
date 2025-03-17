@@ -11,7 +11,16 @@ import { useEffect, useState } from "react";
 import { apiService } from "@/app/services/apiService";
 import { CalenderMain } from "./CalenderMain";
 
-export const PropertyInfo = () => {
+export type PropertyType = {
+    id?: string;
+    title?: string;
+    description?: string;
+    price_per_night?: number;
+    bedrooms?: number;
+    bathrooms?: number;
+};
+
+export const PropertyInfo = ({ property_id }: { property_id?: string }) => {
 
 
     const [all_aminities, setAll_aminities] = useState<Record<string, string>>({});
@@ -21,7 +30,15 @@ export const PropertyInfo = () => {
         setAll_aminities(temp_all_aminities.data);
     }
 
+    const [property, setProperty] = useState<PropertyType | null>(null);
+
+    const getProperties = async () => {
+        const tmpProperties = await apiService.get('/api/properties/'+property_id);
+        setProperty(tmpProperties.data[0]);
+    }
+
     useEffect(() => {
+        getProperties();
         get_all_aminities();
     }, []);
     
@@ -30,7 +47,7 @@ export const PropertyInfo = () => {
         <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 py-3 flex space-x-4">
             <div className="w-full flex justify-between place-items-center">
                 <div className="text-darkText font-semibold text-2xl">
-                    StayVista at Desert Palms in Anjar-Kutch w/t Pool
+                    {property?.title || "Loading property..."}
                 </div>
                 <div>
                     <Button className="text-darkText rounded-md">
@@ -71,8 +88,7 @@ export const PropertyInfo = () => {
                 </div>
                 <Separator/>
 
-                <Amenities all_aminities={all_aminities}/>
-
+                
                 <Separator/>
                 <CalenderMain/>
             </div>
