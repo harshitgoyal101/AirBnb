@@ -30,7 +30,7 @@ export const PlaceSelect = () => {
             <div className="p-6 m-4 mx-32 border-2 rounded-xl hover:bg-gray-100 hover:border-black  flex justify-between">
                 <div className="w-2/3  text-start">
                     <p className="font-semibold  text-lg text-darkText">A shared room in a hostel</p>
-                    <p className="text-lightText text-sm">Guests sleep in a shared room in a professionally managed hostel with staff on-site 24/7.elves</p>
+                    <p className="text-lightText text-sm">Guests sleep in a shared room in a professionally managed hostel with staff on-site 24/7</p>
                 </div>
                 <Image 
                     width={32}
