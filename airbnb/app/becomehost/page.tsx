@@ -19,7 +19,7 @@ import Link from "next/link";
 const BecomeHost = () => {
   return (
     <div>
-      <nav className ="fixed top-0 w-full h-24 z-10 py-0 px-16 bg-white border-b flex justify-between items-center">
+      <nav className ="fixed top-0 w-full h-24 z-10 py-0 px-6 md:px-16 bg-white border-b flex justify-between items-center">
         <Link href={"/"}>
           <Image 
             width={32}
@@ -58,7 +58,7 @@ const BecomeHost = () => {
               <AmenitiesSelect/>
             </CarouselItem>
             
-            <CarouselItem >                
+            <CarouselItem className="mb-24 max-h-[475px] overflow-y-scroll" >                
               <AddPhotos/>
             </CarouselItem>
                 
