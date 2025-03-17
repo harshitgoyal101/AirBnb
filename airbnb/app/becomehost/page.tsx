@@ -54,7 +54,7 @@ const BecomeHost = () => {
                 <PlaceInfo/>
             </CarouselItem>
 
-            <CarouselItem >                
+            <CarouselItem className="mb-24 max-h-[475px] overflow-y-scroll">                
               <AmenitiesSelect/>
             </CarouselItem>
             
@@ -68,8 +68,13 @@ const BecomeHost = () => {
 
         </CarouselContent>   
         <div className ="fixed bottom-0 w-full h-24 px-16 bg-white border-black border-t-4  flex justify-between items-center">
-            <Button size = {"lg"} className="underline text-darkText font-semibold mr-4 z-10">Back <CarouselPrevious className="opacity-0 hover:opacity-0 disabled:opacity-0" size={"lg"}/> </Button>
-            <Button size = {"lg"} className="outline outline-1 text-white bg-gray-800 hover:bg-black hover:text-white rounded-md font-semibold">Next <CarouselNext size={"lg"} className="opacity-0 hover:opacity-0 disabled:opacity-0"/></Button>
+            <div className="underline text-darkText text-md font-semibold mr-4 z-10">
+              <CarouselPrevious className="opacity-0 hover:opacity-0 disabled:opacity-0" size={"lg"}/> 
+              Back
+            </div>
+            <div className="outline outline-1 py-3 cursor-pointer px-6 text-white items-center bg-gray-800 hover:bg-black hover:text-white rounded-md font-semibold">
+              <CarouselNext size={"lg"} className="opacity-0 hover:opacity-0 w-24 h-10 disabled:opacity-0 right-16"/> Next
+            </div>
         </div>          
     </Carousel>
     </div>
