@@ -3,6 +3,7 @@
 import { apiService } from "@/app/services/apiService";
 import { PropertyCard } from "./PropertyCard";
 import { useEffect, useState } from "react";
+import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link";
 
 export type PropertyType = {
@@ -15,28 +16,49 @@ export type PropertyType = {
 export const Properties = () => {
 
     const [properties, setProperties] = useState<PropertyType[]>([]);
-
+    const [loading, setLoading] = useState(true)
     const getProperties = async () => {
         const tmpProperties = await apiService.get('/api/properties/');
         setProperties(tmpProperties.data);
+        setLoading(false);
     }
 
     useEffect(() => {
         getProperties();
     }, [])
 
-    return (
-        <div className="w-full px-12 lg:px-24 py-3 space-x-6 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-            {properties.map((property) => {
-                return  (
-                    <Link href ={`/property/${property.id}`} key={property.id}>
-                        <PropertyCard 
-                            key={property.id}
-                            property={property}
-                        />
-                    </Link>
-                )
-            })}
+    return (               
+        <div className="w-full px-12 lg:px-24 py-3 space-x-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {
+                loading ?
+                <>
+                {Array.from({ length: 8 }).map((_, index) => (
+                    <div key={index} className="cursor-pointer m-3 rounded-xl" >
+                        <Skeleton className="w-72 h-72 rounded-xl"/>                            
+                        
+                        <div className="w-72 mt-4 flex flex-col space-x-0 text-lightText">
+                            <div className="flex justify-between">
+                                <Skeleton className="w-24 h-6"/>
+                                <Skeleton className="w-10 h-6 mr-2"/>
+                            </div>
+                            <Skeleton className="w-20 my-1 h-4"/>
+                            <Skeleton className="w-16 h-4"/>
+                        </div>
+                    </div>
+                ))}
+                </> : 
+                properties.map((property) => {
+                    return  (
+                        <Link href ={`/property/${property.id}`} key={property.id}>
+                            <PropertyCard 
+                                key={property.id}
+                                property={property}
+                            />
+                        </Link>
+                    )
+                })
+            }
+            
        </div>
     );
 }
