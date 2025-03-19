@@ -1,3 +1,4 @@
 export const DisableNavFooter = [
-    "/becomehost"
+    "/becomehost",
+    "/FillReview"
 ] 

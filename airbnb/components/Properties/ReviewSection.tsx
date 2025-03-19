@@ -7,6 +7,7 @@ import { Model } from '@/components/ui/Model'
 import { RatingsSection } from "./RatingsSection";
 import { Input } from '../ui/input';
 import { Separator } from "../ui/separator";
+import Link from "next/link";
 
 export const ReviewSection = () => {
     const [isOpen, setIsOpen] = useState(false);    
@@ -50,7 +51,12 @@ export const ReviewSection = () => {
         <div className="py- mb-4 m-1 text-lg">
             <Button onClick={()=>{setIsOpen(!isOpen)}} className="text-darkText outline-gray-800 outline-1 font-semibold rounded-lg" size={"lg"} variant={"outline"}>
                 Show all 9 review
-            </Button>            
+            </Button> 
+            <Link href = {"/FillReview"}>
+                <Button className="text-white mx-4 mt-2 border-2 border-transparent hover:border-black bg-airbnb outline-gray-800 outline-1 font-semibold rounded-lg" size={"lg"} variant={"outline"}>
+                    Add a review 
+                </Button>  
+            </Link>
             <Model
                 isOpen = {isOpen}
                 close   ={()=>{setIsOpen(!isOpen)}}
