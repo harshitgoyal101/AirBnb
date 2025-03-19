@@ -27,13 +27,13 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
 
         async function fetchParams() {
             const resolvedParams = await params; // ✅ Await the params promise
+            
             setId(resolvedParams.id);
         }
         fetchParams();
         return () => window.removeEventListener("scroll", handleScroll);     
          
     }, [])
-
     return (
         <div>   
             <div ref = {PropertInfoRef}>
