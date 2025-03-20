@@ -33,10 +33,10 @@ export const Properties = () => {
                 loading ?
                 <>
                 {Array.from({ length: 8 }).map((_, index) => (
-                    <div key={index} className="cursor-pointer m-3 rounded-xl" >
-                        <Skeleton className="w-72 h-72 rounded-xl"/>                            
+                    <div key={index} className="cursor-pointer max-w-72 w-auto m-3 rounded-xl" >
+                        <Skeleton className="max-w-72 h-72 rounded-xl"/>                            
                         
-                        <div className="w-72 mt-4 flex flex-col space-x-0 text-lightText">
+                        <div className="max-w-72 mt-4 flex flex-col space-x-0 text-lightText">
                             <div className="flex justify-between">
                                 <Skeleton className="w-24 h-6"/>
                                 <Skeleton className="w-10 h-6 mr-2"/>
