@@ -18,57 +18,33 @@ export type PropertyType = {
     price_per_night?: number;
     bedrooms?: number;
     bathrooms?: number;
-    image?:string;
-    image2?:string;
-    image3?:string;
-    image4?:string;
-    guests?:number;
-    country?:string;
-    landlord?:string
+    image?: string;
+    image2?: string;
+    image3?: string;
+    image4?: string;
+    guests?: number;
+    country?: string;
+    landlord?: string
 };
 
-export const PropertyInfo = ({ property_id }: { property_id?: string }) => {
+type PropertyInfoProps = {
+    property?: PropertyType;
+    landlord?: any;
+  };
 
+export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
 
     const [all_aminities, setAll_aminities] = useState<Record<string, string>>({});
-    const [landlord, setLandlord] = useState< any| undefined>(undefined);
-
+   
     const get_all_aminities = async() => {
         const temp_all_aminities = await apiService.get("/api/all_aminities/")
         setAll_aminities(temp_all_aminities.data);
     }
 
-    const [property, setProperty] = useState<PropertyType | undefined>(undefined);
-
-    const getProperties = async () => {
-        const tmpProperties = await apiService.get(`/api/properties/${property_id}`);
-        console.log("property",tmpProperties?.data)
-        setProperty(tmpProperties?.data);
-    }
-    const getUserdetails = async () => {
-        if (!property?.landlord) return; // Prevent API call if landlord is missing
-        try {
-            const response = await apiService.get(`/api/auth/${property.landlord}/`);
-            console.log("Landlord Data:", response?.data);
-            setLandlord(response?.data);
-        } catch (error) {
-            console.error("Error fetching landlord details:", error);
-        }
-    };
     useEffect(() => {
-        if(property_id){
-
-            getProperties();
-        }
         get_all_aminities();
-    }, [property_id]);
-
-    useEffect(() => {
-        if (property?.landlord) {
-            getUserdetails();
-        }
-    }, [property?.landlord]);
-    
+    }, []);
+ 
   return (
     <div>
         <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 py-3 flex space-x-4">
@@ -96,7 +72,7 @@ export const PropertyInfo = ({ property_id }: { property_id?: string }) => {
             <div className="w-full md:w-1/2 lg:w-3/5 overflow-y-hidden">
                 <div className="text-darkText font-semibold text-lg mb-5">
                     {property?.description}, {property?.country}
-                    <p className="text-sm text-lightText">15 guests-{property?.guests} bedrooms-{property?.bedrooms} bathrooms-{property?.bathrooms}</p>
+                    <p className="text-sm text-lightText"> guests-{property?.guests} bedrooms-{property?.bedrooms} bathrooms-{property?.bathrooms}</p>
                     <div className="text-sm">★ 4 Reviews</div>
                 </div>
                 <Separator/>

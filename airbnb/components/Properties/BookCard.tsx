@@ -14,7 +14,7 @@ export const BookCard = ({ property }: { property?: PropertyType }) => {
         <Card className="p-6">
             <div className="text-2xl font-semibold flex space-x-3 items-end text-darkText">
                 <div className="line-through text-lightText">₹7,000</div>
-                <div>₹{property?.price_per_night?property?.price_per_night:0}</div>
+                <div>₹{property?.price_per_night}</div>
                 <div className="text-sm pb-0.5">night</div>
             </div>
             <div className="my-5 w-full rounded-md border border-lightText">
@@ -27,8 +27,8 @@ export const BookCard = ({ property }: { property?: PropertyType }) => {
             </Button>
             <div className="text-sm text-lightText text-center p-3">You won't be charged yet</div>
             <div className="flex justify-between p-2 text-mediumText ">
-                <div className="underline md">₹{property?.price_per_night?property?.price_per_night:0}x 1 night</div>
-                <div>₹{property?.price_per_night?property?.price_per_night:0} </div>
+                <div className="underline md">₹{property?.price_per_night}x 1 night</div>
+                <div>₹{property?.price_per_night} </div>
             </div>
             <div className="flex justify-between p-2 text-mediumText ">
                 <div className="underline md">Special offer</div>

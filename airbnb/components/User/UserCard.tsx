@@ -4,11 +4,14 @@ import { Separator } from "@/components/ui/separator";
 import { cn } from "@/lib/utils"
 import Image from "next/image";
 
-export const UserCard = ({
-    className
-}:{
-    className ?: string
-}) => {
+
+type UserCardProps = {
+    className?: string;
+    landlord: any;
+  };
+
+
+export const UserCard = ({ className, landlord }: UserCardProps) => {
     return (
         <Card className = {cn('p-6 flex flex-row justify-between items-center', className)}>
             <div className="flex flex-col justify-between items-center">
@@ -20,7 +23,7 @@ export const UserCard = ({
                     alt="Small Image 1"
                 />
                 <div className="text-2xl text-darkText font-bold">
-                    Harshit
+                    {landlord?.name}
                 </div>
                 <div className="text-md font-bold text-lightText flex items-center">
                     <RiMedalFill className="mx-1"/>Superhost
