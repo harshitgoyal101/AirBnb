@@ -7,10 +7,10 @@ import { Skeleton } from "@/components/ui/skeleton"
 import Link from "next/link";
 
 export type PropertyType = {
-    id: string,
-    title: string,
-    price_per_night: number,
-    image_url: string
+    id?: string,
+    title?: string,
+    price_per_night?: number,
+    image_url?: string
 }
 
 export const Properties = () => {

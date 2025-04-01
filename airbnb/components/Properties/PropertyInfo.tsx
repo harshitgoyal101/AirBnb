@@ -18,30 +18,33 @@ export type PropertyType = {
     price_per_night?: number;
     bedrooms?: number;
     bathrooms?: number;
+    image?: string;
+    image2?: string;
+    image3?: string;
+    image4?: string;
+    guests?: number;
+    country?: string;
+    landlord?: string
 };
 
-export const PropertyInfo = ({ property_id }: { property_id?: string }) => {
+type PropertyInfoProps = {
+    property?: PropertyType;
+    landlord?: any;
+  };
 
+export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
 
     const [all_aminities, setAll_aminities] = useState<Record<string, string>>({});
-
+   
     const get_all_aminities = async() => {
         const temp_all_aminities = await apiService.get("/api/all_aminities/")
         setAll_aminities(temp_all_aminities.data);
     }
 
-    const [property, setProperty] = useState<PropertyType | null>(null);
-
-    const getProperties = async () => {
-        const tmpProperties = await apiService.get('/api/properties/'+property_id);
-        setProperty(tmpProperties.data[0]);
-    }
-
     useEffect(() => {
-        getProperties();
         get_all_aminities();
     }, []);
-    
+ 
   return (
     <div>
         <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 py-3 flex space-x-4">
@@ -62,14 +65,14 @@ export const PropertyInfo = ({ property_id }: { property_id?: string }) => {
 
 
         <div className="px-10 lg:px-20 xl:px-36" id = "PhotoRef">
-            <PropertiesImages/>
+            <PropertiesImages property={property}/>
         </div>
         
         <div className="flex px-10 lg:px-20 xl:px-36 py-3" id="AmenitiesRef">
             <div className="w-full md:w-1/2 lg:w-3/5 overflow-y-hidden">
                 <div className="text-darkText font-semibold text-lg mb-5">
-                    Entire villa in Anjar, India
-                    <p className="text-sm text-lightText">15 guests-5 bedrooms-4 beds-7 bathrooms-6</p>
+                    {property?.description}, {property?.country}
+                    <p className="text-sm text-lightText"> guests-{property?.guests} bedrooms-{property?.bedrooms} bathrooms-{property?.bathrooms}</p>
                     <div className="text-sm">★ 4 Reviews</div>
                 </div>
                 <Separator/>
@@ -82,7 +85,7 @@ export const PropertyInfo = ({ property_id }: { property_id?: string }) => {
                         alt="Small Image 1"
                     />
                     <div className="text-darkText font-semibold text-lg">
-                        Hosted by Atul
+                        Hosted by {landlord?.name}
                         <p className="text-sm text-lightText">2 years hosting</p>
                     </div>
                 </div>
@@ -93,7 +96,7 @@ export const PropertyInfo = ({ property_id }: { property_id?: string }) => {
                 <CalenderMain/>
             </div>
             <div className="invisible w-0 md:visible md:w-1/2 lg:w-2/5 pr-0 py-5 pl-0 md:pl-12 lg:pl-20  md:sticky md:top-0 md:h-screen">
-                <BookCard/>
+                <BookCard property ={property}/>
             </div>
         </div>
     </div>

@@ -1,54 +1,84 @@
-"use client"
-import { Separator } from "@/components/ui/separator"
-import { PropertyInfo } from "@/components/Properties/PropertyInfo";
+"use client";
+import React from "react";
+import { use } from "react";
+import { Separator } from "@/components/ui/separator";
+import { PropertyInfo, PropertyType } from "@/components/Properties/PropertyInfo";
 import { RatingsSection } from "@/components/Properties/RatingsSection";
 import { ReviewSection } from "@/components/Properties/ReviewSection";
 import { HostDetails } from "@/components/Properties/HostDetails";
 import { useRef, useState, useEffect } from "react";
 import { PropertyNav } from "@/components/Properties/PropertyNav";
+import { apiService } from "@/app/services/apiService";
 
+export default function PropertyDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params);
 
-export default function PropertyDetailPage({ params }: { params: { id: string } }) {
-    
-    const [IsNavVisible, SetIsNavVisible] = useState(false);
-    const [id, setId] = useState("");
-    const PropertInfoRef = useRef<HTMLDivElement>(null);
-    
-    useEffect(() => {
-        const handleScroll = ()=> {
-            if(PropertInfoRef.current) {
-                const triggerPosition = PropertInfoRef.current.offsetTop + PropertInfoRef.current.clientHeight - 500;
-                const scrollPosition = window.scrollY;
-                (scrollPosition > triggerPosition) ? SetIsNavVisible(true) : SetIsNavVisible(false);
-            }
+    const [isNavVisible, setIsNavVisible] = useState(false);
+    const [property, setProperty] = useState<PropertyType | undefined>(undefined);
+    const [landlord, setLandlord] = useState<any | undefined>(undefined);
+    const propertyInfoRef = useRef<HTMLDivElement>(null);
+
+    const getProperties = async () => {
+        try {
+            const res = await apiService.get(`/api/properties/${id}`);
+            console.log("property", res?.data);
+            setProperty(res?.data);
+        } catch (error) {
+            console.error("Error fetching property:", error);
         }
+    };
+
+    const getUserdetails = async () => {
+        if (!property?.landlord) return;
+        try {
+            const response = await apiService.get(`/api/auth/${property.landlord}/`);
+            console.log("Landlord Data:", response?.data);
+            setLandlord(response?.data);
+        } catch (error) {
+            console.error("Error fetching landlord details:", error);
+        }
+    };
+
+    useEffect(() => {
+        const handleScroll = () => {
+            if (propertyInfoRef.current) {
+                const triggerPosition = propertyInfoRef.current.offsetTop + propertyInfoRef.current.clientHeight - 500;
+                const scrollPosition = window.scrollY;
+                setIsNavVisible(scrollPosition > triggerPosition);
+            }
+        };
 
         window.addEventListener("scroll", handleScroll);
+        return () => window.removeEventListener("scroll", handleScroll);
+    }, []);
 
-        async function fetchParams() {
-            const resolvedParams = await params; // ✅ Await the params promise
-            setId(resolvedParams.id);
+    useEffect(() => {
+        if (id) {
+            getProperties();
         }
-        fetchParams();
-        return () => window.removeEventListener("scroll", handleScroll);     
-         
-    }, [])
+    }, [id]);
+
+    useEffect(() => {
+        if (property?.landlord) {
+            getUserdetails();
+        }
+    }, [property?.landlord]);
 
     return (
-        <div>   
-            <div ref = {PropertInfoRef}>
-                <PropertyInfo property_id={id}/>                  
-            </div>         
-            <PropertyNav IsNavVisible = {IsNavVisible} />
+        <div>
+            <div ref={propertyInfoRef}>
+                <PropertyInfo property={property} landlord={landlord} />
+            </div>
+            <PropertyNav IsNavVisible={isNavVisible} />
             <div className="w-full mx-auto min-w-[xl] px-10 lg:px-20 xl:px-36 p-3">
-                <Separator className="invisible md:visible "/>
-                <RatingsSection type = "default"/>
-                <Separator/>
-                <div id="ReviewRef" >
+                <Separator className="invisible md:visible" />
+                <RatingsSection type="default" />
+                <Separator />
+                <div id="ReviewRef">
                     <ReviewSection />
                 </div>
-                <Separator/>
-                <HostDetails/>
+                <Separator />
+                <HostDetails landlord={landlord} />
             </div>
         </div>
     );
