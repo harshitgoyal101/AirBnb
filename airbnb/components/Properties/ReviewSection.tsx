@@ -74,12 +74,12 @@ export const ReviewSection = () => {
                 close   ={()=>{setIsOpen(!isOpen)}}
                 size="Full"
             >   
-                <div className="w-[1000px] flex pl-5 pt-10 pr-10">
-                    <div className="w-2/5 sticky ">
+                <div className="w-72 md:w-[700px] lg:w-[1000px] max-w-[1000px] flex flex-col lg:flex-row md:pl-5 pt-10 md:pr-10">
+                    <div className="w-full lg:w-2/5 sticky ">
                         <div className="text-2xl font-semibold ml-4">★ 4.86</div>
                         <RatingsSection type = "pop"/>
                     </div>
-                    <div className="w-3/5 ">
+                    <div className="w-full mt-8 lg:mt-0 lg:w-3/5 ">
                         <div className="sticky ">
                             <div className="flex justify-between">
                                 <div>
