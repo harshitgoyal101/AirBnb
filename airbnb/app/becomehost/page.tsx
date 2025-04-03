@@ -26,7 +26,7 @@ const BecomeHost = () => {
         >
                 
         <CarouselContent className="w-full mb-10">
-            <CarouselItem className="mb-24 max-h-[475px] overflow-y-auto">
+            <CarouselItem className="mb-24 max-h-[500px] overflow-y-auto">
                 <CategorySelect/>
             </CarouselItem>
             
@@ -38,11 +38,11 @@ const BecomeHost = () => {
                 <PlaceInfo/>
             </CarouselItem>
 
-            <CarouselItem className="mb-24 max-h-[475px] overflow-y-scroll">                
+            <CarouselItem className="mb-24 max-h-[500px] overflow-y-scroll">                
               <AmenitiesSelect/>
             </CarouselItem>
             
-            <CarouselItem className="mb-24 max-h-[475px] overflow-y-scroll" >                
+            <CarouselItem className="mb-24 max-h-[500px] overflow-y-scroll" >                
               <AddPhotos/>
             </CarouselItem>
                 

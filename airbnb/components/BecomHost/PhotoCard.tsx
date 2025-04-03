@@ -1,9 +1,9 @@
 import { Button } from "../ui/button"
 import Image from "next/image"
 
-const PhotoCard = () => {
+const PhotoCard = ({className} : {className ?: string}) => {
   return (
-    <div className="m-2 flex flex-col justify-center items-center h-72 rounded-xl border-dotted border-black border-2">
+    <div className={` ${className} m-2 flex flex-col justify-center items-center h-72 rounded-xl border-dotted border-black border-2`}>
         <div className="text-xl font-semibold flex flex-col justify-center items-center  text-lightText">
         <Image 
             width = {56} 
