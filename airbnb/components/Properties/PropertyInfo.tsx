@@ -10,6 +10,7 @@ import { Button } from "../ui/button"
 import { useEffect, useState } from "react";
 import { apiService } from "@/app/services/apiService";
 import { CalenderMain } from "./CalenderMain";
+import { Skeleton } from "../ui/skeleton";
 
 export type PropertyType = {
     id?: string;
@@ -47,10 +48,11 @@ export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
  
   return (
     <div>
+        
         <div className="w-full mx-auto px-10 lg:px-20 xl:px-36 py-3 flex space-x-4">
             <div className="w-full flex justify-between place-items-center">
-                <div className="text-darkText font-semibold text-2xl">
-                    {property?.title || "Loading property..."}
+                <div className="text-darkText w-1/2 font-semibold text-2xl">
+                    {property?.title || (<Skeleton className="h-10 w-full md:w-80 my-2"/>)}
                 </div>
                 <div>
                     <Button className="text-darkText rounded-md">
@@ -71,8 +73,11 @@ export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
         <div className="flex px-10 lg:px-20 xl:px-36 py-3" id="AmenitiesRef">
             <div className="w-full md:w-1/2 lg:w-3/5 overflow-y-hidden">
                 <div className="text-darkText font-semibold text-lg mb-5">
-                    {property?.description}, {property?.country}
-                    <p className="text-sm text-lightText"> guests-{property?.guests} bedrooms-{property?.bedrooms} bathrooms-{property?.bathrooms}</p>
+                    {property?.description || (<Skeleton className="h-6 w-xl mt-2"/>)} {property?.country || (<Skeleton className="h-6 w-44 mt-1"/>)}
+                    <div className="text-sm text-lightText items-center"> 
+                        guests-{property?.guests || (<Skeleton className="h-4 w-4 inline-flex ml-1 mr-2 mt-1"/>)} 
+                        bedrooms-{property?.bedrooms  || (<Skeleton className="h-4 w-4 inline-flex ml-1 mr-2 mt-1"/>)} 
+                        bathrooms-{property?.bathrooms  || (<Skeleton className="h-4 w-4 inline-flex ml-1 mr-2 mt-1"/>)}</div>
                     <div className="text-sm">★ 4 Reviews</div>
                 </div>
                 <Separator/>
@@ -85,7 +90,7 @@ export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
                         alt="Small Image 1"
                     />
                     <div className="text-darkText font-semibold text-lg">
-                        Hosted by {landlord?.name}
+                        Hosted by {landlord?.name || (<Skeleton className="h-6 w-1/2 inline-flex"/>)}
                         <p className="text-sm text-lightText">2 years hosting</p>
                     </div>
                 </div>

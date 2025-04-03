@@ -73,14 +73,12 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
             </div>
         ):
         (
-             <div className="relative rounded-2xl justify-center grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <Skeleton className="relative col-span-2 h-96 w-full row-span-2 pr-4"/>
-                <Skeleton className="relative h-44 mb-2 w-full mx-2"/>
-                <Skeleton className="relative h-44 mb-2 w-full mx-2"/>
-                <Skeleton className="relative h-48 w-11/12 mx-2"/>
-                <Skeleton className="relative h-48 w-11/12 mx-2"/>
-
-                
+             <div className="relative rounded-2xl h-96 justify-center grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <Skeleton className="relative col-span-2 h-0 md:h-full  w-full row-span-2"/>
+                <Skeleton className="relative h-44 mb-2 w-11/12 md:ml-4"/>
+                <Skeleton className="relative h-44 mb-2 w-11/12 md:ml-4 lg:w-full lg:ml-1"/>
+                <Skeleton className="relative h-48 mt-1 w-11/12 md:ml-4 block lg:block  md:hidden"/>
+                <Skeleton className="relative h-48 mt-1  w-11/12 md:w-full md:ml-1 block lg:block md:hidden"/>                
              </div>
             
         )}
