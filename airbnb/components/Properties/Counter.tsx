@@ -1,18 +1,47 @@
 "use client"
-import { useState } from 'react'
 import { Button } from "@/components/ui/button";
 
-export const Counter = () => {
+interface CounterProps {
+    value: number;
+    onChange: (value: number) => void;
+    min?: number;
+    max?: number;
+}
 
-    const [count, SetCount] = useState(0);
-    const increment = () => SetCount(count+1);
-    const decrement = () => SetCount(count-1);
+export const Counter = ({ value, onChange, min = 0, max = 16 }: CounterProps) => {
+    const increment = () => {
+        if (value < max) {
+            onChange(value + 1);
+        }
+    };
+    
+    const decrement = () => {
+        if (value > min) {
+            onChange(value - 1);
+        }
+    };
     
     return (
         <div className='flex justify-center items-center'>
-            <Button variant ={"outline"} size = {"icon"} className='outline-1 hover:outline-slate-900' onClick={decrement}>-</Button>
-            <div className='m-4 min-w-3 max-w-3'>{count}</div>
-            <Button  variant ={"outline"}size = {"icon"} className='outline-1 hover:outline-slate-900' onClick={increment}>+</Button>
+            <Button 
+                variant={"outline"} 
+                size={"icon"} 
+                className='outline-1 hover:outline-slate-900' 
+                onClick={decrement}
+                disabled={value <= min}
+            >
+                -
+            </Button>
+            <div className='m-4 min-w-3 max-w-3'>{value}</div>
+            <Button  
+                variant={"outline"}
+                size={"icon"} 
+                className='outline-1 hover:outline-slate-900' 
+                onClick={increment}
+                disabled={value >= max}
+            >
+                +
+            </Button>
         </div>
     )
 }
