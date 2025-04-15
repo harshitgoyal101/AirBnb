@@ -25,6 +25,10 @@ def properties_list(request):
     if category:
         properties = properties.filter(category__name__iexact=category)
     
+    landlord = request.GET.get('landlord')
+    if landlord_id:
+        properties = properties.filter(landlord__email=landlord)
+    
     serializer = PropertiesListSerializers(properties, many=True)
     
     return JsonResponse({
