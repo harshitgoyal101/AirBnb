@@ -15,13 +15,16 @@ import { IconWithLabel } from "./ui/IconWIthLabel";
 import { useState, useEffect } from 'react';
 import { Skeleton } from "./ui/skeleton";
 
-export const Categories = () => {
+interface CategoriesProps {
+    onCategorySelect: (category: string | undefined) => void;
+}
+
+export const Categories = ({ onCategorySelect }: CategoriesProps) => {
 
 	const [withTax, setWithTax] = useState(true);
-
-    const [loading, setLoading] = useState(true)
-
+    const [loading, setLoading] = useState(true);
     const [categories, setCategories] = useState<String[]>([]);
+    const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
 
     const getCategories = async () => {
         const tmpCategories = await apiService.get('/api/categories/');
@@ -32,6 +35,16 @@ export const Categories = () => {
     useEffect(() => {
         getCategories();
     }, [])
+
+    const handleCategoryClick = (category: string) => {
+        if (selectedCategory === category) {
+            setSelectedCategory(undefined);
+            onCategorySelect(undefined);
+        } else {
+            setSelectedCategory(category);
+            onCategorySelect(category);
+        }
+    }
     
     return (
         <div className="w-full mx-auto px-12 md:px-24 lg:px-24 py-3 flex-col lg:flex-row flex space-x-8 items-center ">
@@ -63,7 +76,12 @@ export const Categories = () => {
                             <CarouselContent>
                                 {categories.map((category, index) => {
                                     return <CarouselItem key={index} className="basis-1/10 mt-2">
-                                        <IconWithLabel type={String(category)}/>
+                                        <div 
+                                            onClick={() => handleCategoryClick(String(category))}
+                                            className={`cursor-pointer ${selectedCategory === category ? 'border-b-2 border-black' : ''}`}
+                                        >
+                                            <IconWithLabel type={String(category)}/>
+                                        </div>
                                     </CarouselItem>
                                 })}
                             </CarouselContent>

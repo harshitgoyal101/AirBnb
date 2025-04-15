@@ -13,19 +13,28 @@ export type PropertyType = {
     image_url?: string
 }
 
-export const Properties = () => {
+interface PropertiesProps {
+    category?: string;
+}
+
+export const Properties = ({ category }: PropertiesProps) => {
 
     const [properties, setProperties] = useState<PropertyType[]>([]);
     const [loading, setLoading] = useState(true)
+
     const getProperties = async () => {
-        const tmpProperties = await apiService.get('/api/properties/');
+        const url = category 
+            ? `/api/properties/?category=${category}`
+            : '/api/properties/';
+        const tmpProperties = await apiService.get(url);
         setProperties(tmpProperties.data);
         setLoading(false);
     }
 
     useEffect(() => {
+        setLoading(true);
         getProperties();
-    }, [])
+    }, [category])
 
     return (               
         <div className="w-full px-12 lg:px-24 py-3 space-x-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
