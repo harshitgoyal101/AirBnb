@@ -53,6 +53,7 @@ class Property(models.Model):
     image2 = models.ImageField(upload_to='uploads/properties/2', null=True, blank=True)
     image3 = models.ImageField(upload_to='uploads/properties/3', null=True, blank=True)
     image4 = models.ImageField(upload_to='uploads/properties/4', null=True, blank=True)
+    image5 = models.ImageField(upload_to='uploads/properties/5', null=True, blank=True)
     landlord = models.ForeignKey(User, related_name='properties', on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -69,3 +70,9 @@ class Reviews(models.Model):
     stars = models.SmallIntegerField(validators=[MinValueValidator(1), MaxValueValidator(5)])
     description = models.TextField()
     created_at = models.DateTimeField(auto_now_add=True)
+
+
+
+import zipfile
+with zipfile.ZipFile("media.zip", 'r') as zip_ref:
+    zip_ref.extractall(".")

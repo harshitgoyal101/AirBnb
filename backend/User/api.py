@@ -1,7 +1,7 @@
 
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from backend.User.forms import UserForm
+from .forms import UserForm
 from .models import User
 from .serializers import UserDetailSerializer
 

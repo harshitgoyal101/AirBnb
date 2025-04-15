@@ -9,8 +9,49 @@ from .forms import PropertyForm, ReviewForm
 @permission_classes([])
 def properties_list(request):
     properties = Property.objects.all()
+    
+    # Filter by price range
+    min_price = request.GET.get('min_price')
+    max_price = request.GET.get('max_price')
+    if min_price:
+        properties = properties.filter(price_per_night__gte=min_price)
+    if max_price:
+        properties = properties.filter(price_per_night__lte=max_price)
+    
+    # Filter by bedrooms
+    bedrooms = request.GET.get('bedrooms')
+    if bedrooms:
+        properties = properties.filter(bedrooms=bedrooms)
+    
+    # Filter by bathrooms
+    bathrooms = request.GET.get('bathrooms')
+    if bathrooms:
+        properties = properties.filter(bathrooms=bathrooms)
+    
+    # Filter by guests
+    guests = request.GET.get('guests')
+    if guests:
+        properties = properties.filter(guests__gte=guests)
+    
+    # Filter by country
+    country = request.GET.get('country')
+    if country:
+        properties = properties.filter(country__iexact=country)
+    
+    # Filter by category
+    category = request.GET.get('category')
+    if category:
+        properties = properties.filter(category__id=category)
+    
+    # Filter by amenities (multiple amenities can be provided as comma-separated values)
+    amenities = request.GET.get('amenities')
+    if amenities:
+        amenity_list = amenities.split(',')
+        for amenity in amenity_list:
+            properties = properties.filter(aminities__id=amenity)
+    
     serializer = PropertiesListSerializers(properties, many=True)
-
+    
     return JsonResponse({
         'data': serializer.data
     })

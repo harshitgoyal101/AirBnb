@@ -64,6 +64,33 @@ categories = [
     'Towers'
 ]
 
-def run(*args):
-    for category in categories:
-        Constant.objects.create(title=category, type="Categories")
+aminities = [
+    {
+        "title": "Carbon monoxide alarm",
+        "description": "There is carbon monoxide detector on the property."
+    }, {
+        "title": "Smoke alarm",
+        "description": "There is smoke alarm on the property."
+    }, {
+        "title": "Bed linen",
+        "description": "Egyptian cotton linen"
+    }, {
+        "title": "Dishes and cutlery",
+        "description": "Bowls, chopsticks, plates, cups, etc."
+    }, {
+        "title": "Barbecue utensils",
+        "description": "Grill, charcoal, bamboo skewers/iron skewers, etc."
+    }, {
+        "title": "Long-term stays allowed",
+        "description": "Allow stays of 28 days or more"
+    }, {
+        "title": "Building staff",
+        "description": "Someone is available 24 hours a day to let guests in"
+    }
+]
+
+for category in categories:
+    Constant.objects.create(title=category, type="Categories")
+for aminity in aminities:
+    Constant.objects.create(title=aminity['title'], description=aminity['description'], type="Aminities")
+
