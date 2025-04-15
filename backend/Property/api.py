@@ -23,7 +23,7 @@ def properties_list(request):
     
     category = request.GET.get('category')
     if category:
-        properties = properties.filter(category__id=category)
+        properties = properties.filter(category__name__iexact=category)
     
     serializer = PropertiesListSerializers(properties, many=True)
     
