@@ -4,12 +4,14 @@ import { useState } from "react"
 
 interface PlaceSelectProps {
     onPlaceSelect: (placeType: string | null) => void;
-    selectedPlace: string | null;
+    selectedPlace?: string | null;
 }
 
-export const PlaceSelect = ({ onPlaceSelect, selectedPlace }: PlaceSelectProps) => {
+export const PlaceSelect = ({ onPlaceSelect, selectedPlace: initialPlace = null }: PlaceSelectProps) => {
+    const [selectedPlace, setSelectedPlace] = useState<string | null>(initialPlace);
 
     const handlePlaceClick = (placeType: string) => {
+        setSelectedPlace(placeType);
         onPlaceSelect(placeType);
     };
 

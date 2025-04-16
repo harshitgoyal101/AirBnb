@@ -6,12 +6,13 @@ import { Skeleton } from "../ui/skeleton";
 
 interface CategorySelectProps {
     onCategorySelect: (category: string | null) => void;
-    selectedCategory: string | null;
+    selectedCategory?: string | null;
 }
 
-export const CategorySelect = ({ onCategorySelect, selectedCategory }: CategorySelectProps) => {
+export const CategorySelect = ({ onCategorySelect, selectedCategory: initialCategory = null }: CategorySelectProps) => {
     const [categories, setCategories] = useState<String[]>([]);
     const [loading, setLoading] = useState(true);
+    const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory);
 
     const getCategories = async () => {
         const tmpCategories = await apiService.get('/api/categories/');

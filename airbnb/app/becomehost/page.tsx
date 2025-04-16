@@ -29,6 +29,7 @@ const BecomeHost = () => {
     bedrooms: 1,
     bathrooms: 1
   });
+  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
 
   const handleCategorySelect = (category: string | null) => {
     setSelectedCategory(category);
@@ -40,6 +41,10 @@ const BecomeHost = () => {
 
   const handlePlaceInfoChange = (info: PlaceInfoType) => {
     setPlaceInfo(info);
+  };
+
+  const handleAmenitiesChange = (amenities: string[]) => {
+    setSelectedAmenities(amenities);
   };
 
   return (
@@ -66,7 +71,7 @@ const BecomeHost = () => {
             </CarouselItem>
 
             <CarouselItem className="mb-24 max-h-[500px] overflow-y-scroll">                
-              <AmenitiesSelect/>
+              <AmenitiesSelect onAmenitiesChange={handleAmenitiesChange} />
             </CarouselItem>
             
             <CarouselItem className="mb-24 max-h-[500px] overflow-y-scroll" >                
