@@ -10,9 +10,9 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
         
         {property?.image ?
         (
-            <div className="relative rounded-2xl grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="relative grid max-h-[475px] overflow-hidden grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 
-                    <div className="relative col-span-2 row-span-2 m-1">
+                    <div className="relative max-h-[500px] col-span-2 row-span-2 m-1">
                         <Image
                             width={1600}
                             height={900}
@@ -22,7 +22,7 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
                         />
                     </div>
 
-                    <div className="relative m-1">
+                    <div className="relative max-h-[250px] m-1">
                         <Image
                             width={800}
                             height={450}
@@ -32,7 +32,7 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
                         />
                     </div>
                 
-                    <div className="relative m-1">
+                    <div className="relative max-h-[250px] m-1">
                         <Image
                             width={800}
                             height={450}
@@ -42,7 +42,7 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
                         />
                     </div>
 
-                    <div className="relative m-1 block lg:block md:hidden">
+                    <div className="relative max-h-[250px] m-1 block lg:block md:hidden">
                         <Image
                             width={800}
                             height={450}
@@ -53,7 +53,7 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
                     </div>
 
                 {property?.image4 && (
-                    <div className="relative m-1 block lg:block md:hidden">
+                    <div className="relative m-1 block max-h-[250px] lg:block md:hidden">
                         <Image
                             width={800}
                             height={450}
@@ -73,12 +73,12 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
             </div>
         ):
         (
-             <div className="relative rounded-2xl h-96 justify-center grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-                <Skeleton className="relative col-span-2 h-0 md:h-full  w-full row-span-2"/>
-                <Skeleton className="relative h-44 mb-2 w-11/12 md:ml-4"/>
-                <Skeleton className="relative h-44 mb-2 w-11/12 md:ml-4 lg:w-full lg:ml-1"/>
-                <Skeleton className="relative h-48 mt-1 w-11/12 md:ml-4 block lg:block  md:hidden"/>
-                <Skeleton className="relative h-48 mt-1  w-11/12 md:w-full md:ml-1 block lg:block md:hidden"/>                
+             <div className=" rounded-2xl h-96 justify-center grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+                <Skeleton className=" col-span-2 h-0 md:h-full  w-full row-span-2"/>
+                <Skeleton className=" h-44 mb-2 w-11/12 md:ml-4"/>
+                <Skeleton className=" h-44 mb-2 w-11/12 md:ml-4 lg:w-full lg:ml-1"/>
+                <Skeleton className=" h-48 mt-1 w-11/12 md:ml-4 block lg:block  md:hidden"/>
+                <Skeleton className=" h-48 mt-1  w-11/12 md:w-full md:ml-1 block lg:block md:hidden"/>                
              </div>
             
         )}
