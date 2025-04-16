@@ -27,6 +27,13 @@ interface Photo {
     url: string | null;
 }
 
+interface FormData {
+    propertyName: string;
+    description: string;
+    pricePerNight: string;
+    city: string;
+}
+
 const BecomeHost = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>("Desert");
   const [selectedPlace, setSelectedPlace] = useState<string | null>("room");
@@ -43,6 +50,12 @@ const BecomeHost = () => {
     { id: 4, file: null, url: null },
     { id: 5, file: null, url: null }
   ]);
+  const [formData, setFormData] = useState<FormData>({
+    propertyName: "",
+    description: "",
+    pricePerNight: "",
+    city: ""
+  });
 
   const handleCategorySelect = (category: string | null) => {
     setSelectedCategory(category);
@@ -106,7 +119,7 @@ const BecomeHost = () => {
             </CarouselItem>
                 
             <CarouselItem >                
-              <AddDescription/>
+              <AddDescription formData={formData} setFormData={setFormData} />
             </CarouselItem>
 
         </CarouselContent>   
