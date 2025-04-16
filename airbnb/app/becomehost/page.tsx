@@ -17,6 +17,7 @@ import {
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
+import { apiService } from "../services/apiService";
 
 interface PlaceInfoType {
     guests: number;
@@ -144,37 +145,44 @@ const BecomeHost = () => {
     try {
       const formDataToSend = new FormData();
       
-      formDataToSend.append('propertyName', formData.propertyName);
+      formDataToSend.append('title', formData.propertyName);
       formDataToSend.append('description', formData.description);
-      formDataToSend.append('pricePerNight', formData.pricePerNight);
-      formDataToSend.append('city', formData.city);
-      formDataToSend.append('category', selectedCategory || '');
-      formDataToSend.append('placeType', selectedPlace || '');
+      formDataToSend.append('price_per_night', formData.pricePerNight);
+      formDataToSend.append('country', formData.city);
+      formDataToSend.append('country_code', 'IN');
       formDataToSend.append('guests', placeInfo.guests.toString());
       formDataToSend.append('bedrooms', placeInfo.bedrooms.toString());
       formDataToSend.append('bathrooms', placeInfo.bathrooms.toString());
-      formDataToSend.append('amenities', JSON.stringify(selectedAmenities));
+      
+      if (selectedCategory) {
+        formDataToSend.append('category', selectedCategory);
+      }
+      
+      if (selectedAmenities.length > 0) {
+        formDataToSend.append('aminities', JSON.stringify(selectedAmenities));
+      }
       
       photos.forEach((photo, index) => {
         if (photo.file) {
-          formDataToSend.append(`photo${index + 1}`, photo.file);
+          if (index === 0) {
+            formDataToSend.append('image', photo.file);
+          } else {
+            formDataToSend.append(`image${index + 1}`, photo.file);
+          }
         }
       });
 
-      const response = await fetch('/api/create_property', {
-        method: 'POST',
-        body: formDataToSend,
-      });
+      const response = await apiService.post('/api/properties/create/', formDataToSend);
 
-      if (!response.ok) {
-        throw new Error('Failed to create property');
+      if (response.success) {
+        toast.success('Property created successfully!');  
+        router.push('/');
+      } else {
+        throw new Error(response.error || 'Failed to create property');
       }
-
-      toast.success('Property created successfully!');
-      router.push('/hosting'); 
     } catch (error) {
       console.error('Error creating property:', error);
-      toast.error('Failed to create property. Please try again.');
+      toast.error(error instanceof Error ? error.message : 'Failed to create property. Please try again.');
     }
   };
 
