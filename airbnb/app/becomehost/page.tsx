@@ -21,6 +21,12 @@ interface PlaceInfoType {
     bathrooms: number;
 }
 
+interface Photo {
+    id: number;
+    file: File | null;
+    url: string | null;
+}
+
 const BecomeHost = () => {
   const [selectedCategory, setSelectedCategory] = useState<string | null>("Desert");
   const [selectedPlace, setSelectedPlace] = useState<string | null>("room");
@@ -30,6 +36,13 @@ const BecomeHost = () => {
     bathrooms: 1
   });
   const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
+  const [photos, setPhotos] = useState<Photo[]>([
+    { id: 1, file: null, url: null },
+    { id: 2, file: null, url: null },
+    { id: 3, file: null, url: null },
+    { id: 4, file: null, url: null },
+    { id: 5, file: null, url: null }
+  ]);
 
   const handleCategorySelect = (category: string | null) => {
     setSelectedCategory(category);
@@ -46,6 +59,20 @@ const BecomeHost = () => {
   const handleAmenitiesChange = (amenities: string[]) => {
     setSelectedAmenities(amenities);
   };
+
+  const handlePhotoChange = (id: number, file: File | null) => {
+    setPhotos(prevPhotos => 
+      prevPhotos.map(photo => 
+        photo.id === id 
+          ? { ...photo, file, url: file ? URL.createObjectURL(file) : null } 
+          : photo
+      )
+    );
+  };
+
+  const canProceed = selectedCategory !== null && 
+                    selectedPlace !== null && 
+                    placeInfo.guests > 0;
 
   return (
     <div>
@@ -75,7 +102,7 @@ const BecomeHost = () => {
             </CarouselItem>
             
             <CarouselItem className="mb-24 max-h-[500px] overflow-y-scroll" >                
-              <AddPhotos/>
+              <AddPhotos photos={photos} onPhotoChange={handlePhotoChange} />
             </CarouselItem>
                 
             <CarouselItem >                

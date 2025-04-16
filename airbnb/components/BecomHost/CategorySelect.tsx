@@ -25,6 +25,7 @@ export const CategorySelect = ({ onCategorySelect, selectedCategory: initialCate
     }, [])
 
     const handleCategoryClick = (category: string) => {
+        setSelectedCategory(category);
         onCategorySelect(category);
     };
 
