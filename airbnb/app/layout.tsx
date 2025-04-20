@@ -6,6 +6,7 @@ import { LoginModel } from "@/components/Models/LoginModel";
 import { SignUpModel } from "@/components/Models/SignUpModel";
 import { Footer } from "@/components/Footer";
 import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
     variable: "--font-geist-sans",
@@ -40,6 +41,7 @@ export default async function RootLayout({
                     <LoginModel/>
                     <SignUpModel/>
                     <Footer />
+                    <Toaster />
                 </AuthProvider>
             </body>
         </html>
