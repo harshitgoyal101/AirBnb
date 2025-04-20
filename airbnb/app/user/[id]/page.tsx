@@ -22,7 +22,7 @@ export default function UserDetailPage() {
     return (
         <div className="w-full flex flex-col justify-center items-center lg:items-start lg:flex-row px-20">
             <div className="flex flex-col mt-8 justify-center p-12 min-w-[480px] max-w-[500px] lg:sticky lg:top-0 lg:h-screen">
-                <UserCard/> 
+                <UserCard /> 
                 <div className="w-full border border-gray-300 rounded-xl p-6 my-12 ">
                     <div className="text-2xl text-darkText mb-4">Tarpan's confirmed information</div>
                     <div className="text-xl text-darkText m-4 flex items-center">

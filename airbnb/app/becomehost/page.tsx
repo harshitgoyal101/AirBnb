@@ -18,6 +18,7 @@ import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { apiService } from "../services/apiService";
+import { useAuthDate } from "@/context/AuthContext";
 
 interface PlaceInfoType {
     guests: number;
@@ -63,6 +64,30 @@ const BecomeHost = () => {
     pricePerNight: "",
     city: ""
   });
+  const [accessToken, setAccessToken] = useState<string | null>(null);
+  const { isAuthenticated } = useAuthDate();
+
+  useEffect(() => {
+    if (!isAuthenticated) {
+      toast.error("First Login, Please try again.");
+      router.push('/');
+      return;
+    }
+
+    async function fetchToken() {
+      try {
+        const response = await fetch("/api/auth/getToken");
+        const data = await response.json();
+        setAccessToken(data.accessToken);
+      } catch (error) {
+        console.error("Failed to fetch token", error);
+        toast.error("Authentication error. Please try again.");
+        router.push('/');
+      }
+    }
+
+    fetchToken();
+  }, [isAuthenticated, router]);
 
   useEffect(() => {
     if (!api) {
@@ -127,7 +152,6 @@ const BecomeHost = () => {
       toast.error("Please fill in all required information");
       return;
     }
-    
     if (currentStep === 5) {
       handleSubmit();
     } else {
@@ -142,6 +166,11 @@ const BecomeHost = () => {
   };
 
   const handleSubmit = async () => {
+    if (!accessToken) {
+      toast.error("Authentication error. Please try again.");
+      return;
+    }
+
     try {
       const formDataToSend = new FormData();
       
@@ -172,7 +201,20 @@ const BecomeHost = () => {
         }
       });
 
-      const response = await apiService.post('/api/properties/create/', formDataToSend);
+      console.log("Form Data Contents:");
+      for (let pair of formDataToSend.entries()) {
+          console.log(pair[0] + ': ' + pair[1]);
+      }
+      
+      console.log("State values:", {
+          formData,
+          placeInfo,
+          selectedCategory,
+          selectedAmenities,
+          photos: photos.map(p => ({ id: p.id, hasFile: !!p.file }))
+      });
+
+      const response = await apiService.post('/api/properties/create/', formDataToSend, accessToken);
 
       if (response.success) {
         toast.success('Property created successfully!');  
