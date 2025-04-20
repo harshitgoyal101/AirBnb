@@ -4,7 +4,7 @@ from .models import Property, Reviews
 class PropertyForm(ModelForm):
     class Meta:
         model = Property
-        exclude = ['id', 'landlord', 'created_at']
+        exclude = ['id', 'landlord', 'created_at', 'aminities']
 
 class ReviewForm(ModelForm):
     class Meta:

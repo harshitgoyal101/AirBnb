@@ -74,7 +74,7 @@ export const SignUpModel = () => {
         }
         console.log("signup",signup)
 
-        const response = await apiService.post("/api/auth/register/", JSON.stringify(signup));
+        const response = await apiService.post("/api/auth/register/", signup);
         if(response.access) {
             handleLogin(response.user.pk, response.access, response.refresh);
             resetForm();

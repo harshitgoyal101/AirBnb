@@ -1,8 +1,9 @@
 from django.http import JsonResponse
 from rest_framework.decorators import api_view, authentication_classes, permission_classes
-from .models import Property, Reviews
+from .models import Property, Reviews, Aminity, PropertyAminities
 from .serializers import *
 from .forms import PropertyForm, ReviewForm
+import json
 
 @api_view(['GET'])
 @authentication_classes([])
@@ -42,6 +43,28 @@ def create_property(request):
         property = form.save(commit=False)
         property.landlord = request.user
         property.save()
+
+        amenities_data = request.POST.get('aminities')
+        if amenities_data:
+            try:
+                amenities_list = json.loads(amenities_data)                
+                PropertyAminities.objects.filter(property=property).delete()
+                
+                for amenity_id in amenities_list:
+                    try:
+                        amenity = Aminity.objects.get(id=amenity_id)
+                        PropertyAminities.objects.create(
+                            property=property,
+                            aminity=amenity
+                        )
+                    except Aminity.DoesNotExist:
+                        print(f"Amenity with id {amenity_id} not found")
+                        continue
+            except json.JSONDecodeError:
+                print("Invalid amenities data format")
+            except Exception as e:
+                print(f"Error processing amenities: {str(e)}")
+
         serializer = PropertiesListSerializers(property)
         return JsonResponse({
             'data': serializer.data

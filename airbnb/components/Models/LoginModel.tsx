@@ -58,7 +58,7 @@ export const LoginModel = () => {
             email: values.email,
             password: values.password
         }
-        const response = await apiService.post('/api/auth/login/', JSON.stringify(login));
+        const response = await apiService.post('/api/auth/login/', login);
         if(response.access) {
             handleLogin(response.user.pk, response.access, response.refresh);
             resetForm();

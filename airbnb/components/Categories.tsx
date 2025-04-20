@@ -23,7 +23,7 @@ export const Categories = ({ onCategorySelect }: CategoriesProps) => {
 
 	const [withTax, setWithTax] = useState(true);
     const [loading, setLoading] = useState(true);
-    const [categories, setCategories] = useState<String[]>([]);
+    const [categories, setCategories] = useState<any[]>([]);
     const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
 
     const getCategories = async () => {
@@ -36,13 +36,13 @@ export const Categories = ({ onCategorySelect }: CategoriesProps) => {
         getCategories();
     }, [])
 
-    const handleCategoryClick = (category: string) => {
-        if (selectedCategory === category) {
+    const handleCategoryClick = (category: any) => {
+        if (selectedCategory === category.title) {
             setSelectedCategory(undefined);
             onCategorySelect(undefined);
         } else {
-            setSelectedCategory(category);
-            onCategorySelect(category);
+            setSelectedCategory(category.title);
+            onCategorySelect(category.title);
         }
     }
     
@@ -77,10 +77,10 @@ export const Categories = ({ onCategorySelect }: CategoriesProps) => {
                                 {categories.map((category, index) => {
                                     return <CarouselItem key={index} className="basis-1/10 mt-2">
                                         <div 
-                                            onClick={() => handleCategoryClick(String(category))}
+                                            onClick={() => handleCategoryClick(category)}
                                             className={`cursor-pointer ${selectedCategory === category ? 'border-b-2 border-black' : ''}`}
                                         >
-                                            <IconWithLabel type={String(category)}/>
+                                            <IconWithLabel type={String(category.title)}/>
                                         </div>
                                     </CarouselItem>
                                 })}
