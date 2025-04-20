@@ -43,14 +43,14 @@ const BecomeHost = () => {
   const router = useRouter();
   const [currentStep, setCurrentStep] = useState(0);
   const [api, setApi] = useState<CarouselApi>();
-  const [selectedCategory, setSelectedCategory] = useState<string | null>(null);
+  const [selectedCategory, setSelectedCategory] = useState<number | null>(null);
   const [selectedPlace, setSelectedPlace] = useState<string | null>(null);
   const [placeInfo, setPlaceInfo] = useState<PlaceInfoType>({
     guests: 1,
     bedrooms: 1,
     bathrooms: 1
   });
-  const [selectedAmenities, setSelectedAmenities] = useState<string[]>([]);
+  const [selectedAmenities, setSelectedAmenities] = useState<any[]>([]);
   const [photos, setPhotos] = useState<Photo[]>([
     { id: 1, file: null, url: null },
     { id: 2, file: null, url: null },
@@ -99,8 +99,8 @@ const BecomeHost = () => {
     });
   }, [api]);
 
-  const handleCategorySelect = (category: string | null) => {
-    setSelectedCategory(category);
+  const handleCategorySelect = (category: any | null) => {
+    setSelectedCategory(category.id);
   };
 
   const handlePlaceSelect = (placeType: string | null) => {
@@ -111,7 +111,7 @@ const BecomeHost = () => {
     setPlaceInfo(info);
   };
 
-  const handleAmenitiesChange = (amenities: string[]) => {
+  const handleAmenitiesChange = (amenities: any[]) => {
     setSelectedAmenities(amenities);
   };
 
@@ -177,14 +177,15 @@ const BecomeHost = () => {
       formDataToSend.append('title', formData.propertyName);
       formDataToSend.append('description', formData.description);
       formDataToSend.append('price_per_night', formData.pricePerNight);
-      formDataToSend.append('country', formData.city);
+      formDataToSend.append('city', formData.city);
+      formDataToSend.append('country', 'India');
       formDataToSend.append('country_code', 'IN');
       formDataToSend.append('guests', placeInfo.guests.toString());
       formDataToSend.append('bedrooms', placeInfo.bedrooms.toString());
       formDataToSend.append('bathrooms', placeInfo.bathrooms.toString());
       
       if (selectedCategory) {
-        formDataToSend.append('category', selectedCategory);
+        formDataToSend.append('category', selectedCategory.toString());
       }
       
       if (selectedAmenities.length > 0) {

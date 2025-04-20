@@ -5,14 +5,14 @@ import { IconWithLabel } from "../ui/IconWIthLabel";
 import { Skeleton } from "../ui/skeleton";
 
 interface CategorySelectProps {
-    onCategorySelect: (category: string | null) => void;
-    selectedCategory?: string | null;
+    onCategorySelect: (category: any | null) => void;
+    selectedCategory?: any | null;
 }
 
 export const CategorySelect = ({ onCategorySelect, selectedCategory: initialCategory = null }: CategorySelectProps) => {
-    const [categories, setCategories] = useState<String[]>([]);
+    const [categories, setCategories] = useState<any[]>([]);
     const [loading, setLoading] = useState(true);
-    const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory);
+    const [selectedCategory, setSelectedCategory] = useState<any | null>(initialCategory);
 
     const getCategories = async () => {
         const tmpCategories = await apiService.get('/api/categories/');
@@ -24,7 +24,7 @@ export const CategorySelect = ({ onCategorySelect, selectedCategory: initialCate
         setLoading(false)
     }, [])
 
-    const handleCategoryClick = (category: string) => {
+    const handleCategoryClick = (category: any) => {
         setSelectedCategory(category);
         onCategorySelect(category);
     };
@@ -48,9 +48,9 @@ export const CategorySelect = ({ onCategorySelect, selectedCategory: initialCate
                             <div 
                                 key={index} 
                                 className={`border-2 py-1 mx-1 md:py-2 xl:py-4 px-0 h-32 items-center hover:border-black hover:bg-gray-100 max-w-40 rounded-md my-4 cursor-pointer ${isSelected ? 'border-black bg-gray-100' : ''}`}
-                                onClick={() => handleCategoryClick(String(category))}
+                                onClick={() => handleCategoryClick(category)}
                             >
-                                <IconWithLabel className="border-none text-sm w-full" type={String(category)}/>
+                                <IconWithLabel className="border-none text-sm w-full" type={String(category.title)}/>
                             </div>
                         );
                     })
