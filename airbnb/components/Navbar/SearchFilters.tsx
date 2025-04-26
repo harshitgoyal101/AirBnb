@@ -34,7 +34,7 @@ export const SearchFilters = (params: {tab: string}) => {
 
     return (
         <div className="flex flow-row items-center justify-between border rounded-full shadow-lg p-0">
-            <div>
+            <div className= {`${tab == "short" ? "w-[350px] " : ""}`}>
                 {tab != "short" ?
                 <div className="flex flex-rows items-center justify-between">
                     <InputwithLabel 
@@ -118,10 +118,11 @@ export const SearchFilters = (params: {tab: string}) => {
                         isButton
                     />
                 </div>
-                : <div className="flex flex-rows items-center justify-between">
+                : <div className="flex flex-rows items-center justify-between w-full">
                     <InputwithLabel 
                         label="Anywhere"
-                        width="110px"
+                        className="p-0"
+                        width="90px"
                         onMouseLeave={onMouseLeave}
                         onMouseEnter={
                             () => { setHoverState({
@@ -136,7 +137,8 @@ export const SearchFilters = (params: {tab: string}) => {
                         style={{visibility:(hoverState.search||hoverState.checkIn)?"hidden":"visible"}}/>
                     <InputwithLabel 
                         label="Any week"
-                        width="110px"
+                        className="p-0"
+                        width="90px"
                         onMouseLeave={onMouseLeave}
                         onMouseEnter={
                             () => { setHoverState({
@@ -152,6 +154,7 @@ export const SearchFilters = (params: {tab: string}) => {
                     <InputwithLabel 
                         placeholder="Add guests" 
                         onMouseLeave={onMouseLeave}
+                        // className="w-1/2"
                         width="170px"
                         onMouseEnter={
                             () => { setHoverState({
