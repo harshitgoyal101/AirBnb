@@ -21,7 +21,7 @@ import { PropertyInfoProps } from "@/components/Properties/PropertyInfo";
 
 export default function UserDetailPage({propertyInfo} : {propertyInfo ?: PropertyInfoProps}) {
     return (
-        <div className="w-full overflow-hidden flex flex-col justify-center items-center lg:items-start lg:flex-row sm:px-20">
+        <div className="w-full overflow-hidden flex flex-col justify-center items-center lg:items-start lg:flex-row px-20">
             <div className="flex flex-col mt-2 sm:mt-8 justify-center p-12 min-w-[480px] max-w-[500px] lg:sticky lg:top-0 lg:h-screen">
                 <UserCard className= "w-[330px] ml-8 sm:ml-0 h-60 sm:h-full sm:w-full" landlord={(propertyInfo?.property?.landlord)??"Harshit"} /> 
                 <div className="w-full  sm:border border-gray-300 rounded-xl ml-6 sm:ml-0 p-6 my-12 ">
@@ -41,7 +41,7 @@ export default function UserDetailPage({propertyInfo} : {propertyInfo ?: Propert
                     <Link href="/" className="underline font-semibold">Report this profile</Link>
                 </div>
             </div>
-            <div className="w-[350px] px-2 sm:mx-32 sm:w-full">                
+            <div className="w-[350px] px-2 sm:w-full">                
                 <div className="min-w-[342px] max-w-[500px] lg:max-w-[1000px] w-full sm:p-10 xl:grid grid-cols-2">
                     <div className="col-span-2 flex flex-col md:flex-row  w-full">
                         <div className="text-3xl mr-2 text-darkText font-bold p-2">About Harshit</div>
