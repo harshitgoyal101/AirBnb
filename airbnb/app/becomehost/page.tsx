@@ -267,7 +267,7 @@ const BecomeHost = () => {
               </CarouselItem>
 
           </CarouselContent>   
-          <div className="fixed bottom-0 w-full h-24 px-16 bg-white border-black border-t-4 flex justify-between items-center">
+          <div className="fixed bottom-0 w-full h-24 px-8 sm:px-16 bg-white border-black border-t-4 flex justify-between items-center">
               <div className="flex items-center">
                 <CarouselPrevious 
                   className="opacity-0 hover:opacity-0 disabled:opacity-0" 

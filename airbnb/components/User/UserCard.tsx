@@ -13,7 +13,7 @@ type UserCardProps = {
 
 export const UserCard = ({ className, landlord }: UserCardProps) => {
     return (
-        <Card className = {cn('p-6 flex flex-row justify-between items-center', className)}>
+        <Card className = {cn('p-6 flex flex-row justify-between rounded-3xl h-46 w-56 items-center', className)}>
             <div className="flex flex-col justify-between items-center">
                 <Image
                     width={144}
@@ -22,7 +22,7 @@ export const UserCard = ({ className, landlord }: UserCardProps) => {
                     src="/temp.avif"
                     alt="Small Image 1"
                 />
-                <div className="text-2xl text-darkText font-bold">
+                <div className="text-xl sm:text-2xl text-darkText font-bold">
                     {landlord?.name}
                 </div>
                 <div className="text-md font-bold text-lightText flex items-center">

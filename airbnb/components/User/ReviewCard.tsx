@@ -5,7 +5,7 @@ export const ReviewCard = ({className}:{className ?: string}) => {
   return (
     <>
     <div className={cn(
-            "min-w-[350px] min-h-[225px]  border rounded-xl mr-3 my-3  p-5 flex flex-col justify-between",
+            "min-w-[300px] min-h-[225px]  border rounded-xl mr-3 my-3  p-5 flex flex-col justify-between",
             className
           )}>
       <div className="text-mediumText font-sm mb-2">

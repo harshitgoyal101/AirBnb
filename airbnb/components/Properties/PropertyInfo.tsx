@@ -25,13 +25,14 @@ export type PropertyType = {
     image4?: string;
     guests?: number;
     country?: string;
-    landlord?: string
+    landlord?: string;
+    city?: string
 };
 
-type PropertyInfoProps = {
+export type PropertyInfoProps = {
     property?: PropertyType;
     landlord?: any;
-  };
+};
 
 export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
 
@@ -66,7 +67,7 @@ export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
         </div>
 
 
-        <div id = "PhotoRef" className="mb-4">
+        <div id = "PhotoRef" className="mb-4 h-fit">
             <PropertiesImages property={property}/>
         </div>
         
@@ -102,7 +103,7 @@ export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
 
                 
                 <Separator/>
-                <CalenderMain/>
+                <CalenderMain propertyInfo={property}/>
             </div>
             <div className="invisible w-0 md:visible md:w-1/2 lg:w-2/5 pr-0 py-5 pl-0 md:pl-12 lg:pl-20  md:sticky md:top-0 md:h-screen">
                 <BookCard property ={property}/>
