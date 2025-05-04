@@ -13,14 +13,14 @@ export const Footer = () => {
         <>
         {!DisableNavFooter.includes(path) && (
         <footer className="w-full bg-gray-50 border border-gray-200">
-            <div className="p-8 px-12">
+            <div className="py-8 ml-2 sm:p-8">
                 <Link href="/" className="hover:underline mx-2">Airbnb</Link> &gt; 
                 <Link href="/" className="hover:underline mx-2">Airbnb</Link> &gt; 
                 <Link href="/" className="hover:underline mx-2">Airbnb</Link> &gt; 
                 <Link href="/" className="hover:underline mx-2">Airbnb</Link> 
             </div>
             <Separator className="h-[1px] w-11/12 mx-auto"/>
-            <div className="p-8">
+            <div className="py-8 sm:p-8">
                 <div className="grid sm:grid-cols-1 md:grid-cols-3 p-6">
                     <div className="flex flex-col space-y-2">
                         <div className="font-semibold my-3">Support</div>

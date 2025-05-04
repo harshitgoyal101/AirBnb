@@ -48,7 +48,7 @@ export const Navbar = () => {
         { !DisableNavFooter.includes(path) && (
             <nav className="w-full top-0 left-0 py-4 border-b bg-white z-10">
             <div className="place-items-center">
-                <div className="w-full mx-auto px-24">
+                <div className="w-full mx-auto px-4 md:px-24">
                     <div className="flex justify-between h-[60px]">
                         <Link href="/">
                             <Image
@@ -91,7 +91,7 @@ export const Navbar = () => {
                     <SearchFilters tab={tabValue} />
                 </div>
 
-                <div className={`items-center justify-between px-6 ${tabValue === "none"?"flex":"hidden"}`}>
+                <div className={`items-center justify-between px-2 ${tabValue === "none"?"flex":"hidden"}`}>
                     <SearchFilters tab="short"/>
                 </div>
             </div>

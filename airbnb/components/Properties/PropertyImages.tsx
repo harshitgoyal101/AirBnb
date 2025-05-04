@@ -10,7 +10,7 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
         
         {property?.image ?
         (
-            <div className="relative grid max-h-[475px] overflow-hidden grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="relative grid sm:max-h-[475px] overflow-hidden grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
                 
                     <div className="relative max-h-[500px] col-span-2 row-span-2 m-1">
                         <Image

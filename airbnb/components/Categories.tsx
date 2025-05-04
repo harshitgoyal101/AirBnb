@@ -47,7 +47,7 @@ export const Categories = ({ onCategorySelect }: CategoriesProps) => {
     }
     
     return (
-        <div className="w-full mx-auto px-12 md:px-24 lg:px-24 py-3 flex-col lg:flex-row flex space-x-8 items-center ">
+        <div className="w-full mx-auto px-2 md:px-24 lg:px-24 py-3 flex-col lg:flex-row flex space-x-8 items-center ">
             
             {loading ?
                 <>

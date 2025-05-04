@@ -1,6 +1,5 @@
 "use client";
 import React from "react";
-import { use } from "react";
 import { Separator } from "@/components/ui/separator";
 import { PropertyInfo, PropertyType } from "@/components/Properties/PropertyInfo";
 import { RatingsSection } from "@/components/Properties/RatingsSection";
@@ -10,8 +9,8 @@ import { useRef, useState, useEffect } from "react";
 import { PropertyNav } from "@/components/Properties/PropertyNav";
 import { apiService } from "@/app/services/apiService";
 
-export default function PropertyDetailPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params);
+export default function PropertyDetailPage({ params }: { params: { id: string } }) {
+    const { id } = params;
 
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [property, setProperty] = useState<PropertyType | undefined>(undefined);
@@ -65,12 +64,12 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
     }, [property?.landlord]);
 
     return (
-        <div>
+        <div className="overflow-hidden">
             <div ref={propertyInfoRef}>
                 <PropertyInfo property={property} landlord={landlord} />
             </div>
-            <PropertyNav IsNavVisible={isNavVisible} />
-            <div className="w-full mx-auto min-w-[xl] px-10 lg:px-20 xl:px-36 p-3">
+            <PropertyNav property={property} IsNavVisible={isNavVisible} />
+            <div className="w-full mx-auto min-w-[xl] px-3 md:px-10 lg:px-20 xl:px-36">
                 <Separator className="invisible md:visible" />
                 <RatingsSection type="default" />
                 <Separator />
@@ -80,6 +79,7 @@ export default function PropertyDetailPage({ params }: { params: Promise<{ id: s
                 <Separator />
                 <HostDetails landlord={landlord} />
             </div>
-        </div>
+        </div>  
+
     );
 }

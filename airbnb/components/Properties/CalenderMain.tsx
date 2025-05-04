@@ -2,8 +2,9 @@
 import { Calendar } from '@/components/ui/calendar';
 import { useAuthDate } from '@/context/AuthContext';
 import { useState } from 'react';
+import { PropertyInfoProps } from './PropertyInfo';
 
-export const CalenderMain = ()  => {
+export const CalenderMain = ({propertyInfo}: {propertyInfo ?: PropertyInfoProps})  => {
     const { checkIn, checkOut, setCheckIn, setCheckOut } = useAuthDate();
     const [range, setRange] = useState<{ from: Date | undefined; to: Date | undefined }>({
         from: undefined,
@@ -30,9 +31,9 @@ export const CalenderMain = ()  => {
 
     return (
         <div className="my-6">
-            <div className="text-2xl font-semibold text-darkText mb-2">
+            <div className="text-xl md:text-2xl font-semibold text-darkText mb-2">
                 {range.from && range.to ?
-                    <div>{RangeLength(range)} nights in Anjar</div>
+                    <div>{RangeLength(range)} nights in {propertyInfo?.property?.country}</div>
                     : <div>Select check-in date</div>
                 }
             </div>
@@ -47,8 +48,9 @@ export const CalenderMain = ()  => {
                 <Calendar
                     selected={{ from: range.from, to: range.to }} 
                     onDayClick={handleDateChange} 
-                    numberOfMonths={2} 
+                    numberOfMonths={(window.innerWidth < 768) ? 1:2} 
                     mode="range"
+                    className='pl-0 ml-0'
                 />
             </div>
         </div>

@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import { Card } from "../ui/Card";
 import { CalenderMain } from "./CalenderMain";
 import { useAuthDate } from "@/context/AuthContext";
+import { PropertyInfoProps } from './PropertyInfo';
 
-export const CalenderPop = () => {
+export const CalenderPop = ({propertyInfo}: {propertyInfo ?: PropertyInfoProps}) => {
 
     const [isOpen, setIsOpen] = useState(false);
     const { checkIn, checkOut, setCheckIn, setCheckOut } = useAuthDate();
@@ -36,7 +37,7 @@ export const CalenderPop = () => {
 
             {isOpen && (
                 <Card className='w-[765px] absolute top-[40px] left-90 right-0 rounded-xl  px-8  py-6 z-20  bg-white'>
-                    <CalenderMain/>
+                    <CalenderMain propertyInfo={propertyInfo}/>
                     <Button variant = {"active"} onClick={() => {setIsOpen(false)}} className="w-full text-md items-end text-darkText font-semibold underline">Close</Button>
                 </Card>
             )}    

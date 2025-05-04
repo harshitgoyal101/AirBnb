@@ -41,8 +41,8 @@ function Calendar({
           buttonVariants({ variant: "default" }),
           "h-12 w-12 p-0 font-normal aria-selected:opacity-100 focus:bg-darkText"
         ),
-        day_range_end: "day-range-end bg-black",
-        day_range_start: "day-range-start bg-black",
+        day_range_end: "day-range-end",
+        day_range_start: "day-range-start",
         day_selected:
           "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground focus:bg-primary focus:text-primary-foreground",
         day_today: "bg-accent text-accent-foreground",

@@ -29,16 +29,16 @@ export const ReviewSection = () => {
 
         <div className="md:hidden">
             <Carousel className="w-full md:overflow-auto relative">
-                <div className="flex justify-between my-6 mr-6">
-                    <div className="text-2xl font-semibold text-mediumText mt-3">
+                <div className="flex justify-between my-6 mr-6 ">
+                    <div className="text-xl md:text-2xl font-semibold text-mediumText mt-3">
                         What guests are saying about Harshit
                     </div>
-                    <div className="flex justify-between">
+                    <div className="flex justify-between items-center">
                         <div className="mr-6"><CarouselPrevious /></div>
                         <div className="ml-6"><CarouselNext /></div>
                     </div>
                 </div>
-                <CarouselContent className=" w-full min-w-[500px]">
+                <CarouselContent className=" w-full min-w-[340px]">
                     {Array.from({ length: 5 }).map((_, index) => (
                         <CarouselItem key={index} className="xl:basis-1/2">
                             <ReviewCard/>

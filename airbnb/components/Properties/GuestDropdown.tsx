@@ -14,7 +14,7 @@ export const GuestDropdown = () => {
   return (
     <div className='relative'>
         <Button variant="active" className="w-full items-start text-darkText" onClick={() => {setIsOpen(!isOpen)}}>
-            1 Guest
+            Guests
         </Button>
 
         {isOpen && (
