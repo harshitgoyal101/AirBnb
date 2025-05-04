@@ -24,7 +24,7 @@ def properties_list(request):
     
     category = request.GET.get('category')
     if category:
-        properties = properties.filter(category__name__iexact=category)
+        properties = properties.filter(category__title__iexact=category)
     
     landlord = request.GET.get('landlord')
     if landlord:
