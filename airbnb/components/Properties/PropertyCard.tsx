@@ -18,7 +18,7 @@ export const PropertyCard: React.FC<PropertyProps> = ({
                             fill
                             sizes="(max-width: 768px) 768px, (max-width: 1200px): 768px, 768px"
                             className="hover:scale-R110 object-cover transition h-full w-full"
-                            src={property.image_url}
+                            src={property?.image_url ?? "/no-property-found.png"}
                             alt="Image not found"
                         />
                     </div>

@@ -23,7 +23,8 @@ export const Properties = ({ category }: PropertiesProps) => {
     const [loading, setLoading] = useState(true)
 
     const getProperties = async () => {
-        const url = category 
+        console.log(category);
+        const url = category
             ? `/api/properties/?category=${category}`
             : '/api/properties/';
         const tmpProperties = await apiService.get(url);
@@ -42,10 +43,10 @@ export const Properties = ({ category }: PropertiesProps) => {
                 loading ?
                 <>
                 {Array.from({ length: 8 }).map((_, index) => (
-                    <div key={index} className="cursor-pointer max-w-72 w-auto m-3 rounded-xl" >
-                        <Skeleton className="max-w-72 h-72 rounded-xl"/>                            
+                    <div key={index} className="cursor-pointer w-auto m-3 rounded-xl" >
+                        <Skeleton className=" h-72 rounded-xl"/>                            
                         
-                        <div className="max-w-72 mt-4 flex flex-col space-x-0 text-lightText">
+                        <div className=" mt-4 flex flex-col space-x-0 text-lightText">
                             <div className="flex justify-between">
                                 <Skeleton className="w-24 h-6"/>
                                 <Skeleton className="w-10 h-6 mr-2"/>
@@ -56,7 +57,7 @@ export const Properties = ({ category }: PropertiesProps) => {
                     </div>
                 ))}
                 </> : 
-                properties.map((property) => {
+                properties.length > 0 ? properties.map((property) => {
                     return  (
                         <Link href ={`/property/${property.id}`} key={property.id}>
                             <PropertyCard 
@@ -65,7 +66,9 @@ export const Properties = ({ category }: PropertiesProps) => {
                             />
                         </Link>
                     )
-                })
+                }) : <>
+                    <div className="text-lg m-5"> No Properties Found </div>
+                </>
             }
             
        </div>

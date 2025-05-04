@@ -58,8 +58,8 @@ export const PropertiesImages = ({ property }: { property?: PropertyType }) => {
                             width={800}
                             height={450}
                             className="object-cover w-full h-full"
-                            src={`${process.env.NEXT_PUBLIC_API_HOST}${property?.image4}`}
-                            alt="Small Image 3"
+                            src={`${process.env.NEXT_PUBLIC_API_HOST}${property?.image5}`}
+                            alt="Small Image 4"
                         />
                     </div>
                 )}

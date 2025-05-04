@@ -23,7 +23,7 @@ export const Navbar = () => {
         } else if (window.innerWidth < 1000) {
             setTabValue("short");
             setLogo("/airbnb-short.svg");
-        } else {
+        } else if (tabValue != "experience") {
             setTabValue("stays");
         }
         if (window.innerWidth < 550) {
@@ -64,12 +64,11 @@ export const Navbar = () => {
                         <div className={`items-center justify-between px-6 ${tabValue === "short" ? "flex" : "hidden"}`}>
                             <SearchFilters tab={tabValue} />
                         </div>
-
                         <div className={`${(tabValue === "stays" || tabValue === "experience") ? "block":"hidden"} pt-2`}>
                             <Button variant={tabValue === "stays" ? "active" : "default"} onClick={() => {setTabValue("stays");}}>
                                 Stays
                             </Button>
-                            <Button variant={tabValue==="experience"?"active":"default"} onClick={() => {setTabValue("experience");}}>
+                            <Button variant={tabValue==="experience" ? "active":"default"} onClick={() => {setTabValue("experience");}}>
                                 Experiences
                             </Button>
                         </div>

@@ -5,12 +5,12 @@ import { PropertyInfo, PropertyType } from "@/components/Properties/PropertyInfo
 import { RatingsSection } from "@/components/Properties/RatingsSection";
 import { ReviewSection } from "@/components/Properties/ReviewSection";
 import { HostDetails } from "@/components/Properties/HostDetails";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, use } from "react";
 import { PropertyNav } from "@/components/Properties/PropertyNav";
 import { apiService } from "@/app/services/apiService";
 
-export default function PropertyDetailPage({ params }: { params: { id: string } }) {
-    const { id } = params;
+export default function PropertyDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const { id } = use(params); 
 
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [property, setProperty] = useState<PropertyType | undefined>(undefined);

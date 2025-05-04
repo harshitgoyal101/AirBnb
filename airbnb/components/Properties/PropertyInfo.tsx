@@ -4,7 +4,6 @@ import { RiShare2Fill } from "react-icons/ri";
 import { PropertiesImages } from "@/components/Properties/PropertyImages";
 import Image from "next/image";
 import { Separator } from "@/components/ui/separator"
-import { Amenities } from "./Amenities";
 import { BookCard } from "./BookCard";
 import { Button } from "../ui/button"
 import { useEffect, useState } from "react";
@@ -23,6 +22,7 @@ export type PropertyType = {
     image2?: string;
     image3?: string;
     image4?: string;
+    image5?: string;
     guests?: number;
     country?: string;
     landlord?: string;
@@ -76,12 +76,12 @@ export const PropertyInfo = ({ property, landlord }: PropertyInfoProps) => {
                 <div className="text-darkText font-semibold md:text-lg mb-5">
                     {property?.description || (<Skeleton className="h-6 w-xl mt-2"/>)} {property?.country || (<Skeleton className="h-6 w-44 mt-1"/>)}
                     <div className="text-sm my-2 text-lightText items-center"> 
-                        <p className="mr-2 inline-block">
+                        <div className="mr-2 inline-block">
                             guests-{property?.guests || (<Skeleton className="h-4 w-4 inline-flex ml-1 mr-2 mt-1"/>)}
-                        </p> 
-                        <p className="mr-2 inline-block">
+                        </div> 
+                        <div className="mr-2 inline-block">
                             bedrooms-{property?.bedrooms  || (<Skeleton className="h-4 w-4 inline-flex ml-1 mr-2 mt-1"/>)} 
-                        </p>
+                        </div>
                         bathrooms-{property?.bathrooms  || (<Skeleton className="h-4 w-4 inline-flex ml-1 mr-2 mt-1"/>)}</div>
                     <div className="text-xs md:text-sm">★ 4 Reviews</div>
                 </div>

@@ -8,7 +8,7 @@ export default function Home() {
 	const [selectedCategory, setSelectedCategory] = useState<string | undefined>(undefined);
 
 	return (
-		<main className="flex flex-col w-full">
+		<main className="flex flex-col w-full overflow-hidden">
 			<Categories onCategorySelect={setSelectedCategory} />
 			<Properties category={selectedCategory} />
 		</main>

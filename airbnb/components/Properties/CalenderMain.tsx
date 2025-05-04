@@ -1,7 +1,7 @@
 "use client"
 import { Calendar } from '@/components/ui/calendar';
 import { useAuthDate } from '@/context/AuthContext';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { PropertyInfoProps } from './PropertyInfo';
 
 export const CalenderMain = ({propertyInfo}: {propertyInfo ?: PropertyInfoProps})  => {
@@ -10,15 +10,24 @@ export const CalenderMain = ({propertyInfo}: {propertyInfo ?: PropertyInfoProps}
         from: undefined,
         to: undefined,
     });    
+    const [monthsToShow, setMonthsToShow] = useState(2); 
+
+    useEffect(() => {
+        if (typeof window !== 'undefined') {
+            setMonthsToShow(window.innerWidth < 768 ? 1 : 2);
+        }
+    }, []);
+
     const formatDate = (date: Date) => {
         return date.toLocaleDateString("en-GB", { day: "2-digit", month: "numeric", year: "numeric" });
     };
+
     const RangeLength =  (range: {from: Date | undefined; to: Date | undefined  }): number => {
         if (!range.from || !range.to) return 0;
         const timeDiff = range.from.getTime() - range.to.getTime();
-        const DayDiff = timeDiff/(1000*60*60*24);
-        return Math.abs(DayDiff);
-    }
+        return Math.abs(timeDiff / (1000 * 60 * 60 * 24));
+    };
+
     const handleDateChange = (date: Date) => {
         if (!range.from || (range.from && range.to)) {
             setRange({ from: date, to: undefined });
@@ -44,11 +53,12 @@ export const CalenderMain = ({propertyInfo}: {propertyInfo ?: PropertyInfoProps}
                     : <p>Add your travel dates for exact pricing</p>
                 } 
             </div>
+
             <div className="flex justify-between py-2 overflow-x-hidden w-full">
                 <Calendar
                     selected={{ from: range.from, to: range.to }} 
                     onDayClick={handleDateChange} 
-                    numberOfMonths={(window.innerWidth < 768) ? 1:2} 
+                    numberOfMonths={monthsToShow}
                     mode="range"
                     className='pl-0 ml-0'
                 />
@@ -56,4 +66,3 @@ export const CalenderMain = ({propertyInfo}: {propertyInfo ?: PropertyInfoProps}
         </div>
     )
 }
-
