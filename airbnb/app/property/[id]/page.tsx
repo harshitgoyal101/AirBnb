@@ -9,8 +9,9 @@ import { useRef, useState, useEffect, use } from "react";
 import { PropertyNav } from "@/components/Properties/PropertyNav";
 import { apiService } from "@/app/services/apiService";
 
-export default function PropertyDetailPage({ params }: { params: Promise<{ id: string }> }) {
-    const { id } = use(params); 
+export default async function PropertyDetailPage({ params }: { params: Promise<{ id: string }> }) {
+    const resolvedParams = await params;
+    const { id } = resolvedParams; 
 
     const [isNavVisible, setIsNavVisible] = useState(false);
     const [property, setProperty] = useState<PropertyType | undefined>(undefined);
