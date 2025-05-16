@@ -8,7 +8,8 @@ class PropertiesListSerializers(serializers.ModelSerializer):
             'id',
             'title',
             'price_per_night',
-            'image_url'
+            'image_url',
+            'city',
         )
 
 class PropertyDetailSerializer(serializers.ModelSerializer):
