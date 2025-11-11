@@ -8,6 +8,8 @@
 
 <img width="2302" height="3672" alt="localhost_3000_user_1" src="https://github.com/user-attachments/assets/3c631dca-d128-4b97-8d4a-133cfbce0ca2" />
 
+<img width="320" height="665" alt="Screenshot 2025-11-11 at 4 08 12 PM" src="https://github.com/user-attachments/assets/7c8491fe-af84-4f68-b6ac-d7d0c0ee64c6" />
+
 
 <img width="1440" height="900" alt="Screenshot 2025-11-11 at 3 27 46 PM" src="https://github.com/user-attachments/assets/8b496ce1-61e5-4f53-aac9-da4ac75aa987" />
 
