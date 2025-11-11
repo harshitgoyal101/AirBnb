@@ -1,13 +1,6 @@
 
 <img width="1440" height="900" alt="Screenshot 2025-11-11 at 3 25 16 PM" src="https://github.com/user-attachments/assets/c42ad25e-43ad-4d3a-823f-491bae53128f" />
 
-
-<img width="988" height="900" alt="Screenshot 2025-11-11 at 3 25 51 PM" src="https://github.com/user-attachments/assets/a939d3d8-23d6-40ab-bbec-466efa32de38" />
-
-
-<img width="989" height="900" alt="Screenshot 2025-11-11 at 3 26 01 PM" src="https://github.com/user-attachments/assets/7d9dbbf9-b0ca-45f3-bdba-6777e21ecb5d" />
-
-
 <img width="1440" height="900" alt="Screenshot 2025-11-11 at 3 27 46 PM" src="https://github.com/user-attachments/assets/8b496ce1-61e5-4f53-aac9-da4ac75aa987" />
 
 <img width="2880" height="1800" alt="Screenshot 2025-11-11 at 3 27 42 PM" src="https://github.com/user-attachments/assets/1a706c19-527f-41e3-9063-a21eba5f90eb" />
